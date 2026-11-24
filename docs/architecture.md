@@ -1,89 +1,136 @@
 
-# Arsitektur Sistem
+# Architecture — Serverless Weather Data Pipeline
 
 ## 1. Gambaran Umum
 
-Proyek ini menggunakan arsitektur serverless berbasis Cloudflare untuk mengambil dan mengolah data prakiraan cuaca Jakarta secara otomatis.
+Proyek ini menerapkan arsitektur serverless menggunakan Cloudflare untuk mengambil, memproses, menyimpan, dan menampilkan data cuaca Jakarta dari Open-Meteo API.
 
-Data diperoleh dari Open-Meteo API dengan tiga indikator utama, yaitu suhu udara, kelembapan, dan curah hujan.
+Sistem menggunakan Cloudflare Workers sebagai Function as a Service (FaaS), Cloudflare R2 sebagai object storage, dan Cloudflare D1 sebagai database terkelola.
 
-Proses pengambilan dan pengolahan data dijalankan menggunakan Cloudflare Workers. Data mentah disimpan pada R2 Object Storage, sedangkan hasil pengolahannya disimpan dalam database D1.
+Terdapat dua jalur data dalam sistem:
 
-Hasil analisis kemudian ditampilkan melalui dashboard web yang dapat diakses menggunakan browser.
+1. Pipeline prakiraan cuaca tiga hari yang berjalan otomatis setiap hari.
+2. Analisis historis satu tahun yang diolah oleh Analysis Layer dan disimpan sebagai snapshot JSON pada R2.
 
 ## 2. Diagram Arsitektur
 
 ```mermaid
 flowchart TD
-    A["Cron Trigger<br/>07.00 WIB"] --> B["Cloudflare Worker"]
-    C["Open-Meteo API"] --> B
-    B --> D["R2 Object Storage<br/>Data JSON Mentah"]
-    B --> E["D1 Database<br/>Hasil Pengolahan"]
-    E --> F["Worker API"]
-    F --> G["Dashboard Web"]
-    B --> H["Observability Logs"]
+    A["Cron Trigger - 07.00 WIB"] --> B["Cloudflare Workers (FaaS)"]
+    C["Open-Meteo Forecast API"] --> B
+    B --> D["Validasi dan Pengolahan"]
+    D --> E["R2 - Raw JSON"]
+    D --> F["D1 - daily_forecast dan pipeline_runs"]
+    F --> G["Dashboard Prakiraan 3 Hari"]
+
+    H["Open-Meteo Historical API"] --> I["Analysis Layer - Python"]
+    I --> J["historical-dashboard.json"]
+    J --> K["Cloudflare R2"]
+    K --> L["Worker - API Historis"]
+    L --> M["Dashboard Historis 1 Tahun"]
+
+    B --> N["Cloudflare Observability"]
 ```
 
-## 3. Layanan yang Digunakan
+## 3. Komponen Infrastruktur
 
-| Layanan | Fungsi |
+| Komponen | Fungsi |
 |---|---|
-| Cloudflare Workers | Mengambil dan mengolah data secara serverless |
+| Cloudflare Workers | Menjalankan pipeline, endpoint API, dan dashboard |
 | Cron Triggers | Menjalankan pipeline secara otomatis |
-| Cloudflare R2 | Menyimpan data JSON mentah |
-| Cloudflare D1 | Menyimpan hasil analisis dan riwayat eksekusi |
-| Cloudflare Observability | Memantau aktivitas dan kesalahan sistem |
-| Open-Meteo API | Sumber data prakiraan cuaca |
-| Dashboard Web | Menampilkan hasil analisis |
+| Cloudflare R2 | Menyimpan JSON mentah dan snapshot historis |
+| Cloudflare D1 | Menyimpan hasil prakiraan dan riwayat eksekusi |
+| Cloudflare Observability | Monitoring dan pencatatan error |
+| Open-Meteo API | Sumber data cuaca |
+| Chart SVG | Menampilkan grafik langsung dari hasil pemrosesan Worker |
 
-## 4. Alur Kerja Sistem
+## 4. Alur Pipeline Otomatis
 
-1. Cron Trigger memanggil Cloudflare Worker setiap hari pada pukul 07.00 WIB.
-2. Worker mengambil data prakiraan cuaca Jakarta melalui Open-Meteo API.
-3. Data JSON mentah disimpan ke Cloudflare R2.
-4. Worker melakukan validasi, mengabaikan nilai yang tidak valid, dan menghitung rata-rata suhu, rata-rata kelembapan, serta total curah hujan per hari.
-5. Hasil pengolahan disimpan dalam tabel daily_forecast pada Cloudflare D1.
-6. Riwayat eksekusi dicatat dalam tabel pipeline_runs.
-7. Dashboard membaca hasil terbaru dari D1 melalui endpoint API Worker.
+Pipeline otomatis berjalan melalui tahapan berikut:
 
-## 5. Alasan Pemilihan Arsitektur
+1. Cron Trigger menjalankan Worker pada pukul 07.00 WIB.
+2. Worker melakukan request ke Open-Meteo Forecast API.
+3. Data JSON divalidasi berdasarkan struktur array, nilai numerik, kelembapan, dan curah hujan.
+4. Data mentah disimpan ke R2 dengan lokasi `raw/{run_id}.json`.
+5. Data dikelompokkan berdasarkan tanggal.
+6. Rata-rata suhu, rata-rata kelembapan, dan total curah hujan dihitung.
+7. Hasil disimpan pada tabel `daily_forecast` di D1.
+8. Status eksekusi dicatat pada tabel `pipeline_runs`.
+9. Dashboard membaca hasil dari eksekusi yang terakhir berhasil.
 
-Arsitektur serverless dipilih karena sistem tidak memerlukan server virtual yang harus dijalankan dan dikelola secara terus-menerus.
+Jadwal Cron:
 
-Cloudflare Workers digunakan sebagai layanan Function as a Service (FaaS), sementara R2 dan D1 menyediakan layanan penyimpanan terkelola.
+`0 0 * * *` (UTC) = 07.00 WIB.
 
-Dengan pendekatan ini, proses pengambilan data dapat berjalan sesuai jadwal tanpa mengharuskan anggota kelompok menjalankan program secara manual.
+## 5. Alur Data Historis
 
-Arsitektur ini juga memungkinkan penggunaan resource berdasarkan kebutuhan eksekusi, sehingga lebih sederhana untuk dikelola dalam lingkup proyek.
+Analysis Layer menggunakan data historis Open-Meteo untuk periode 16 November 2025 sampai 15 November 2026.
 
-## 6. Monitoring dan Penanganan Kegagalan
+Dataset terdiri atas 8.760 sampel valid yang diringkas menjadi 365 data harian dan 13 kelompok bulanan, termasuk bulan parsial.
 
-Sistem menggunakan Cloudflare Observability untuk memantau aktivitas Worker.
+Hasil analisis meliputi statistik deskriptif, tren suhu, tren kelembapan, curah hujan, validasi data, dan perbandingan musim.
 
-Jika proses pengambilan data mengalami kegagalan, Worker mencatat status failed dan pesan kesalahan ke tabel pipeline_runs, selama database masih dapat diakses.
+Hasil tersebut dikemas ke dalam `historical-dashboard.json` dan diunggah secara manual ke root bucket R2.
 
-Dashboard tetap menggunakan hasil dari eksekusi terakhir yang berhasil, sehingga data sebelumnya tidak langsung hilang ketika terjadi kegagalan pengambilan data baru.
+Worker membaca file tersebut melalui binding `RAW` dan menyediakan endpoint `/api/history`.
 
-Pengujian dilakukan melalui simulasi kegagalan API, pemeriksaan log, dan eksekusi ulang pipeline secara normal.
+Data historis tidak diperbarui oleh Cron prakiraan. Pembaruannya dilakukan melalui eksekusi ulang kode Analysis Layer dan upload snapshot terbaru.
 
-## 7. Hasil Implementasi
+## 6. Alasan Memilih FaaS
 
-Implementasi awal telah menunjukkan bahwa:
+Cloudflare Workers dipilih karena pipeline hanya membutuhkan eksekusi secara periodik serta layanan API dan dashboard yang relatif ringan.
 
-- Worker dapat mengambil data dari Open-Meteo API.
-- Data mentah dapat disimpan pada Cloudflare R2.
-- Hasil pengolahan dapat disimpan pada Cloudflare D1.
-- Cron Trigger berhasil memanggil Worker secara otomatis.
-- Dashboard dapat menampilkan ringkasan dan grafik tiga indikator.
-- Simulasi kegagalan API berhasil dicatat dan pipeline dapat dijalankan kembali.
+Dengan FaaS, kelompok tidak perlu melakukan konfigurasi sistem operasi, patching Virtual Machine, atau menjalankan server sendiri secara terus-menerus.
 
-Pengujian Cron dilakukan menggunakan interval 15 menit. Setelah pengujian, jadwal dikonfigurasi menjadi satu kali sehari pada pukul 07.00 WIB.
+### Perbandingan dengan IaaS
 
-## 8. Batasan Sistem
+| Aspek | Cloudflare Workers (FaaS) | Virtual Machine (IaaS) |
+|---|---|---|
+| Pengelolaan server | Tidak diperlukan | Dikelola pengguna |
+| Pengambilan otomatis | Cron Trigger | Cron pada VM |
+| Deployment | Deploy Worker | Instalasi dan konfigurasi aplikasi |
+| Skalabilitas | Dikelola platform dalam batas layanan | Perlu pengaturan resource |
+| Biaya aktual proyek | US$0,00 pada pengamatan 23 November 2026 | Tidak diukur |
 
-Data yang digunakan merupakan prakiraan cuaca tiga hari, bukan hasil pengukuran cuaca aktual.
+Untuk kebutuhan proyek yang memiliki satu pengambilan forecast per hari, FaaS dinilai lebih sederhana dari sisi pengelolaan.
 
-Analisis yang ditampilkan terbatas pada statistik deskriptif dan tren harian dari data prakiraan tersebut.
+## 7. Monitoring dan Penanganan Kegagalan
 
-Sistem belum dirancang untuk melakukan pengujian akurasi ramalan cuaca ataupun analisis perubahan iklim jangka panjang.
+Cloudflare Observability digunakan untuk memeriksa invocation dan log.
 
+Pipeline memiliki status:
+
+- `running`: eksekusi sedang berlangsung.
+- `success`: pengambilan dan penyimpanan berhasil.
+- `failed`: terdapat kesalahan selama proses.
+
+Jika API sumber gagal atau seluruh data tidak valid, sistem mencatat kegagalan apabila database masih tersedia.
+
+Dashboard tetap membaca hasil dari pipeline sukses terakhir.
+
+Pengujian awal telah mencakup simulasi kegagalan API dan pemulihan melalui eksekusi normal berikutnya.
+
+## 8. Keamanan
+
+Endpoint `/admin/run` dilindungi secret `ADMIN_TOKEN`.
+
+Bucket R2 tidak perlu diatur sebagai publik karena Worker mengaksesnya melalui binding.
+
+Kredensial tidak boleh disimpan dalam source code, repository, ataupun rekaman demo.
+
+## 9. Status Implementasi
+
+| Komponen | Status |
+|---|---|
+| Worker dan API forecast | Sudah diuji |
+| R2 dan D1 | Sudah diuji |
+| Cron otomatis versi awal | Sudah diuji |
+| API historis | Sudah diuji |
+| Dashboard historis versi terbaru | Perlu verifikasi deployment |
+| Cron setelah pembaruan Worker | Perlu verifikasi ulang |
+
+## 10. Kesimpulan
+
+Arsitektur Cloudflare memungkinkan integrasi antara pipeline prakiraan otomatis dan hasil analisis historis dalam satu layanan berbasis serverless.
+
+Penggunaan Workers, R2, dan D1 mendukung pemrosesan data, penyimpanan, monitoring, serta visualisasi tanpa kebutuhan pengelolaan Virtual Machine secara langsung.
