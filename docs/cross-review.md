@@ -37,5 +37,5 @@ Dari sisi integrasi cloud, keluaran analisis tersebut telah dikemas dalam format
 | Analisis historis belum terhubung dengan layanan cloud | Mengemas hasil analisis ke snapshot JSON pada Cloudflare R2 dan menghubungkannya ke endpoint `/api/history` | **Selesai (API berjalan normal)** |
 | Tampilan visual dashboard historis belum terintegrasi penuh | Menambahkan grafik tren historis pada halaman `/history` dan mengambil tangkapan layar bukti deployment | **Selesai (Terverifikasi)** |
 | Koordinat titik *forecast* dan data historis berbeda | Mencatat spesifikasi koordinat masing-masing sumber data pada `docs/interface-contract.md` | **Selesai (Terdokumentasi)** |
-| Waktu respons endpoint belum tercatat pada laporan | Mengukur latensi respons `/api/history` dan dashboard saat pengujian akhir (`Tidak diukur secara terpisah`) | **Selesai (Tidak Diukur)** |
+| Waktu respons endpoint belum diuji secara terpisah | Mengacu pada metrik eksekusi bawaan dashboard Cloudflare Workers (`worker-overview.png`); pengukuran latensi end-to-end terpisah dicatat sebagai **tidak diukur** | **Selesai (Tidak diukur secara terpisah)** |
 | Kode pada branch `main` GitHub tertinggal dari versi deployment | Menyinkronkan `src/app/worker.js` beserta seluruh artefak `analysis`, `infra`, dan `docs` ke branch `main` | **Selesai (Tersinkronisasi)** |
