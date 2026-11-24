@@ -1,0 +1,23 @@
+# DOKUMENTASI REFERENSI, bukan cara deploy utama.
+# Worker kelompok dibuat dan di-deploy lewat dashboard Cloudflare (editor Workers, "Manually deployed"),
+# lengkap dengan binding DB/RAW, secret ADMIN_TOKEN, dan Cron Trigger yang diatur di dashboard.
+# File ini mencatat konfigurasi yang sama; deploy dengan Wrangler dari berkas ini BELUM diuji.
+# Tidak berisi rahasia. ADMIN_TOKEN diatur sebagai Secret, bukan di sini.
+name = "topik1-cuaca-serverless"
+main = "../app/worker.js"
+compatibility_date = "2026-11-01"
+
+[triggers]
+crons = ["0 0 * * *"]   # 00:00 UTC = 07:00 WIB
+
+[[d1_databases]]
+binding = "DB"
+database_name = "topik1-cuaca-db"
+database_id = "ISI_DATABASE_ID_ANDA"   # lihat Cloudflare Dashboard > D1 > topik1-cuaca-db
+
+[[r2_buckets]]
+binding = "RAW"
+bucket_name = "proyekcloudcomputing"
+
+[observability]
+enabled = true
