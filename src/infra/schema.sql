@@ -1,3 +1,5 @@
+-- Skema D1 (topik1-cuaca-db).
+-- Ini SAMA dengan SQL yang dijalankan di D1 Console saat setup awal (lihat README bagian 8, "Menyiapkan D1").
 -- Cara pakai: buka Cloudflare Dashboard > D1 > topik1-cuaca-db > Console, tempel, lalu Execute.
 -- (Alternatif CLI, opsional: npx wrangler d1 execute topik1-cuaca-db --remote --file=src/infra/schema.sql -c src/infra/wrangler.toml)
 
@@ -25,5 +27,6 @@ CREATE TABLE IF NOT EXISTS daily_forecast (
 CREATE INDEX IF NOT EXISTS idx_forecast_run
 ON daily_forecast(run_id);
 
+-- OPSIONAL (TIDAK ada di database yang berjalan; jalankan hanya bila riwayat run membesar):
 -- CREATE INDEX IF NOT EXISTS idx_runs_status_finished
 -- ON pipeline_runs(status, finished_at);
