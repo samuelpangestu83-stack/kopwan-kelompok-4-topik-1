@@ -1,145 +1,132 @@
 
-# Interface Contract
+# Interface Contract — Analysis Layer dan Infrastructure & Operations
 
-## 1. Gambaran Umum
+## 1. Tujuan
 
-Dokumen ini menjelaskan kesepakatan teknis antara Analysis Layer dan Infrastructure & Operations Layer dalam pengembangan pipeline data prakiraan cuaca Jakarta berbasis Cloudflare.
+Dokumen ini menjelaskan kesepakatan teknis antara Analysis Layer dan Infrastructure & Operations Layer mengenai struktur data, hasil pemrosesan, endpoint, jadwal, target kinerja, dan penanganan kegagalan.
 
-Kesepakatan ini dibuat agar proses pengambilan, pengolahan, penyimpanan, dan penyajian data dapat berjalan sesuai dengan kebutuhan kedua layer.
+Kontrak digunakan agar output analisis dapat diterima dan ditampilkan oleh sistem Cloudflare secara konsisten.
 
-## 2. Sumber dan Format Data
+## 2. Pembagian Tanggung Jawab
 
-Sistem menggunakan data prakiraan cuaca dari Open-Meteo API.
+| Layer | Tanggung Jawab |
+|---|---|
+| Analysis Layer | Persiapan data, validasi, analisis, interpretasi, dan snapshot historis |
+| Infrastructure & Operations | Worker, API, D1, R2, dashboard, monitoring, dan deployment |
 
-Informasi data:
-- Sumber: Open-Meteo API
-- Lokasi: Jakarta
-- Format: JSON
-- Periode: Prakiraan 3 hari
-- Resolusi data: Per jam
-- Zona waktu: Asia/Jakarta
+## 3. Sumber dan Struktur Data
 
-Tiga indikator yang digunakan:
-1. Temperature (temperature_2m), satuan °C.
-2. Relative Humidity (relative_humidity_2m), satuan %.
-3. Precipitation (precipitation), satuan mm.
+Kedua jalur menggunakan Open-Meteo dengan tiga indikator:
 
-Data tersebut dipilih karena dapat digunakan untuk melihat pola prakiraan suhu, kelembapan, dan curah hujan dalam periode pengamatan.
+| Indikator | Field | Satuan |
+|---|---|---|
+| Suhu | `temperature_2m` | °C |
+| Kelembapan | `relative_humidity_2m` | % |
+| Curah hujan | `precipitation` | mm |
 
-## 3. Kebutuhan Analysis Layer
+### Data Forecast
 
-Analysis Layer bertanggung jawab untuk:
-- Menentukan indikator yang digunakan.
-- Memeriksa kelengkapan dan validitas data.
-- Melakukan analisis statistik deskriptif.
-- Menginterpretasikan tren ketiga indikator.
-- Menjelaskan keterbatasan hasil analisis.
+- Periode: prakiraan tiga hari.
+- Interval: per jam.
+- Koordinat: -6.2088, 106.8456.
+- Format: JSON.
+- Zona waktu: Asia/Jakarta.
 
-Hasil analisis yang dibutuhkan meliputi:
-- Rata-rata suhu per hari.
-- Rata-rata kelembapan per hari.
-- Total curah hujan prakiraan per hari.
-- Grafik perubahan setiap indikator.
+Input menggunakan array `hourly.time`, `hourly.temperature_2m`, `hourly.relative_humidity_2m`, dan `hourly.precipitation`.
 
-## 4. Kebutuhan Infrastructure & Operations Layer
+Seluruh array wajib tersedia, tidak kosong, dan memiliki panjang yang sama.
 
-Infrastructure & Operations Layer bertanggung jawab untuk:
-- Menyiapkan layanan Cloudflare.
-- Mengembangkan Cloudflare Worker.
-- Mengatur jadwal otomatis dengan Cron Trigger.
-- Menyimpan data mentah ke Cloudflare R2.
-- Menyimpan hasil pengolahan ke Cloudflare D1.
-- Menyediakan API untuk dashboard.
-- Melakukan monitoring dan penanganan kegagalan.
+### Data Historis
 
-## 5. Format Penyimpanan Data
+- Periode: 16 November 2025–15 November 2026.
+- Data valid: 8.760 sampel per jam.
+- Ringkasan: 365 hari.
+- Ringkasan bulanan: 13 kelompok bulan/parsial.
+- Format snapshot: JSON.
+- Koordinat grid historis sekitar -6.221441, 106.856186.
 
-Data mentah disimpan dalam format JSON pada Cloudflare R2.
+Data historis merupakan keluaran model/reanalisis Open-Meteo, bukan pengukuran langsung stasiun BMKG.
 
-Bucket:
-proyekcloudcomputing
+## 4. Kontrak Penyimpanan
 
-Pola penyimpanan:
-raw/{run_id}.json
+| Data | Penyimpanan | Lokasi |
+|---|---|---|
+| JSON forecast mentah | R2 | `raw/{run_id}.json` |
+| Hasil prakiraan | D1 | `daily_forecast` |
+| Riwayat pipeline | D1 | `pipeline_runs` |
+| Hasil analisis historis | R2 | `historical-dashboard.json` |
 
-Hasil pengolahan disimpan pada Cloudflare D1.
+Snapshot historis memuat:
 
-Database:
-topik1-cuaca-db
+- `metadata`
+- `validation`
+- `descriptive`
+- `trend`
+- `season_test`
+- `daily`
+- `monthly`
 
-Tabel daily_forecast:
-- run_id
-- forecast_date
-- avg_temperature
-- avg_humidity
-- total_precipitation
-- hourly_samples
+File historis diunggah secara manual ke root R2, bukan melalui Cron forecast.
 
-Tabel pipeline_runs:
-- run_id
-- started_at
-- finished_at
-- status
-- row_count
-- error_message
+## 5. Kontrak Endpoint
 
-## 6. API dan Output Sistem
+| Method | Endpoint | Output |
+|---|---|---|
+| GET | `/` | Dashboard prakiraan |
+| GET | `/history` | Dashboard historis |
+| GET | `/health` | Status layanan |
+| GET | `/api/results` | JSON hasil forecast terbaru |
+| GET | `/api/status` | Riwayat pipeline |
+| GET | `/api/history` | JSON historis |
+| GET | `/api/history/csv` | File CSV harian |
+| POST | `/admin/run` | Menjalankan pipeline manual |
 
-Cloudflare Worker menyediakan beberapa endpoint.
+Endpoint admin membutuhkan header `x-admin-token`.
 
-GET /health
-Digunakan untuk memeriksa status aplikasi.
+## 6. Jadwal dan Target Kinerja
 
-GET /api/results
-Mengembalikan hasil pengolahan terbaru dari database D1 dalam format JSON.
+Jadwal yang dikonfigurasi adalah:
 
-GET /api/status
-Mengembalikan riwayat eksekusi pipeline.
+`0 0 * * *` UTC atau 07.00 WIB setiap hari.
 
-POST /admin/run
-Menjalankan pipeline secara manual menggunakan ADMIN_TOKEN melalui header x-admin-token.
+Worker menggunakan timeout pengambilan data Open-Meteo sebesar 15 detik.
 
-Hasil pengolahan ditampilkan melalui dashboard web dalam bentuk ringkasan statistik, tabel, dan grafik.
+Target kinerja yang diusulkan:
 
-## 7. Jadwal dan Pengolahan Data
+| Indikator | Target | Status |
+|---|---|---|
+| Durasi satu pipeline | Maksimal 30 detik | Belum diukur |
+| Respons `/api/results` | Maksimal 1 detik | Belum diukur |
+| Keberhasilan Cron harian | Satu eksekusi per hari | Perlu verifikasi terbaru |
 
-Pipeline dijadwalkan berjalan satu kali sehari pada pukul 07.00 WIB menggunakan Cloudflare Cron Trigger.
+Target tersebut merupakan usulan yang masih perlu disepakati dan diuji, bukan hasil pengukuran.
 
-Cron expression:
-0 0 * * *
+## 7. Penanganan Kegagalan
 
-Setiap eksekusi menjalankan proses:
-1. Mengambil data Open-Meteo API.
-2. Menyimpan data mentah ke R2.
-3. Memeriksa nilai kosong atau tidak valid.
-4. Mengelompokkan data berdasarkan tanggal.
-5. Menghitung statistik harian.
-6. Menyimpan hasilnya ke D1.
-7. Mencatat status eksekusi.
+| Kondisi | Tindakan |
+|---|---|
+| API tidak merespons | Pipeline gagal dan mencatat error jika D1 tersedia |
+| JSON tidak sesuai format | Proses dibatalkan |
+| Sebagian nilai tidak valid | Sampel dilewati |
+| Seluruh nilai tidak valid | Pipeline dinyatakan gagal |
+| Pipeline terbaru gagal | Dashboard tetap memakai hasil sukses terakhir |
+| File historis tidak ditemukan | `/api/history` mengembalikan 404 |
+| Token admin tidak benar | Mengembalikan 401 Unauthorized |
 
-Data per jam yang tidak valid dilewati. Apabila seluruh data tidak valid, eksekusi dinyatakan gagal.
+## 8. Riwayat Revisi
 
-## 8. Penanganan Kegagalan
+| Versi | Tanggal | Perubahan | Status |
+|---|---|---|---|
+| V1.0 | 23 November 2026 | Pipeline forecast dengan R2 dan D1 | Draf awal |
+| V1.1 | 24 November 2026 | Usulan integrasi historis melalui D1 | Usulan, tidak diterapkan |
+| V1.2 | 25 November 2026 | Integrasi historis menggunakan snapshot JSON di R2 | Revisi teknis, menunggu persetujuan |
 
-Jika API sumber tidak dapat diakses atau data tidak valid, Worker mencatat kegagalan dalam tabel pipeline_runs selama koneksi database masih tersedia.
+## 9. Persetujuan Kedua Layer
 
-Status eksekusi:
-- running: proses sedang berjalan.
-- success: proses berhasil.
-- failed: proses mengalami kegagalan.
+**Perwakilan Analysis Layer:** [Nama, NIM, tanggal]
 
-Dashboard menggunakan data dari eksekusi terakhir yang berhasil sehingga hasil sebelumnya tetap dapat ditampilkan ketika pengambilan data baru gagal.
+**Perwakilan Infrastructure & Operations:** [Nama, NIM, tanggal]
 
-## 9. Kesepakatan dan Revisi
+**Status persetujuan:** Menunggu pemeriksaan dan persetujuan kedua layer.
 
-Versi dokumen: 1.0
-Tanggal penyusunan: 23 November 2026
-Status: Draft untuk ditinjau bersama kelompok.
-
-Dokumen ini perlu diperiksa dan disetujui oleh Analysis Layer serta Infrastructure & Operations Layer.
-
-Setiap perubahan sumber data, indikator, format penyimpanan, endpoint, atau jadwal pemrosesan harus didiskusikan terlebih dahulu dan dicatat dalam riwayat revisi.
-
-Riwayat revisi:
-- V1.0 (23 November 2026): Penyusunan kontrak berdasarkan implementasi awal Cloudflare.
-
+Persetujuan dicatat setelah kedua pihak benar-benar memeriksa kontrak dan implementasinya.
