@@ -1,113 +1,96 @@
-# kopwan-kelompok-4-topik-1
 
-# Pipeline Data Terbuka Serverless dan Dashboard
+# Kelompok 4 — Pipeline Data Terbuka Serverless dan Dashboard
 
 ## 1. Deskripsi Proyek
 
-Proyek ini merupakan implementasi pipeline data terbuka berbasis serverless menggunakan layanan Cloudflare untuk mengambil, mengolah, menyimpan, dan menampilkan data prakiraan cuaca Jakarta secara otomatis.
+Proyek ini merupakan implementasi pipeline data cuaca Jakarta berbasis serverless menggunakan Cloudflare Workers, R2 Object Storage, dan D1 Database.
 
-Sistem menggunakan Open-Meteo API sebagai sumber data publik. Data yang diperoleh kemudian diproses menggunakan Cloudflare Workers sebagai layanan Function as a Service (FaaS).
+Sistem menggunakan Open-Meteo API sebagai sumber data publik untuk mengambil, memproses, menyimpan, dan menampilkan informasi suhu, kelembapan, serta curah hujan.
 
-Data mentah disimpan pada Cloudflare R2 Object Storage, sedangkan hasil analisis disimpan pada Cloudflare D1 Database. Hasil pengolahan kemudian disajikan melalui dashboard berbasis web.
+Terdapat dua bagian utama:
 
-Proyek ini dikembangkan sebagai pemenuhan tugas kelompok mata kuliah Komputasi Awan.
+1. Pipeline prakiraan cuaca tiga hari yang berjalan otomatis.
+2. Analisis historis cuaca selama satu tahun yang diproses oleh Analysis Layer.
 
-## 2. Tujuan Proyek
+Dashboard dapat diakses melalui:
 
-Tujuan pengembangan sistem ini adalah:
+https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/
 
-1. Mengimplementasikan pipeline pengambilan data publik secara otomatis menggunakan teknologi serverless.
-2. Mengolah data prakiraan cuaca berdasarkan indikator yang telah ditentukan.
-3. Menyimpan data mentah dan hasil pengolahan menggunakan layanan penyimpanan cloud terkelola.
-4. Menampilkan hasil analisis deskriptif dan tren melalui dashboard.
-5. Menerapkan monitoring, pencatatan eksekusi, dan penanganan kegagalan pada layanan cloud.
-6. Mengevaluasi estimasi dan penggunaan biaya aktual layanan Cloudflare.
+## 2. Tujuan
 
-## 3. Sumber Dataset
+Proyek bertujuan untuk:
 
-Dataset yang digunakan berasal dari Open-Meteo Weather Forecast API.
+- Mengimplementasikan Function as a Service (FaaS).
+- Mengotomatisasi pengambilan data publik.
+- Menyimpan data menggunakan layanan cloud terkelola.
+- Menyajikan analisis deskriptif dan tren cuaca.
+- Mengintegrasikan Analysis Layer dan Infra & Ops Layer.
+- Menerapkan monitoring dan penanganan kegagalan.
+- Mengevaluasi estimasi serta biaya aktual cloud.
 
-Informasi dataset:
+## 3. Sumber Data
 
-| Komponen | Keterangan |
-|---|---|
-| Sumber | Open-Meteo |
-| Jenis data | Prakiraan cuaca |
-| Wilayah | Jakarta, Indonesia |
-| Format | JSON |
-| Interval | Per jam |
-| Periode | Prakiraan 3 hari |
-| Pembaruan | Setiap hari |
-| Jumlah indikator | 3 |
+Sumber: Open-Meteo API.
 
-Indikator yang digunakan:
-
-| Indikator | Nama Variabel API | Satuan |
+| Indikator | Field | Satuan |
 |---|---|---|
-| Suhu udara | `temperature_2m` | °C |
-| Kelembapan relatif | `relative_humidity_2m` | % |
+| Suhu | `temperature_2m` | °C |
+| Kelembapan | `relative_humidity_2m` | % |
 | Curah hujan | `precipitation` | mm |
 
-Endpoint sumber data:
+### Dataset Forecast
 
-https://api.open-meteo.com/v1/forecast?latitude=-6.2088&longitude=106.8456&hourly=temperature_2m,relative_humidity_2m,precipitation&forecast_days=3&timezone=Asia%2FJakarta
+- Lokasi: Jakarta.
+- Periode: prakiraan tiga hari.
+- Resolusi: per jam.
+- Pembaruan: setiap hari melalui Cron Trigger.
+- Penyimpanan: R2 dan D1.
 
-Dataset yang digunakan merupakan data prakiraan, bukan data pengamatan historis. Oleh karena itu, hasil analisis menggambarkan kecenderungan cuaca berdasarkan prakiraan yang tersedia.
+### Dataset Historis
 
-Sumber dan ketentuan penggunaan data dapat dilihat melalui:
+- Periode: 16 November 2025–15 November 2026.
+- Jumlah sampel valid: 8.760.
+- Ringkasan harian: 365.
+- Ringkasan bulanan/parsial: 13.
+- Penyimpanan hasil analisis: R2.
 
-- https://open-meteo.com/
-- https://open-meteo.com/en/docs
-- https://open-meteo.com/en/terms
+Data historis menggunakan keluaran model/reanalisis Open-Meteo dan bukan pengamatan langsung stasiun BMKG.
 
-Penggunaan sumber data harus mengikuti ketentuan lisensi dan atribusi Open-Meteo.
+Sumber: https://open-meteo.com/
 
-## 4. Teknologi yang Digunakan
+## 4. Teknologi
 
 | Teknologi | Fungsi |
 |---|---|
-| Cloudflare Workers | Menjalankan kode serverless dan API |
-| Cloudflare Cron Triggers | Menjalankan pipeline secara terjadwal |
-| Cloudflare R2 | Menyimpan data JSON mentah |
-| Cloudflare D1 | Menyimpan hasil analisis dan riwayat eksekusi |
-| Cloudflare Observability | Monitoring dan pencatatan error |
-| JavaScript | Pemrosesan data dan pengembangan aplikasi |
-| Chart.js | Visualisasi grafik pada dashboard |
-| Open-Meteo API | Penyedia data prakiraan cuaca |
-| GitHub | Penyimpanan source code dan dokumentasi |
-
-Model layanan utama yang digunakan adalah Function as a Service (FaaS), dengan dukungan managed object storage dan managed database.
+| Cloudflare Workers | FaaS, API, dan dashboard |
+| Cron Triggers | Otomatisasi pengambilan data |
+| Cloudflare R2 | Penyimpanan JSON |
+| Cloudflare D1 | Database hasil prakiraan |
+| Cloudflare Observability | Monitoring dan logging |
+| Python | Analisis historis |
+| JavaScript | Worker dan pemrosesan data |
+| SVG | Visualisasi grafik |
+| GitHub | Source code dan dokumentasi |
 
 ## 5. Arsitektur Sistem
 
-Alur kerja sistem:
-
-1. Cron Trigger menjalankan Cloudflare Worker sesuai jadwal.
-2. Worker mengirimkan HTTP request ke Open-Meteo API.
-3. Respons JSON diperiksa untuk memastikan struktur dan nilai data sesuai.
-4. Data mentah disimpan ke Cloudflare R2.
-5. Data suhu, kelembapan, dan curah hujan dikelompokkan berdasarkan tanggal.
-6. Hasil pengolahan disimpan ke Cloudflare D1.
-7. Dashboard mengambil hasil analisis melalui API Worker.
-8. Status keberhasilan atau kegagalan pipeline dicatat untuk keperluan monitoring.
-
 ```mermaid
 flowchart TD
-    A["Cron Trigger"] --> B["Cloudflare Worker"]
-    B --> C["Open-Meteo API"]
-    C --> D["Validasi dan Pengolahan Data"]
-    D --> E["Cloudflare R2 - Raw JSON"]
-    D --> F["Cloudflare D1 - Hasil Analisis"]
-    F --> G["API Cloudflare Worker"]
-    G --> H["Dashboard"]
-    B --> I["Monitoring dan Logs"]
+    A["Open-Meteo Forecast API"] --> B["Cloudflare Worker"]
+    C["Cron Trigger"] --> B
+    B --> D["R2 Raw JSON"]
+    B --> E["D1 Database"]
+    E --> F["Dashboard Forecast"]
+
+    G["Open-Meteo Historical Data"] --> H["Python Analysis"]
+    H --> I["Historical JSON Snapshot"]
+    I --> J["Cloudflare R2"]
+    J --> K["Dashboard Historical"]
 ```
 
-Penjelasan lebih lengkap terdapat pada `docs/architecture.md`.
+Penjelasan lengkap terdapat pada `docs/architecture.md`.
 
 ## 6. Struktur Repository
-
-Struktur repository yang digunakan:
 
 ```text
 project/
@@ -122,336 +105,208 @@ project/
 │   ├── role-log.md
 │   ├── ai-disclosure.md
 │   └── evidence/
-│
 ├── src/
 │   ├── analysis/
 │   ├── app/
 │   │   └── worker.js
 │   ├── infra/
 │   └── config/
-│
 ├── .gitignore
 └── README.md
 ```
 
-Folder `docs` digunakan untuk dokumentasi proyek, sedangkan folder `src` menyimpan source code yang digunakan dalam implementasi.
+## 7. Reproduksi Analisis
 
-Folder `evidence` berisi screenshot hasil pengujian, monitoring, penggunaan biaya, serta bukti operasional.
+Untuk menjalankan ulang analisis historis, gunakan Python dan dependensi pada repository.
 
-## 7. Cara Menjalankan Proyek
+```bash
+pip install -r src/analysis/requirements.txt
+python src/analysis/analysis.py
+python src/analysis/build_dashboard_data.py
+```
 
-Proyek menggunakan Cloudflare sebagai platform serverless sehingga tidak memerlukan instalasi Virtual Machine.
+Hasil analisis tersedia pada `src/analysis/output/`.
 
-Untuk menjalankan ulang proyek, diperlukan akun Cloudflare yang dapat menggunakan Workers, D1, dan R2.
+Snapshot untuk dashboard disimpan sebagai `historical-dashboard.json`.
 
-### 7.1 Menyiapkan Cloudflare Worker
+Jika hasil analisis diperbarui, file tersebut harus diunggah kembali secara manual ke root bucket R2.
+
+## 8. Deployment Cloudflare
+
+### Menyiapkan Worker
 
 1. Login ke Cloudflare Dashboard.
-2. Buka menu Workers & Pages.
-3. Buat Worker baru.
-4. Gunakan nama `topik1-cuaca-serverless` atau nama lain yang tersedia.
-5. Salin source code dari `src/app/worker.js` ke editor Worker.
+2. Buka Workers & Pages.
+3. Buat Worker `topik1-cuaca-serverless`.
+4. Gunakan source `src/app/worker.js`.
+5. Deploy Worker.
 
-### 7.2 Menyiapkan Cloudflare R2
+### Menyiapkan D1
 
-1. Buka menu Storage & Databases.
-2. Pilih R2 Object Storage.
-3. Buat bucket dengan nama `proyekcloudcomputing`.
-4. Hubungkan bucket ke Worker menggunakan binding:
+Buat database:
 
-```text
-Binding Name : RAW
-R2 Bucket    : proyekcloudcomputing
-```
+`topik1-cuaca-db`
 
-Binding tersebut digunakan untuk menyimpan data mentah hasil pengambilan API.
+Jalankan skema dari:
 
-### 7.3 Menyiapkan Cloudflare D1
+`src/infra/schema.sql`
 
-1. Buka menu D1 SQLite Database.
-2. Buat database bernama `topik1-cuaca-db`.
-3. Buka Console pada database.
-4. Jalankan SQL berikut:
+Hubungkan database ke Worker menggunakan binding:
 
-```sql
-CREATE TABLE IF NOT EXISTS pipeline_runs (
-    run_id TEXT PRIMARY KEY,
-    started_at TEXT NOT NULL,
-    finished_at TEXT,
-    status TEXT NOT NULL,
-    row_count INTEGER NOT NULL DEFAULT 0,
-    error_message TEXT
-);
+`DB`
 
-CREATE TABLE IF NOT EXISTS daily_forecast (
-    run_id TEXT NOT NULL,
-    forecast_date TEXT NOT NULL,
-    avg_temperature REAL NOT NULL,
-    avg_humidity REAL NOT NULL,
-    total_precipitation REAL NOT NULL,
-    hourly_samples INTEGER NOT NULL,
-    PRIMARY KEY (run_id, forecast_date),
-    FOREIGN KEY (run_id)
-        REFERENCES pipeline_runs(run_id)
-);
+### Menyiapkan R2
 
-CREATE INDEX IF NOT EXISTS idx_forecast_run
-ON daily_forecast(run_id);
-```
+Buat bucket:
 
-Setelah database dibuat, tambahkan binding D1 pada Worker:
+`proyekcloudcomputing`
+
+Hubungkan menggunakan binding:
+
+`RAW`
+
+Struktur objek:
 
 ```text
-Binding Name : DB
-D1 Database  : topik1-cuaca-db
+proyekcloudcomputing/
+├── raw/
+└── historical-dashboard.json
 ```
 
-### 7.4 Mengatur Secret
+### Menyiapkan Secret
 
-Worker memiliki endpoint admin untuk menjalankan pipeline secara manual.
+Tambahkan secret Worker:
 
-Endpoint tersebut dilindungi menggunakan secret `ADMIN_TOKEN`.
+`ADMIN_TOKEN`
 
-Tambahkan secret pada pengaturan Worker:
+Nilai secret tidak boleh dimasukkan ke GitHub.
 
-```text
-Secret Name : ADMIN_TOKEN
-Value       : token rahasia yang dibuat sendiri
-```
+### Menyiapkan Cron
 
-Gunakan nilai acak yang kuat dan simpan secara pribadi.
+Gunakan konfigurasi:
 
-Jangan menuliskan nilai token asli pada repository, laporan, screenshot, atau video demo.
+`0 0 * * *`
 
-### 7.5 Mengatur Cron Trigger
+Jadwal tersebut berarti pukul 07.00 WIB setiap hari.
 
-Tambahkan Cron Trigger dengan konfigurasi:
-
-```text
-Cron Expression : 0 0 * * *
-Timezone        : UTC
-Waktu Eksekusi  : 07.00 WIB setiap hari
-```
-
-Konfigurasi tersebut digunakan agar pipeline dapat mengambil dan mengolah data secara otomatis setiap hari.
-
-### 7.6 Deployment
-
-Setelah source code, database, storage, secret, dan Cron Trigger selesai dikonfigurasi:
-
-1. Periksa kembali seluruh binding.
-2. Klik Deploy pada Cloudflare Workers.
-3. Pastikan Worker berhasil dijalankan.
-4. Buka URL Worker untuk memeriksa dashboard.
-
-URL deployment proyek:
-
-https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/
-
-## 8. Endpoint Aplikasi
-
-Aplikasi menyediakan endpoint sebagai berikut:
+## 9. Endpoint
 
 | Method | Endpoint | Fungsi |
 |---|---|---|
-| GET | `/` | Menampilkan dashboard |
-| GET | `/health` | Memeriksa status layanan |
-| GET | `/api/results` | Mengambil hasil analisis terbaru |
-| GET | `/api/status` | Menampilkan riwayat eksekusi pipeline |
-| POST | `/admin/run` | Menjalankan pipeline secara manual |
+| GET | `/` | Dashboard forecast |
+| GET | `/history` | Dashboard historis |
+| GET | `/health` | Health check |
+| GET | `/api/results` | Hasil forecast |
+| GET | `/api/status` | Status pipeline |
+| GET | `/api/history` | Data historis |
+| GET | `/api/history/csv` | Download CSV |
+| POST | `/admin/run` | Eksekusi manual |
 
-Endpoint `/admin/run` memerlukan token melalui header `x-admin-token`.
+## 10. Pengujian Pipeline
 
-## 9. Pengujian Sistem
-
-### 9.1 Health Check
-
-Buka endpoint berikut pada browser:
-
-https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/health
-
-Endpoint ini digunakan untuk memeriksa apakah layanan dapat menerima permintaan.
-
-### 9.2 Menjalankan Pipeline Manual
-
-Pipeline dapat dijalankan secara manual menggunakan Windows PowerShell.
+Pengujian manual dapat dilakukan melalui Windows PowerShell.
 
 ```powershell
 $token = Read-Host "Masukkan ADMIN_TOKEN"
 
 Invoke-RestMethod `
-    -Method POST `
-    -Uri "https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/admin/run" `
-    -Headers @{"x-admin-token"=$token}
+  -Method POST `
+  -Uri "https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/admin/run" `
+  -Headers @{"x-admin-token"=$token}
 
 Remove-Variable token
 ```
 
-Apabila berhasil, sistem akan memberikan respons yang menunjukkan bahwa proses pengambilan dan pengolahan data telah selesai.
-
-### 9.3 Memeriksa Data D1
-
-Untuk memeriksa riwayat eksekusi, jalankan:
+Setelah eksekusi, periksa status terbaru pada D1.
 
 ```sql
-SELECT *
+SELECT started_at, status, row_count, error_message
 FROM pipeline_runs
 ORDER BY started_at DESC
 LIMIT 10;
 ```
 
-Untuk memeriksa hasil analisis terbaru:
+Pengujian mock pada repository revisi sebelumnya mencatat 18 tes lulus.
 
-```sql
-SELECT *
-FROM daily_forecast
-WHERE run_id = (
-    SELECT run_id
-    FROM pipeline_runs
-    WHERE status = 'success'
-    ORDER BY finished_at DESC
-    LIMIT 1
-)
-ORDER BY forecast_date;
-```
+Pengujian lokal tersebut tidak menggantikan verifikasi deployment atau Cron setelah pembaruan source.
 
-### 9.4 Memeriksa Penyimpanan R2
+## 11. Dashboard
 
-Buka bucket `proyekcloudcomputing` dan periksa direktori `raw/`.
+### Dashboard Prakiraan
 
-Setiap eksekusi yang berhasil menyimpan data mentah akan menghasilkan file JSON dengan identitas eksekusi.
+Halaman `/` menampilkan:
 
-### 9.5 Memeriksa Dashboard
+- Rata-rata suhu prakiraan.
+- Rata-rata kelembapan.
+- Total curah hujan.
+- Jumlah sampel valid.
+- Grafik prakiraan.
+- Tabel hasil pipeline.
 
-Buka URL utama Worker melalui browser.
+Data diperoleh dari Cloudflare D1.
 
-Dashboard menampilkan:
+### Dashboard Historis
 
-- Rata-rata suhu harian.
-- Rata-rata kelembapan harian.
-- Total curah hujan harian.
-- Grafik tren prakiraan cuaca.
-- Tabel ringkasan hasil pengolahan.
+Halaman `/history` dirancang menampilkan:
 
-### 9.6 Pengujian Kegagalan
+- Jumlah sampel valid.
+- Jumlah hari analisis.
+- Statistik deskriptif.
+- Grafik suhu dan kelembapan.
+- Grafik curah hujan harian dan bulanan.
+- Analisis tren dan uji musim.
+- Validasi data.
+- Tabel hasil analisis.
+- Download CSV.
 
-Pengujian penanganan kegagalan dilakukan dengan mensimulasikan sumber API yang tidak dapat diakses.
+Data diperoleh dari `historical-dashboard.json` pada R2.
 
-Pada pengujian, sistem mencatat status `failed` beserta pesan kesalahan pada tabel `pipeline_runs`.
+Endpoint JSON historis sudah berhasil diverifikasi. Tampilan final perlu diperiksa kembali setelah deployment Worker terbaru.
 
-Setelah kondisi normal dikembalikan, pipeline dijalankan ulang dan berhasil menyimpan hasil analisis.
+## 12. Monitoring dan Biaya
 
-Kode simulasi kegagalan hanya digunakan selama pengujian dan tidak menjadi bagian dari konfigurasi normal layanan.
+Monitoring dilakukan menggunakan Cloudflare Observability serta tabel `pipeline_runs`.
 
-## 10. Monitoring dan Logging
+Pada 23 November 2026, Billing Cloudflare menunjukkan total biaya aktual teramati sebesar US$0.00.
 
-Monitoring dilakukan melalui Cloudflare Observability dan database D1.
+Hasil tersebut merupakan pengamatan awal, bukan tagihan final bulanan.
 
-Informasi yang diperiksa meliputi:
+Laporan lengkap tersedia pada:
 
-- Jumlah request Worker.
-- Riwayat eksekusi terjadwal.
-- Status keberhasilan dan kegagalan pipeline.
-- Pesan kesalahan.
-- Penggunaan database.
-- Penggunaan object storage.
-- Biaya layanan cloud.
+`docs/cost-report.md`
 
-Panduan pemeriksaan dan penanganan masalah dijelaskan dalam `docs/runbook.md`.
+## 13. Pembagian Tugas
 
-## 11. Analisis Data
-
-Pengolahan data dilakukan berdasarkan tiga indikator prakiraan cuaca.
-
-Metode yang digunakan meliputi:
-
-1. Validasi struktur JSON dari API.
-2. Pemeriksaan nilai kosong dan data tidak valid.
-3. Pengelompokan data berdasarkan tanggal.
-4. Perhitungan rata-rata suhu harian.
-5. Perhitungan rata-rata kelembapan harian.
-6. Perhitungan total curah hujan harian.
-7. Penyajian tren dalam bentuk grafik.
-
-Hasil analisis merupakan ringkasan prakiraan cuaca, sehingga tidak dapat digunakan untuk menyimpulkan kondisi cuaca aktual yang sudah terjadi.
-
-Kode pengolahan utama terdapat pada `src/app/worker.js`.
-
-Kode analisis terpisah dan hasil pengujian reproduksibilitas didokumentasikan pada `src/analysis/` serta `docs/analysis-report.md`.
-
-## 12. Estimasi dan Biaya Aktual
-
-Proyek dirancang menggunakan layanan yang memiliki kuota gratis.
-
-Berdasarkan pengamatan pada 23 November 2026, diperoleh hasil:
-
-| Layanan | Penggunaan |
+| Anggota | Peran |
 |---|---|
-| Workers Requests Today | 64 |
-| D1 Rows Read | 195 |
-| D1 Rows Written | 46 |
-| D1 Storage | 32,77 kB |
-| R2 Class A Operations | 24 |
-| R2 Class B Operations | 18 |
-| R2 Storage | 2,71 kB |
-| Total Cost Teramati | US$0.00 |
+| Orang 1 | Data Preparation |
+| Orang 2 | Data Analysis |
+| Orang 3 | Cloud Engineer |
+| Orang 4 | Database & Operations |
+| Orang 5 | Dashboard & Integration |
 
-Estimasi biaya tambahan untuk operasional 30 hari adalah US$0.00 selama seluruh penggunaan berada dalam batas kuota gratis.
+Detail kontribusi dicatat dalam `docs/role-log.md`.
 
-Biaya aktual tersebut merupakan hasil pengamatan pada tanggal yang disebutkan, bukan total tagihan satu bulan penuh.
+## 14. Dokumentasi
 
-Perhitungan dan bukti penggunaan dapat dilihat pada `docs/cost-report.md`.
-
-## 13. Keamanan Sistem
-
-Beberapa pengamanan yang diterapkan atau perlu dipertahankan dalam operasional sistem meliputi:
-
-1. Melindungi endpoint admin menggunakan secret token.
-2. Menyimpan kredensial melalui konfigurasi secret Cloudflare.
-3. Tidak menyimpan token dan kredensial di repository publik.
-4. Memisahkan data mentah dan hasil analisis.
-5. Memantau error serta status eksekusi.
-6. Membatasi akses pengelolaan layanan Cloudflare hanya kepada anggota yang membutuhkan.
-
-Penjelasan risiko dan skalabilitas terdapat pada `docs/security-scalability.md`.
-
-## 14. Pembagian Tugas Kelompok
-
-Pekerjaan kelompok dibagi menjadi dua layer:
-
-**Analysis Layer**
-
-Bertanggung jawab atas pemilihan dan pemahaman dataset, validasi data, penanganan missing value, analisis deskriptif, tren, dan interpretasi hasil.
-
-**Infrastructure & Operations Layer**
-
-Bertanggung jawab atas deployment FaaS, konfigurasi Cron Trigger, database, object storage, dashboard hosting, monitoring, keamanan, dan biaya cloud.
-
-Rincian kontribusi setiap anggota dan riwayat pekerjaan dicatat pada `docs/role-log.md`.
-
-## 15. Dokumentasi Pendukung
-
-| Dokumen | Isi |
+| File | Deskripsi |
 |---|---|
-| `docs/architecture.md` | Diagram arsitektur dan alasan pemilihan teknologi |
-| `docs/interface-contract.md` | Kesepakatan integrasi kedua layer |
-| `docs/analysis-report.md` | Metode dan hasil analisis |
-| `docs/runbook.md` | Panduan operasional dan troubleshooting |
-| `docs/cost-report.md` | Estimasi dan biaya aktual cloud |
-| `docs/security-scalability.md` | Risiko keamanan dan skalabilitas |
-| `docs/cross-review.md` | Hasil review silang kedua layer |
-| `docs/role-log.md` | Kontribusi setiap anggota |
-| `docs/ai-disclosure.md` | Dokumentasi penggunaan AI |
-| `docs/evidence/` | Bukti implementasi dan pengujian |
+| `architecture.md` | Arsitektur cloud |
+| `interface-contract.md` | Kontrak kedua layer |
+| `analysis-report.md` | Analisis data |
+| `runbook.md` | Operasional |
+| `cost-report.md` | Biaya |
+| `security-scalability.md` | Keamanan dan skalabilitas |
+| `cross-review.md` | Review kedua layer |
+| `role-log.md` | Kontribusi anggota |
+| `ai-disclosure.md` | Penggunaan AI |
 
-## 16. Kesimpulan
+## 15. Kesimpulan
 
-Proyek ini berhasil mengimplementasikan pipeline data cuaca berbasis serverless menggunakan Cloudflare Workers, R2, dan D1.
+Proyek mengintegrasikan Cloudflare Workers sebagai FaaS, R2 Object Storage, D1 Database, dan Open-Meteo API dalam satu arsitektur serverless.
 
-Sistem dapat mengambil data prakiraan dari Open-Meteo API, melakukan validasi dan analisis, menyimpan hasil pengolahan, serta menampilkannya melalui dashboard web.
+Pipeline prakiraan cuaca menggunakan Cron Trigger untuk melakukan pengambilan data otomatis.
 
-Penggunaan Cron Trigger memungkinkan pipeline berjalan secara otomatis, sedangkan monitoring dan riwayat eksekusi digunakan untuk memeriksa keberhasilan dan penanganan kegagalan.
+Hasil analisis historis dari Analysis Layer juga diintegrasikan melalui snapshot JSON pada R2.
 
-Berdasarkan pengujian awal, sistem dapat berjalan menggunakan sumber daya dalam kuota gratis Cloudflare, dengan total biaya teramati sebesar US$0.00 pada 23 November 2026.
-
-Proyek ini menunjukkan penerapan konsep Function as a Service (FaaS), managed storage, managed database, dan otomasi layanan cloud dalam satu sistem yang terintegrasi.
+Sistem ini menunjukkan penerapan layanan cloud untuk pengambilan data, pengolahan, penyimpanan, monitoring, dan penyajian hasil analisis.
