@@ -1,0 +1,195 @@
+Commits on Nov 25, 2026
+Merge pull request #1 from samuelpangestu83-stack/Group-Final-Project
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+48 minutes ago
+Verified
+Commits on Nov 24, 2026
+Enhance README with comprehensive project details
+adrian-project
+adrian-project
+authored
+15 hours ago
+Verified
+Create analysis
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+16 hours ago
+Verified
+Commits on Nov 23, 2026
+Delete src/analysis
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+yesterday
+Verified
+Add cost report for serverless data pipeline project
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Update runbook dengan panduan operasional lengkap
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create interface contract document for weather data pipeline
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Add system architecture documentation
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Cloudflare Worker for Jakarta weather data processing
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create worker.js
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Delete src/app
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create config
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create infra
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Delete infra
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create infra
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create analysis
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create app
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Delete src
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create src
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Delete src
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create src
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create evidence
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create ai-disclosure.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create role-log.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create cross-review.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create security-scalability.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create cost-report.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create runbook.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create analysis-report.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create interface-contract.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Create architecture.md
+adrian-project
+adrian-project
+authored
+yesterday
+Verified
+Initial commit
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+yesterday
+Verified
