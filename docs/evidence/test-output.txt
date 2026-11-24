@@ -1,0 +1,20 @@
+PASS 1a pipeline sukses pada 8760 baris historis
+PASS 1b jumlah hari = 365  (365)
+PASS 1c selisih maks suhu <= 0.0051 °C (pembulatan CSV)  (0.0050)
+PASS 1d selisih maks kelembapan <= 0.0051 (pembulatan CSV)  (0.0050)
+PASS 1e selisih maks hujan <= 0.05 mm (pembulatan float)  (0.0000)
+PASS 1f data mentah disimpan ke R2 (raw/<run_id>.json)
+PASS 2 API down -> status failed + pesan HTTP 503
+PASS 3 data kosong -> failed, tidak ada baris daily
+PASS 4a bukan JSON -> failed
+PASS 4b field hourly hilang -> failed
+PASS 4c panjang array tidak sama -> failed
+PASS 5 semua nilai tidak valid -> failed
+PASS 6 sebagian tidak valid: sukses dan hanya 1 sampel dipakai  {"date":"2026-01-01","t":30,"h":60,"r":1,"n":1}
+PASS 7a /admin/run tanpa token -> 401
+PASS 7b token salah -> 401
+PASS 7c token benar -> 200
+PASS 7d ADMIN_TOKEN belum diset -> 503
+PASS 7e /health -> 200
+
+18 lulus, 0 gagal
