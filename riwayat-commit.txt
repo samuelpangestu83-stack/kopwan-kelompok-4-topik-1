@@ -1,29 +1,153 @@
 Commits on Nov 25, 2026
-Merge pull request #2 from samuelpangestu83-stack/Group-Final-Project
+Merge pull request #3 from samuelpangestu83-stack/Group-Final-Project
 samuelpangestu83-stack
 samuelpangestu83-stack
 authored
 now
 Verified
-Update worker.js
+Add files via upload
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+3 minutes ago
+Verified
+Delete docs/evidence
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+3 minutes ago
+Verified
+Add analysis report on Jakarta weather trends
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+5 minutes ago
+Verified
+add analysis
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+13 minutes ago
+Verified
+Delete src/analysis
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+13 minutes ago
+Verified
+Revise interface contract for data pipeline clarity
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+18 minutes ago
+Verified
+Update cross-review.md with endpoint response timing details
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+27 minutes ago
+Verified
+Revise cross-review document for final approvals
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+31 minutes ago
+Verified
+Update role log for Project Group 4
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+40 minutes ago
+Verified
+Fix review dates and clean up approval section
 adrian-project
 adrian-project
 authored
-3 minutes ago
+41 minutes ago
+Verified
+Update reviewer details in cross-review document
+adrian-project
+adrian-project
+authored
+41 minutes ago
+Verified
+Add cross-review documentation for Analysis and Infra
+adrian-project
+adrian-project
+authored
+47 minutes ago
+Verified
+Revise README for clarity and updated project details
+adrian-project
+adrian-project
+authored
+48 minutes ago
+Verified
+Revise cost report for Cloudflare services usage
+adrian-project
+adrian-project
+authored
+52 minutes ago
+Verified
+runbook for Cloudflare serverless pipeline
+adrian-project
+adrian-project
+authored
+53 minutes ago
+Verified
+Interface Contract
+adrian-project
+adrian-project
+authored
+1 hour ago
+Verified
+Revise Interface Contract for clarity and updates
+adrian-project
+adrian-project
+authored
+1 hour ago
+Verified
+Revise architecture documentation for serverless pipeline
+adrian-project
+adrian-project
+authored
+1 hour ago
+Verified
+Update commit history in riwayat-commit.txt
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+1 hour ago
+Verified
+Merge pull request #2 from samuelpangestu83-stack/Group-Final-Project
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+1 hour ago
 Verified
 Update worker.js
 adrian-project
 adrian-project
 authored
-11 minutes ago
+1 hour ago
+Verified
+Update worker.js
+adrian-project
+adrian-project
+authored
+1 hour ago
 Verified
 Add commit history for project updates
 samuelpangestu83-stack
 samuelpangestu83-stack
 authored
-29 minutes ago
+1 hour ago
 Verified
 Merge pull request #1 from samuelpangestu83-stack/Group-Final-Project
+samuelpangestu83-stack
+samuelpangestu83-stack
+authored
+2 hours ago
 samuelpangestu83-stack
 samuelpangestu83-stack
 authored
