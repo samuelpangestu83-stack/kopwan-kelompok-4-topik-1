@@ -1,233 +1,191 @@
 
-# Runbook Operasional Sistem
+# Runbook — Cloudflare Serverless Pipeline
 
-## 1. Gambaran Umum
+## 1. Tujuan
 
-Dokumen ini berisi panduan pengoperasian dan pemantauan pipeline data prakiraan cuaca Jakarta yang dibangun menggunakan layanan Cloudflare.
+Runbook ini digunakan sebagai panduan untuk menjalankan, memantau, menguji, dan menangani masalah pada pipeline data cuaca berbasis Cloudflare.
 
-Sistem dirancang untuk mengambil data secara otomatis dari Open-Meteo API, menyimpan data mentah pada Cloudflare R2, mengolah data menggunakan Cloudflare Workers, dan menyimpan hasil analisis pada Cloudflare D1.
+## 2. Informasi Layanan
 
-Hasil pengolahan ditampilkan melalui dashboard web yang dapat diakses menggunakan browser.
-
-## 2. Layanan yang Digunakan
-
-| Layanan | Fungsi |
+| Komponen | Konfigurasi |
 |---|---|
-| Cloudflare Workers | Menjalankan pipeline dan menyediakan dashboard |
-| Cloudflare Cron Triggers | Mengatur jadwal otomatis |
-| Cloudflare R2 | Menyimpan data JSON mentah |
-| Cloudflare D1 | Menyimpan hasil pengolahan dan riwayat eksekusi |
-| Cloudflare Observability | Memantau log dan aktivitas Worker |
-| Open-Meteo API | Menyediakan data prakiraan cuaca |
+| Cloudflare Worker | `topik1-cuaca-serverless` |
+| D1 Database | `topik1-cuaca-db` |
+| D1 Binding | `DB` |
+| R2 Bucket | `proyekcloudcomputing` |
+| R2 Binding | `RAW` |
+| Secret | `ADMIN_TOKEN` |
+| Cron Trigger | `0 0 * * *` |
+| Jadwal | 07.00 WIB setiap hari |
 
-Konfigurasi utama:
-
-- Worker: topik1-cuaca-serverless
-- Database D1: topik1-cuaca-db
-- Bucket R2: proyekcloudcomputing
-- Binding database: DB
-- Binding storage: RAW
-- Secret: ADMIN_TOKEN
-- Cron: 0 0 * * *
-- Jadwal: Setiap hari pukul 07.00 WIB
-
-## 3. Akses Sistem
-
-Dashboard dapat diakses melalui:
+URL aplikasi:
 
 https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/
 
-Endpoint yang digunakan:
-
-| Endpoint | Fungsi |
-|---|---|
-| GET / | Menampilkan dashboard |
-| GET /health | Memeriksa status aplikasi |
-| GET /api/results | Menampilkan hasil analisis terbaru |
-| GET /api/status | Menampilkan riwayat eksekusi |
-| POST /admin/run | Menjalankan pipeline secara manual |
-
-Endpoint /admin/run hanya dapat digunakan dengan ADMIN_TOKEN yang benar.
-
-## 4. Cara Menjalankan Sistem
-
-### 4.1 Menjalankan Secara Otomatis
-
-Pipeline dijalankan menggunakan Cloudflare Cron Triggers.
-
-Pengaturan jadwal:
-
-0 0 * * *
-
-Jadwal tersebut berarti Worker dijalankan setiap hari pukul 00.00 UTC atau 07.00 WIB.
-
-Untuk memeriksa pengaturannya:
+## 3. Pemeriksaan Deployment
 
 1. Login ke Cloudflare Dashboard.
-2. Pilih Workers & Pages.
-3. Buka topik1-cuaca-serverless.
-4. Masuk ke Settings.
-5. Pilih Trigger events.
-6. Periksa konfigurasi Cron Triggers.
+2. Buka Workers & Pages.
+3. Pilih `topik1-cuaca-serverless`.
+4. Periksa deployment terbaru.
+5. Pastikan binding `DB` dan `RAW` masih aktif.
+6. Pastikan `ADMIN_TOKEN` tersimpan sebagai Secret.
+7. Periksa Cron Trigger pada pengaturan Worker.
 
-Selama jadwal aktif, pipeline tidak memerlukan perintah manual dari laptop.
+Sebelum mengganti kode, buat backup source Worker yang sedang aktif.
 
-### 4.2 Menjalankan Secara Manual
+## 4. Pemeriksaan Endpoint
 
-Pipeline dapat dijalankan melalui Windows PowerShell untuk keperluan pengujian atau pemulihan.
+| Endpoint | Hasil yang Diharapkan |
+|---|---|
+| `/health` | Status layanan `ok` |
+| `/api/results` | Hasil prakiraan terbaru |
+| `/api/status` | Riwayat pipeline |
+| `/api/history` | JSON historis satu tahun |
+| `/api/history/csv` | File CSV harian |
+| `/` | Dashboard prakiraan |
+| `/history` | Dashboard historis |
 
-Gunakan perintah berikut:
+## 5. Menjalankan Pipeline Manual
 
-    $token = Read-Host "Masukkan ADMIN_TOKEN"
+Pipeline dapat dijalankan melalui Windows PowerShell.
 
-    Invoke-RestMethod `
-      -Method POST `
-      -Uri "https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/admin/run" `
-      -Headers @{"x-admin-token" = $token}
+```powershell
+$token = Read-Host "Masukkan ADMIN_TOKEN"
 
-    Remove-Variable token
+Invoke-RestMethod `
+  -Method POST `
+  -Uri "https://topik1-cuaca-serverless.muhamadadrian279.workers.dev/admin/run" `
+  -Headers @{"x-admin-token"=$token}
 
-Token harus sesuai dengan Secret yang tersimpan pada Cloudflare Worker.
+Remove-Variable token
+```
 
-Jangan menyimpan token dalam kode GitHub atau menampilkannya pada screenshot.
+Jika berhasil, respons menampilkan `ok: true`, jumlah hari yang diproses, dan ID eksekusi.
 
-Jika berhasil, sistem mengembalikan status ok: true serta informasi run_id, days, dan skipped.
+Pengujian harus dilakukan setelah deployment untuk membuktikan bahwa kode aktif benar-benar berfungsi.
 
-## 5. Pemeriksaan Hasil Pipeline
+## 6. Pemeriksaan D1 Database
 
-### 5.1 Memeriksa R2 Storage
+Buka Cloudflare D1 Database, pilih `topik1-cuaca-db`, kemudian buka Console.
 
-1. Buka Cloudflare Dashboard.
-2. Masuk ke R2 Object Storage.
-3. Pilih bucket proyekcloudcomputing.
-4. Buka folder raw.
-5. Periksa file JSON berdasarkan run_id.
+Periksa riwayat pipeline:
 
-File JSON tersebut merupakan data mentah yang diperoleh dari Open-Meteo API.
+```sql
+SELECT started_at, finished_at, status,
+       row_count, error_message
+FROM pipeline_runs
+ORDER BY started_at DESC
+LIMIT 10;
+```
 
-### 5.2 Memeriksa Database D1
+Periksa hasil prakiraan terakhir:
 
-Buka D1 SQLite Database, pilih topik1-cuaca-db, kemudian masuk ke Console.
-
-Untuk melihat riwayat pipeline, jalankan:
-
-    SELECT started_at, status, row_count, error_message
+```sql
+SELECT forecast_date,
+       avg_temperature,
+       avg_humidity,
+       total_precipitation,
+       hourly_samples
+FROM daily_forecast
+WHERE run_id = (
+    SELECT run_id
     FROM pipeline_runs
-    ORDER BY started_at DESC
-    LIMIT 10;
+    WHERE status = 'success'
+    ORDER BY finished_at DESC
+    LIMIT 1
+)
+ORDER BY forecast_date;
+```
 
-Untuk melihat hasil pengolahan terbaru:
+## 7. Pemeriksaan Cloudflare R2
 
-    SELECT forecast_date, avg_temperature,
-           avg_humidity, total_precipitation
-    FROM daily_forecast
-    ORDER BY forecast_date DESC
-    LIMIT 10;
+Buka bucket `proyekcloudcomputing`.
 
-Hasil dari tabel daily_forecast digunakan oleh dashboard untuk menampilkan informasi prakiraan cuaca.
+Pastikan terdapat dua bagian data:
 
-### 5.3 Memeriksa Dashboard
+- Folder `raw/` berisi hasil JSON pipeline prakiraan.
+- File `historical-dashboard.json` berada pada root bucket.
 
-Buka alamat dashboard menggunakan browser.
+File historis berasal dari hasil analisis Python dan diunggah secara manual.
 
-Pastikan terdapat:
-- Ringkasan suhu, kelembapan, dan curah hujan.
-- Grafik ketiga indikator.
-- Tabel hasil pengolahan.
-- Informasi waktu pembaruan terakhir.
+Untuk menghasilkan ulang snapshot historis:
 
-Tombol Perbarui Tampilan digunakan untuk membaca ulang hasil dari database, bukan untuk menjalankan pipeline baru.
+```bash
+pip install -r src/analysis/requirements.txt
+python src/analysis/analysis.py
+python src/analysis/build_dashboard_data.py
+```
 
-## 6. Monitoring Sistem
+Setelah berhasil, upload hasil `historical-dashboard.json` ke root bucket R2.
+
+## 8. Monitoring
 
 Monitoring dilakukan melalui Cloudflare Observability.
 
-Langkah pemeriksaan:
+Pemeriksaan meliputi:
 
-1. Buka Worker topik1-cuaca-serverless.
-2. Pilih Observability.
-3. Buka Invocations untuk melihat eksekusi Worker.
-4. Periksa Origin scheduled untuk eksekusi otomatis.
-5. Buka Events untuk melihat pesan log.
+- Jumlah invocation Worker.
+- Eksekusi dengan origin `scheduled`.
+- Log `pipeline_success`.
+- Log `pipeline_failed`.
+- Status dan pesan error dalam D1.
+- Penggunaan database dan object storage.
 
-Pesan yang digunakan dalam monitoring:
+Cron yang telah dikonfigurasi adalah `0 0 * * *` UTC.
 
-- pipeline_success: proses berhasil.
-- pipeline_failed: proses mengalami kegagalan.
-- results_failed: gagal membaca hasil database.
-- status_failed: gagal membaca riwayat eksekusi.
+Keberhasilan Cron setelah pembaruan Worker perlu diverifikasi menggunakan invocation dan catatan run terbaru.
 
-Status pada database juga diperiksa untuk memastikan proses benar-benar selesai.
+## 9. Penanganan Masalah
 
-## 7. Penanganan Kegagalan
+| Masalah | Pemeriksaan |
+|---|---|
+| Dashboard kosong | Periksa deployment dan data D1 |
+| `/api/results` gagal | Periksa binding `DB` dan query D1 |
+| `/api/history` 404 | Periksa nama file dan lokasi snapshot di R2 |
+| `/history` 404 | Periksa apakah kode halaman historis sudah di-deploy |
+| Pipeline gagal | Periksa log, sumber API, dan status database |
+| Unauthorized | Periksa konfigurasi secret admin |
+| Data tidak diperbarui | Periksa Cron dan waktu run terakhir |
 
-Jika pipeline mengalami kegagalan, lakukan pemeriksaan berikut:
+Jika API sumber gagal, pipeline akan mencatat status `failed` selama D1 masih dapat diakses.
 
-1. Buka Cloudflare Observability.
-2. Periksa pesan error pada Worker.
-3. Buka tabel pipeline_runs di D1.
-4. Periksa kolom error_message.
-5. Identifikasi apakah kegagalan berasal dari API, format data, storage, atau database.
-6. Lakukan perbaikan sesuai sumber masalah.
-7. Jalankan ulang pipeline secara manual.
-8. Pastikan status berubah menjadi success pada eksekusi baru.
+Sistem tetap menggunakan hasil dari eksekusi sukses terakhir untuk menampilkan prakiraan.
 
-Jika API tidak dapat diakses, periksa respons dan ketersediaan layanan sumber data.
+## 10. Rollback
 
-Jika data tidak valid, periksa struktur JSON dan indikator yang diterima.
+Apabila pembaruan Worker menyebabkan masalah:
 
-Jika terjadi masalah penyimpanan, periksa binding DB dan RAW serta ketersediaan layanan terkait.
+1. Buka Cloudflare Worker → Edit code.
+2. Buka source backup yang disimpan sebelum pembaruan.
+3. Tempel source lama.
+4. Deploy ulang.
+5. Periksa binding dan endpoint.
+6. Jalankan pengujian manual.
 
-Ketika eksekusi gagal, dashboard tetap membaca data dari eksekusi terakhir yang berhasil.
+Backup source tidak menggantikan backup data R2 atau D1.
 
-## 8. Pengujian Kegagalan dan Pemulihan
+## 11. Keamanan
 
-Pengujian dilakukan dengan menambahkan mode simulasi kegagalan API sementara pada Worker.
+Secret `ADMIN_TOKEN` tidak boleh disimpan di GitHub.
 
-Hasil pengujian:
+Gunakan token acak yang kuat, batasi akses ke akun Cloudflare, dan ganti secret jika pernah terekspos.
 
-- Permintaan simulasi menghasilkan HTTP 502.
-- Status failed berhasil dicatat pada tabel pipeline_runs.
-- Pesan kesalahan menunjukkan bahwa API sumber data tidak dapat diakses.
-- Pipeline dapat dijalankan kembali melalui endpoint admin.
-- Eksekusi pemulihan berhasil memproses tiga hari prakiraan.
+## 12. Penghentian Layanan
 
-Setelah pengujian selesai, kode simulasi dihapus dan Worker dikembalikan ke versi normal.
+Setelah proyek selesai dipresentasikan:
 
-Pengujian ini menunjukkan bahwa sistem dapat mencatat kegagalan dan dijalankan kembali setelah terjadi masalah.
+1. Simpan hasil pengujian dan screenshot.
+2. Nonaktifkan Cron Trigger.
+3. Hapus resource yang tidak lagi diperlukan setelah disetujui kelompok.
+4. Periksa Billing untuk memastikan tidak ada penggunaan lanjutan.
 
-## 9. Pemeliharaan Sistem
+Penghapusan resource belum dilakukan selama proyek masih digunakan.
 
-Pemeliharaan sistem meliputi:
+## 13. Status Pengujian
 
-- Memeriksa riwayat eksekusi Cron.
-- Memastikan data terbaru tersimpan pada R2 dan D1.
-- Memantau error melalui Cloudflare Observability.
-- Memeriksa penggunaan layanan dan biaya.
-- Meninjau konfigurasi keamanan.
-- Memperbarui kode apabila terjadi perubahan struktur API sumber.
+Pipeline awal, penyimpanan R2, D1, dan API telah diuji.
 
-Perubahan kode dilakukan melalui editor Cloudflare Workers dan diterapkan menggunakan Deploy.
+Endpoint historis berhasil membaca snapshot R2.
 
-Kode yang sudah diuji juga disimpan pada repository GitHub kelompok agar dapat digunakan kembali.
-
-## 10. Penghentian Layanan
-
-Apabila sistem tidak lagi digunakan:
-
-1. Nonaktifkan atau hapus Cron Trigger.
-2. Simpan data dan bukti pengujian yang diperlukan.
-3. Periksa resource R2 dan D1.
-4. Hapus resource yang tidak diperlukan setelah memastikan data penting telah dicadangkan.
-5. Periksa kembali penggunaan dan tagihan Cloudflare.
-
-Langkah ini dilakukan untuk mencegah penggunaan resource yang tidak diperlukan setelah proyek selesai.
-
-## 11. Kesimpulan
-
-Berdasarkan hasil implementasi dan pengujian, pipeline dapat dijalankan secara manual maupun otomatis menggunakan Cloudflare Workers.
-
-Data mentah disimpan pada R2, hasil pengolahan disimpan pada D1, dan dashboard menampilkan ringkasan serta grafik prakiraan cuaca.
-
-Sistem juga memiliki pencatatan eksekusi dan mekanisme penanganan kegagalan yang telah diuji melalui simulasi API tidak dapat diakses.
-
+Pengujian dashboard final dan Cron setelah pembaruan Worker harus dicatat menggunakan bukti terbaru sebelum laporan dinyatakan selesai.

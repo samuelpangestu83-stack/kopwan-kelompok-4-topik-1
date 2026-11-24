@@ -1,343 +1,197 @@
 
-# Cost Report
-## Pipeline Data Terbuka Serverless dan Dashboard
+# Cost Report — Cloudflare Serverless Pipeline
 
-**Topik:** 1 — Pipeline Data Terbuka Serverless dan Dashboard  
-**Platform Cloud:** Cloudflare  
-**Service Model:** Function as a Service (FaaS)  
-**Tanggal Pengamatan:** 23 November 2026  
-**Status:** Final berdasarkan pengamatan awal
+## 1. Tujuan
 
----
+Laporan biaya disusun untuk membandingkan estimasi penggunaan layanan cloud dengan biaya aktual selama implementasi dan pengujian proyek.
 
-## 1. Gambaran Umum
+Platform yang digunakan adalah Cloudflare Workers, R2 Object Storage, D1 Database, dan Cron Triggers.
 
-Laporan ini disusun untuk memperkirakan kebutuhan biaya cloud serta membandingkannya dengan penggunaan aktual selama proses implementasi dan pengujian sistem.
+## 2. Layanan yang Digunakan
 
-Proyek menggunakan Cloudflare Workers sebagai layanan Function as a Service (FaaS) untuk mengambil dan mengolah data prakiraan cuaca Jakarta dari Open-Meteo API.
+| Layanan | Fungsi |
+|---|---|
+| Workers | Eksekusi FaaS, API, dan dashboard |
+| Cron Triggers | Penjadwalan pipeline otomatis |
+| R2 | Penyimpanan JSON mentah dan snapshot historis |
+| D1 | Hasil prakiraan dan riwayat pipeline |
+| Observability | Monitoring dan log |
 
-Data mentah disimpan menggunakan Cloudflare R2 Object Storage, sedangkan hasil pengolahan dan riwayat eksekusi disimpan pada Cloudflare D1 Database.
+## 3. Estimasi Penggunaan Bulanan
 
-Penggunaan arsitektur serverless dipilih agar sistem dapat berjalan secara otomatis tanpa memerlukan Virtual Machine yang harus dikelola secara terus-menerus.
+Estimasi menggunakan asumsi operasional 30 hari.
 
-## 2. Layanan Cloud yang Digunakan
+- Satu eksekusi pipeline setiap hari.
+- Tiga baris hasil prakiraan untuk setiap eksekusi.
+- Satu file JSON baru untuk setiap eksekusi berhasil.
+- Dua puluh kunjungan dashboard per hari.
+- Tiga HTTP request per kunjungan sebagai asumsi perencanaan.
 
-| Layanan | Fungsi | Model Layanan |
-|---|---|---|
-| Cloudflare Workers | Pengambilan data, pengolahan, API, dan dashboard | FaaS |
-| Cron Triggers | Menjalankan pipeline secara otomatis | Scheduled Trigger |
-| Cloudflare R2 | Menyimpan data JSON mentah | Managed Object Storage |
-| Cloudflare D1 | Menyimpan hasil analisis dan riwayat pipeline | Managed Database |
-| Cloudflare Observability | Memantau eksekusi dan mencatat error | Monitoring |
+### 3.1 Workers
 
-Seluruh layanan digunakan dalam lingkungan Cloudflare sehingga proses pengambilan, penyimpanan, pengolahan, dan penyajian data dapat saling terintegrasi.
+Eksekusi terjadwal:
 
-## 3. Estimasi Kebutuhan Bulanan
+30 × 1 = 30 eksekusi.
 
-Estimasi dihitung berdasarkan skenario operasional selama 30 hari.
+Request dashboard:
 
-Asumsi yang digunakan:
+20 × 3 × 30 = 1.800 request.
 
-- Pipeline dijalankan otomatis satu kali setiap hari.
-- Jadwal pengambilan data adalah pukul 07.00 WIB.
-- Setiap eksekusi mengambil data prakiraan cuaca selama tiga hari.
-- Setiap eksekusi berhasil menyimpan satu file JSON ke R2.
-- Tiga baris ringkasan prakiraan disimpan ke D1.
-- Dashboard diasumsikan menerima 20 kunjungan setiap hari.
-- Setiap kunjungan menghasilkan sekitar tiga request ke Worker.
+Total perkiraan:
 
-### 3.1 Estimasi Cloudflare Workers
+30 + 1.800 = **1.830 pemanggilan Worker per bulan**.
 
-Perhitungan eksekusi otomatis:
+### 3.2 R2
 
-30 hari × 1 eksekusi = **30 eksekusi/bulan**
+Estimasi file mentah:
 
-Perhitungan request dashboard:
+30 × 1 = 30 file baru.
 
-20 kunjungan × 3 request × 30 hari = **1.800 request/bulan**
+Dengan asumsi 10 kB per file:
 
-Total perkiraan pemanggilan Worker:
+30 × 10 kB = **300 kB data baru**.
 
-30 + 1.800 = **1.830 pemanggilan/bulan**
+Perhitungan ini belum memasukkan data historis dan penggunaan penyimpanan sebelumnya.
 
-Estimasi ini belum termasuk pengujian manual, retry, dan aktivitas administrator.
+### 3.3 D1
 
-### 3.2 Estimasi Cloudflare R2
-
-Setiap eksekusi berhasil menyimpan satu file JSON mentah.
-
-30 eksekusi × 1 file = **30 file/bulan**
-
-Dengan asumsi ukuran rata-rata satu file sebesar 10 kB:
-
-30 × 10 kB = **300 kB data baru/bulan**
-
-Ukuran file tersebut merupakan asumsi perencanaan, bukan hasil pengukuran aktual.
-
-Biaya penyimpanan R2 dihitung berdasarkan penggunaan GB-month, bukan hanya jumlah data baru yang disimpan.
-
-### 3.3 Estimasi Cloudflare D1
-
-Setiap eksekusi menghasilkan tiga baris ringkasan prakiraan harian.
-
-30 eksekusi × 3 baris = **90 baris/bulan**
-
-Selain hasil analisis, sistem juga mencatat riwayat eksekusi pipeline.
-
-| Aktivitas Database | Estimasi Bulanan |
+| Aktivitas | Estimasi |
 |---|---:|
-| INSERT hasil prakiraan | 90 baris |
-| INSERT riwayat eksekusi | 30 baris |
-| UPDATE status eksekusi | 30 perubahan |
-| **Total perubahan baris utama** | **150** |
+| INSERT hasil prakiraan | 90 |
+| INSERT riwayat pipeline | 30 |
+| UPDATE status pipeline | 30 |
+| Total perubahan baris utama | 150 |
 
-Perhitungan ini merupakan estimasi operasi logis. Jumlah rows written yang dihitung Cloudflare dapat berbeda karena aktivitas indeks dan operasi database lainnya.
+Nilai tersebut merupakan estimasi operasi logis. Jumlah rows written yang ditagihkan dapat berbeda.
 
-## 4. Estimasi Biaya Awal
+## 4. Estimasi Biaya
 
-Estimasi biaya didasarkan pada penggunaan Cloudflare Free Plan.
-
-| Layanan | Estimasi Penggunaan | Estimasi Biaya |
-|---|---|---:|
-| Cloudflare Workers | 1.830 pemanggilan/bulan | US$0.00 |
-| Cloudflare R2 | Sekitar 30 file JSON baru | US$0.00 |
-| Cloudflare D1 | Sekitar 150 perubahan baris utama | US$0.00 |
-| Cron Triggers | 1 jadwal harian | Termasuk Workers |
-| Dashboard | Dihosting menggunakan Worker | Termasuk Workers |
-| **Total** | | **US$0.00** |
-
-Total estimasi biaya tambahan adalah **US$0.00 per bulan**, dengan asumsi seluruh penggunaan tetap berada dalam kuota gratis dan tidak terdapat layanan berbayar tambahan.
-
-### 4.1 Kuota Gratis Cloudflare
-
-| Layanan | Kuota Gratis |
+| Layanan | Estimasi Biaya |
 |---|---:|
-| Workers Requests | 100.000 request/hari |
-| D1 Rows Read | 5.000.000 baris/hari |
-| D1 Rows Written | 100.000 baris/hari |
-| D1 Storage | 5 GB |
-| R2 Standard Storage | 10 GB-month/bulan |
-| R2 Class A Operations | 1.000.000 operasi/bulan |
-| R2 Class B Operations | 10.000.000 operasi/bulan |
+| Cloudflare Workers | US$0.00 |
+| Cloudflare R2 | US$0.00 |
+| Cloudflare D1 | US$0.00 |
+| Cron Triggers | Termasuk penggunaan Workers |
+| Dashboard | Termasuk penggunaan Workers |
+| **Total estimasi** | **US$0.00** |
 
-Sumber: Dokumentasi resmi Cloudflare Workers, D1, dan R2.
+Estimasi berlaku apabila pemakaian tetap berada dalam kuota gratis dan tidak menggunakan layanan berbayar tambahan.
 
-## 5. Penggunaan Aktual Cloudflare
+## 5. Hasil Pengamatan Aktual
 
-Data penggunaan aktual diperoleh melalui Cloudflare Dashboard pada **23 November 2026**.
-
-Angka yang dicatat merupakan penggunaan sampai waktu pengamatan dan bukan penggunaan selama satu bulan penuh.
+Pengamatan penggunaan dilakukan pada **23 November 2026**.
 
 ### 5.1 Cloudflare Workers
 
-Cloudflare Workers digunakan untuk menjalankan pipeline otomatis, menyediakan endpoint API, serta menampilkan dashboard.
-
-Hasil penggunaan:
-
-| Komponen | Penggunaan Aktual |
+| Komponen | Penggunaan |
 |---|---:|
 | Requests Today | 64 |
-| Kuota Request Harian | 100.000 |
 | Observability Events Today | 25 |
-| Kuota Observability Events | 200.000 |
-| Requests pada Kartu Worker | 68 |
+| Requests pada kartu Worker | 68 |
 
-Persentase penggunaan request harian:
+Angka 64 dan 68 berasal dari tampilan metrik berbeda dan tidak dijumlahkan.
 
-**64 / 100.000 × 100% = 0,064%**
+### 5.2 Cloudflare D1
 
-Berdasarkan perhitungan tersebut, penggunaan Cloudflare Workers masih berada jauh di bawah kuota gratis harian.
-
-Angka 68 requests pada kartu Worker merupakan metrik dari tampilan berbeda sehingga tidak dijumlahkan dengan 64 requests pada metrik harian.
-
-### 5.2 Cloudflare D1 Database
-
-D1 digunakan untuk menyimpan data hasil pengolahan pada tabel `daily_forecast` dan riwayat eksekusi pada tabel `pipeline_runs`.
-
-Hasil penggunaan:
-
-| Komponen | Penggunaan Aktual |
+| Komponen | Penggunaan |
 |---|---:|
 | Total Database | 1 |
 | Rows Read | 195 |
 | Rows Written | 46 |
 | Total Storage | 32,77 kB |
 | Metered Storage | 136,53 B-mo |
-| Billable Usage | US$0.00 |
+| Billable Usage D1 | US$0.00 |
 
-Persentase penggunaan Rows Read:
+### 5.3 Cloudflare R2
 
-**195 / 5.000.000 × 100% = 0,0039%**
-
-Persentase penggunaan Rows Written:
-
-**46 / 100.000 × 100% = 0,046%**
-
-Penggunaan database masih berada jauh di bawah batas gratis.
-
-Pada saat pengamatan, Cloudflare D1 belum menghasilkan biaya tambahan yang dapat ditagihkan.
-
-### 5.3 Cloudflare R2 Object Storage
-
-Cloudflare R2 digunakan untuk menyimpan respons JSON mentah dari Open-Meteo API.
-
-Hasil penggunaan:
-
-| Komponen | Penggunaan Aktual |
+| Komponen | Penggunaan |
 |---|---:|
 | Class A Operations | 24 |
 | Class B Operations | 18 |
 | Total Storage | 2,71 kB |
-| Billable Usage | US$0.00 |
+| Billable Usage R2 | US$0.00 |
 
-Persentase penggunaan Class A:
+Angka tersebut merupakan hasil pengamatan sebelum penambahan snapshot historis pada 25 November 2026.
 
-**24 / 1.000.000 × 100% = 0,0024%**
+## 6. Biaya Aktual
 
-Persentase penggunaan Class B:
+Berdasarkan Cloudflare Billing → Billable Usage pada 23 November 2026:
 
-**18 / 10.000.000 × 100% = 0,00018%**
-
-Hasil tersebut menunjukkan bahwa penggunaan operasi R2 masih sangat kecil dibandingkan kuota gratis.
-
-Pada saat pengamatan, penggunaan R2 belum menghasilkan biaya tambahan.
-
-## 6. Biaya Aktual Berdasarkan Billing
-
-Pemeriksaan dilakukan melalui menu:
-
-**Cloudflare Dashboard → Billing → Billable Usage**
-
-Tanggal pengamatan: **23 November 2026**
-
-Hasil yang tercatat:
-
-| Komponen Billing | Hasil |
+| Komponen | Biaya |
 |---|---:|
 | Total Cost | US$0.00 |
 | Average Daily Cost | US$0.00 |
-| R2 Billable Usage | US$0.00 |
 | D1 Billable Usage | US$0.00 |
-| Budget Alerts | 1 terkonfigurasi |
+| R2 Billable Usage | US$0.00 |
 
-Berdasarkan data Billing Cloudflare, total biaya aktual yang teramati adalah:
+**Total biaya aktual pada periode pengamatan adalah US$0.00.**
 
-### Total Biaya Aktual: US$0.00
-
-Hasil tersebut menunjukkan bahwa selama periode pengamatan, penggunaan layanan belum menghasilkan biaya yang dapat ditagihkan.
-
-Namun, nilai ini merupakan hasil pengamatan pada 23 November 2026 dan bukan total tagihan final satu bulan.
+Nilai ini bukan tagihan final satu bulan karena data Billing yang diamati hanya mencakup periode yang ditampilkan pada dashboard.
 
 ## 7. Perbandingan Estimasi dan Aktual
 
-Perbandingan dilakukan untuk mengetahui apakah penggunaan layanan sesuai dengan perencanaan biaya awal.
-
-| Layanan | Estimasi Biaya Bulanan | Biaya Aktual Teramati |
+| Komponen | Estimasi Bulanan | Aktual Teramati |
 |---|---:|---:|
-| Cloudflare Workers | US$0.00 | Tidak ada biaya akun yang teramati |
-| Cloudflare D1 | US$0.00 | US$0.00 |
-| Cloudflare R2 | US$0.00 | US$0.00 |
+| Workers | US$0.00 | Tidak ada biaya akun yang teramati |
+| D1 | US$0.00 | US$0.00 |
+| R2 | US$0.00 | US$0.00 |
 | **Total** | **US$0.00** | **US$0.00** |
 
-Rumus perhitungan selisih biaya:
+Rumus:
 
-**Selisih Biaya = Biaya Aktual - Biaya Estimasi**
-
-Perhitungan berdasarkan angka yang tersedia:
+**Selisih = Biaya Aktual - Biaya Estimasi**
 
 US$0.00 - US$0.00 = **US$0.00**
 
-Hasil tersebut menunjukkan bahwa biaya yang teramati masih sesuai dengan estimasi awal.
+Selisih nominal pada pengamatan awal adalah nol.
 
-Meskipun demikian, estimasi awal mencakup 30 hari, sedangkan biaya aktual baru diperoleh dari pengamatan satu hari.
+Namun, estimasi mencakup satu bulan, sedangkan pengamatan aktual baru mencakup periode awal penggunaan. Hasil ini belum membuktikan bahwa biaya selama satu bulan penuh pasti nol.
 
-Oleh karena itu, perbandingan ini digunakan sebagai evaluasi awal dan belum menunjukkan realisasi biaya bulanan secara penuh.
+## 8. Dampak Penambahan Data Historis
 
-## 8. Analisis Efisiensi Biaya
+Pada 25 November 2026, sistem telah diintegrasikan dengan data historis Open-Meteo selama satu tahun.
 
-Berdasarkan hasil implementasi, penggunaan arsitektur serverless cukup sesuai untuk kebutuhan pipeline data yang memiliki frekuensi pengambilan relatif rendah.
+Hasil analisis disimpan sebagai `historical-dashboard.json` pada bucket R2.
 
-Cloudflare Workers memungkinkan proses pengambilan dan pengolahan data dijalankan berdasarkan jadwal maupun HTTP request.
+Penambahan ini meningkatkan kebutuhan penyimpanan R2 dan operasi pembacaan objek.
 
-Dengan layanan tersebut, kelompok tidak perlu menyediakan dan mengelola Virtual Machine yang harus aktif sepanjang waktu.
+Dataset historis diperbarui secara manual, sehingga tidak menambah jumlah eksekusi Cron forecast harian.
 
-Cloudflare R2 digunakan untuk menyimpan data mentah dalam format JSON, sedangkan D1 menyimpan hasil pengolahan yang dibutuhkan dashboard.
+Biaya setelah pembaruan belum dicatat dalam laporan ini karena screenshot Billing terbaru belum tersedia.
 
-Hasil penggunaan menunjukkan bahwa jumlah request, operasi penyimpanan, dan aktivitas database masih berada jauh di bawah kuota gratis masing-masing layanan.
+## 9. Evaluasi Efisiensi
 
-Biaya aktual sebesar US$0.00 pada saat pengamatan juga menunjukkan bahwa kebutuhan implementasi dan pengujian awal dapat dipenuhi tanpa biaya tambahan yang tercatat.
+Arsitektur serverless dinilai sesuai untuk beban kerja proyek saat ini karena pengambilan forecast dijalankan sekali sehari dan jumlah pengguna dashboard masih terbatas.
 
-Namun, efisiensi biaya dalam jangka panjang tetap bergantung pada jumlah eksekusi pipeline, pertumbuhan data, serta jumlah pengguna dashboard.
+Cloudflare Workers mengurangi kebutuhan pengelolaan server, sedangkan D1 dan R2 menyediakan penyimpanan terkelola.
 
-## 9. Risiko Peningkatan Biaya
+Penggunaan awal menunjukkan biaya teramati masih sebesar US$0.00.
 
-Beberapa kondisi yang dapat meningkatkan penggunaan layanan cloud antara lain:
+## 10. Risiko Peningkatan Biaya
 
-1. Peningkatan frekuensi pengambilan data melalui Cron Trigger.
-2. Bertambahnya jumlah pengguna dashboard.
-3. Penambahan indikator dan ukuran data yang diproses.
-4. Akumulasi file JSON mentah pada Cloudflare R2.
-5. Peningkatan jumlah operasi baca dan tulis pada D1.
-6. Perubahan paket layanan atau penggunaan fitur berbayar.
+Biaya dapat meningkat apabila:
 
-Untuk mengurangi risiko tersebut, pipeline menggunakan jadwal pengambilan data satu kali sehari.
+- Frekuensi pipeline bertambah.
+- Jumlah pengguna dashboard meningkat.
+- Operasi pembacaan D1 dan R2 bertambah.
+- Data mentah terus disimpan tanpa retensi.
+- Kapasitas atau paket berbayar mulai digunakan.
 
-Penggunaan layanan juga dapat dipantau melalui halaman Metrics, Usage, dan Billing Cloudflare.
-
-Budget Alert digunakan untuk membantu memberikan pemberitahuan penggunaan biaya, tetapi tidak dianggap sebagai mekanisme penghentian tagihan otomatis.
-
-## 10. Rekomendasi Pengelolaan Biaya
-
-Berdasarkan hasil implementasi dan pengamatan, beberapa langkah yang disarankan adalah:
-
-1. Mempertahankan jadwal pengambilan data satu kali sehari selama kebutuhan analisis belum berubah.
-2. Melakukan pemantauan penggunaan Workers, R2, dan D1 secara berkala.
-3. Memeriksa Billing untuk memastikan tidak terdapat biaya yang tidak direncanakan.
-4. Menentukan kebijakan retensi data mentah apabila kapasitas penyimpanan meningkat.
-5. Menghindari peningkatan paket layanan sebelum kapasitas tambahan benar-benar dibutuhkan.
-6. Memperbarui estimasi biaya apabila terjadi peningkatan beban kerja.
-
-Langkah tersebut bertujuan menjaga penggunaan sumber daya tetap sesuai dengan kebutuhan proyek.
+Pengendalian dilakukan melalui pemantauan Usage, Billing, dan Budget Alert.
 
 ## 11. Kesimpulan
 
-Berdasarkan estimasi dan data penggunaan aktual, pemanfaatan Cloudflare Workers, R2, dan D1 dinilai sesuai untuk proyek pipeline data terbuka serverless dengan beban kerja yang relatif kecil.
+Berdasarkan pengamatan 23 November 2026, sistem belum menghasilkan biaya yang dapat ditagihkan dan masih sesuai dengan estimasi awal.
 
-Estimasi biaya tambahan selama 30 hari adalah US$0.00, dengan asumsi seluruh penggunaan berada dalam kuota gratis.
+Namun, penggunaan setelah penambahan dataset historis pada 25 November perlu diukur kembali.
 
-Pada pengamatan tanggal 23 November 2026, Cloudflare Workers mencatat 64 request harian, sedangkan D1 mencatat 195 rows read dan 46 rows written.
+Dengan demikian, biaya awal menunjukkan efisiensi penggunaan layanan, tetapi pemantauan tetap diperlukan sebelum menyimpulkan biaya operasional jangka panjang.
 
-Pada layanan R2, tercatat 24 operasi Class A dan 18 operasi Class B.
+## 12. Referensi
 
-Penggunaan penyimpanan juga masih relatif kecil, yaitu 32,77 kB untuk D1 dan 2,71 kB untuk R2.
+1. Cloudflare Workers Pricing: https://developers.cloudflare.com/workers/platform/pricing/
+2. Cloudflare Workers Limits: https://developers.cloudflare.com/workers/platform/limits/
+3. Cloudflare D1 Pricing: https://developers.cloudflare.com/d1/platform/pricing/
+4. Cloudflare R2 Pricing: https://developers.cloudflare.com/r2/pricing/
 
-Hasil pemeriksaan Billing Cloudflare menunjukkan bahwa total biaya aktual yang teramati adalah **US$0.00**.
-
-Hasil tersebut mendukung estimasi bahwa arsitektur serverless mampu memenuhi kebutuhan proyek pada skala pengujian saat ini tanpa biaya tambahan yang tercatat.
-
-Namun, pemantauan tetap diperlukan untuk memastikan penggunaan layanan tetap efisien apabila sistem dijalankan dalam periode yang lebih panjang.
-
-## 12. Bukti Pendukung
-
-Bukti penggunaan dan pemantauan biaya disimpan pada direktori `docs/evidence/`.
-
-| File Bukti | Keterangan |
-|---|---|
-| `r2-usage.png` | Penggunaan R2 Object Storage |
-| `d1-usage.png` | Penggunaan D1 Database |
-| `workers-usage.png` | Penggunaan Cloudflare Workers |
-| `billing-overview.png` | Total biaya pada Cloudflare Billing |
-| `cron-scheduled.png` | Bukti eksekusi pipeline otomatis |
-
-File tersebut digunakan untuk mendukung angka penggunaan aktual dan hasil evaluasi biaya yang disajikan dalam laporan.
-
-## 13. Referensi
-
-1. Cloudflare. [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-2. Cloudflare. [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-3. Cloudflare. [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
-4. Cloudflare. [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
-5. Cloudflare. [Cron Triggers](https://developers.cloudflare.com/workers/configuration/cron-triggers/)
-
-**Sumber data aktual:** Cloudflare Dashboard kelompok, 23 November 2026.
-
+Sumber angka aktual: screenshot Cloudflare Dashboard kelompok, 23 November 2026.

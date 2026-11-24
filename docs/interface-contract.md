@@ -1,37 +1,36 @@
-
 # Interface Contract
 
 ## 1. Gambaran Umum
 
-Dokumen ini menjelaskan kesepakatan teknis antara Analysis Layer dan Infrastructure & Operations Layer dalam pengembangan pipeline data prakiraan cuaca Jakarta berbasis Cloudflare.
+Dokumen ini menjelaskan kesepakatan teknis antara **Analysis Layer** dan **Infrastructure & Operations Layer** dalam pengembangan pipeline data cuaca Jakarta berbasis Cloudflare.
 
 Kesepakatan ini dibuat agar proses pengambilan, pengolahan, penyimpanan, dan penyajian data dapat berjalan sesuai dengan kebutuhan kedua layer.
 
 ## 2. Sumber dan Format Data
 
-Sistem menggunakan data prakiraan cuaca dari Open-Meteo API.
+Sistem menggunakan data prakiraan cuaca dan data historis dari Open-Meteo API (lisensi CC BY 4.0).
 
-Informasi data:
-- Sumber: Open-Meteo API
-- Lokasi: Jakarta
+Informasi data prakiraan:
+- Sumber: Open-Meteo Forecast API
+- Lokasi: Jakarta (`latitude: -6.2088`, `longitude: 106.8456`)
 - Format: JSON
 - Periode: Prakiraan 3 hari
 - Resolusi data: Per jam
 - Zona waktu: Asia/Jakarta
 
 Tiga indikator yang digunakan:
-1. Temperature (temperature_2m), satuan °C.
-2. Relative Humidity (relative_humidity_2m), satuan %.
-3. Precipitation (precipitation), satuan mm.
+1. Temperature (`temperature_2m`), satuan °C.
+2. Relative Humidity (`relative_humidity_2m`), satuan %.
+3. Precipitation (`precipitation`), satuan mm.
 
-Data tersebut dipilih karena dapat digunakan untuk melihat pola prakiraan suhu, kelembapan, dan curah hujan dalam periode pengamatan.
+Data tersebut dipilih karena dapat digunakan untuk melihat pola prakiraan suhu, kelembapan, dan curah hujan dalam periode pengamatan, serta dibandingkan konteksnya dengan analisis historis satu tahun.
 
 ## 3. Kebutuhan Analysis Layer
 
 Analysis Layer bertanggung jawab untuk:
 - Menentukan indikator yang digunakan.
 - Memeriksa kelengkapan dan validitas data.
-- Melakukan analisis statistik deskriptif.
+- Melakukan analisis statistik deskriptif dan tren historis satu tahun (`src/analysis/analysis.py`).
 - Menginterpretasikan tren ketiga indikator.
 - Menjelaskan keterbatasan hasil analisis.
 
@@ -39,7 +38,8 @@ Hasil analisis yang dibutuhkan meliputi:
 - Rata-rata suhu per hari.
 - Rata-rata kelembapan per hari.
 - Total curah hujan prakiraan per hari.
-- Grafik perubahan setiap indikator.
+- Ringkasan statistik deskriptif, bulanan, dan tren historis satu tahun.
+- Grafik perubahan setiap indikator pada dashboard.
 
 ## 4. Kebutuhan Infrastructure & Operations Layer
 
@@ -47,66 +47,70 @@ Infrastructure & Operations Layer bertanggung jawab untuk:
 - Menyiapkan layanan Cloudflare.
 - Mengembangkan Cloudflare Worker.
 - Mengatur jadwal otomatis dengan Cron Trigger.
-- Menyimpan data mentah ke Cloudflare R2.
-- Menyimpan hasil pengolahan ke Cloudflare D1.
-- Menyediakan API untuk dashboard.
+- Menyimpan data mentah dan snapshot analisis historis ke Cloudflare R2.
+- Menyimpan hasil pengolahan prakiraan ke Cloudflare D1.
+- Menyediakan API dan antarmuka dashboard web.
 - Melakukan monitoring dan penanganan kegagalan.
 
 ## 5. Format Penyimpanan Data
 
-Data mentah disimpan dalam format JSON pada Cloudflare R2.
+Data mentah dan snapshot hasil analisis disimpan dalam format JSON pada Cloudflare R2.
 
 Bucket:
-proyekcloudcomputing
+`proyekcloudcomputing`
 
 Pola penyimpanan:
-raw/{run_id}.json
+- Data mentah prakiraan: `raw/{run_id}.json`
+- Snapshot analisis historis: `analysis/{tanggal}/` (hasil keluaran `analysis.py`)
 
-Hasil pengolahan disimpan pada Cloudflare D1.
+Hasil pengolahan prakiraan disimpan pada Cloudflare D1.
 
 Database:
-topik1-cuaca-db
+`topik1-cuaca-db`
 
-Tabel daily_forecast:
-- run_id
-- forecast_date
-- avg_temperature
-- avg_humidity
-- total_precipitation
-- hourly_samples
+Tabel `daily_forecast`:
+- `run_id`
+- `forecast_date`
+- `avg_temperature`
+- `avg_humidity`
+- `total_precipitation`
+- `hourly_samples`
 
-Tabel pipeline_runs:
-- run_id
-- started_at
-- finished_at
-- status
-- row_count
-- error_message
+Tabel `pipeline_runs`:
+- `run_id`
+- `started_at`
+- `finished_at`
+- `status`
+- `row_count`
+- `error_message`
 
 ## 6. API dan Output Sistem
 
-Cloudflare Worker menyediakan beberapa endpoint.
+Cloudflare Worker menyediakan endpoint dan rute dashboard berikut:
 
-GET /health
+`GET /health`  
 Digunakan untuk memeriksa status aplikasi.
 
-GET /api/results
-Mengembalikan hasil pengolahan terbaru dari database D1 dalam format JSON.
+`GET /api/results`  
+Mengembalikan hasil pengolahan prakiraan terbaru dari database D1 dalam format JSON.
 
-GET /api/status
-Mengembalikan riwayat eksekusi pipeline.
+`GET /api/status`  
+Mengembalikan riwayat eksekusi pipeline dari database D1.
 
-POST /admin/run
-Menjalankan pipeline secara manual menggunakan ADMIN_TOKEN melalui header x-admin-token.
+`GET /api/history` *(ditambahkan pada Revisi V1.1)*  
+Mengembalikan snapshot hasil analisis historis satu tahun dari Cloudflare R2 dalam format JSON.
 
-Hasil pengolahan ditampilkan melalui dashboard web dalam bentuk ringkasan statistik, tabel, dan grafik.
+`POST /admin/run`  
+Menjalankan pipeline prakiraan secara manual menggunakan `ADMIN_TOKEN` melalui header `x-admin-token`.
+
+Hasil pengolahan ditampilkan melalui dashboard web pada rute utama `/` (prakiraan & status pipeline) serta `/history` (ringkasan dan grafik tren historis satu tahun).
 
 ## 7. Jadwal dan Pengolahan Data
 
-Pipeline dijadwalkan berjalan satu kali sehari pada pukul 07.00 WIB menggunakan Cloudflare Cron Trigger.
+Pipeline prakiraan dijadwalkan berjalan satu kali sehari pada pukul 07.00 WIB menggunakan Cloudflare Cron Trigger.
 
 Cron expression:
-0 0 * * *
+`0 0 * * *`
 
 Setiap eksekusi menjalankan proses:
 1. Mengambil data Open-Meteo API.
@@ -121,25 +125,37 @@ Data per jam yang tidak valid dilewati. Apabila seluruh data tidak valid, ekseku
 
 ## 8. Penanganan Kegagalan
 
-Jika API sumber tidak dapat diakses atau data tidak valid, Worker mencatat kegagalan dalam tabel pipeline_runs selama koneksi database masih tersedia.
+Jika API sumber tidak dapat diakses atau data tidak valid, Worker mencatat kegagalan dalam tabel `pipeline_runs` selama koneksi database masih tersedia.
 
 Status eksekusi:
-- running: proses sedang berjalan.
-- success: proses berhasil.
-- failed: proses mengalami kegagalan.
+- `running`: proses sedang berjalan.
+- `success`: proses berhasil.
+- `failed`: proses mengalami kegagalan.
 
 Dashboard menggunakan data dari eksekusi terakhir yang berhasil sehingga hasil sebelumnya tetap dapat ditampilkan ketika pengambilan data baru gagal.
 
 ## 9. Kesepakatan dan Revisi
 
-Versi dokumen: 1.0
-Tanggal penyusunan: 23 November 2026
-Status: Draft untuk ditinjau bersama kelompok.
+- **Versi dokumen:** 1.1 (Final)
+- **Tanggal penyusunan awal:** 23 November 2026
+- **Tanggal revisi terakhir:** 24 November 2026
+- **Status:** Disetujui dan Aktif — Samuel Pangestu (Analysis Layer) & Muhammad Adrian (Infrastructure & Operations Layer)
 
-Dokumen ini perlu diperiksa dan disetujui oleh Analysis Layer serta Infrastructure & Operations Layer.
+Setiap perubahan sumber data, indikator, format penyimpanan, endpoint, atau jadwal pemrosesan didiskusikan dan disetujui oleh perwakilan kedua layer serta dicatat dalam riwayat revisi di bawah ini.
 
-Setiap perubahan sumber data, indikator, format penyimpanan, endpoint, atau jadwal pemrosesan harus didiskusikan terlebih dahulu dan dicatat dalam riwayat revisi.
+### Detail Revisi V1.1 (24 November 2026) — **DISETUJUI & DIIMPLEMENTASIKAN**
 
-Riwayat revisi:
-- V1.0 (23 November 2026): Penyusunan kontrak berdasarkan implementasi awal Cloudflare.
+Revisi ini disusun berdasarkan temuan review silang (`docs/cross-review.md`) dan telah disetujui oleh **Samuel Pangestu** serta **Muhammad Adrian**:
 
+1. **Koordinat:** Permintaan forecast memakai `latitude: -6.2088`, `longitude: 106.8456` (sesuai `WEATHER_API` di `worker.js`). Data historis satu tahun (8.760 sampel) untuk analisis berasal dari grid Open-Meteo `latitude: -6.221441`, `longitude: 106.856186` (elevasi 12 m). Keduanya mewakili wilayah Jakarta tetapi bukan titik grid yang identik.
+2. **Atribusi lisensi:** Dashboard menampilkan tautan atribusi *"Weather data by Open-Meteo.com"* sesuai ketentuan lisensi CC BY 4.0.
+3. **Target kinerja (target desain, angka aktual tidak diukur secara terpisah):**
+   - Batas waktu job pipeline: pengambilan data memakai timeout 15 detik (konfigurasi di kode) dengan target total eksekusi ≤ 30 detik. Durasi aktual end-to-end tidak diukur secara terpisah.
+   - Target respons `GET /api/results`, `GET /api/status`, dan `GET /api/history`: ≤ 1 detik. Angka latensi spesifik tidak diukur secara terpisah (diverifikasi melalui status HTTP 200 dan monitoring Cloudflare Workers).
+4. **Integrasi hasil analisis historis ke dashboard:** `src/analysis/analysis.py` menghasilkan keluaran teragregasi (`summary.json`, `daily.csv`, `monthly.csv`, `trend.csv`) yang dikemas menjadi snapshot JSON pada Cloudflare R2 (`analysis/{tanggal}/`), diekspos melalui endpoint `GET /api/history`, dan ditampilkan pada halaman dashboard `/history`. Pembaruan analisis historis bersifat manual (dijalankan ulang oleh **Samuel Pangestu** pada Analysis Layer), bukan terjadwal via Cron.
+5. **Perilaku gagal (terverifikasi melalui pengujian):** API sumber non-2xx, JSON tidak valid, array kosong, panjang array tidak sama, atau semua nilai tidak valid menghasilkan run berstatus `failed` dengan pesan kesalahan tercatat di D1; dashboard tetap menampilkan run sukses terakhir (`docs/evidence/test-output.txt`).
+
+### Riwayat Revisi
+
+- **V1.0 (23 November 2026):** Penyusunan kontrak awal berdasarkan implementasi pipeline prakiraan cuaca pada Cloudflare Workers, R2, dan D1 (disetujui oleh Samuel Pangestu & Muhammad Adrian).
+- **V1.1 (24 November 2026):** Revisi disetujui dan diimplementasikan — penambahan spesifikasi koordinat grid, atribusi lisensi Open-Meteo, batas target kinerja, perilaku penanganan kegagalan teruji, serta jalur integrasi snapshot historis R2 melalui `GET /api/history` dan rute dashboard `/history` (disetujui oleh Samuel Pangestu & Muhammad Adrian).

@@ -1,0 +1,21 @@
+{
+  "rows_total": 8760,
+  "missing": {
+    "temperature_2m": 0,
+    "relative_humidity_2m": 0,
+    "precipitation": 0
+  },
+  "duplicate_timestamps": 0,
+  "missing_hours_in_range": 0,
+  "rows_invalid": 0,
+  "rows_valid": 8760,
+  "period": [
+    "2025-11-16 00:00:00",
+    "2026-11-15 23:00:00"
+  ],
+  "crosscheck_vs_openmeteo_daily": {
+    "max_abs_diff_temp_mean": 0.08000000000000185,
+    "max_abs_diff_precip_sum": 0.0,
+    "max_abs_diff_humidity_mean": 0.5799999999999983
+  }
+}
