@@ -9,9 +9,9 @@ Dokumen ini merupakan draf review teknis yang perlu disetujui oleh perwakilan ma
 
 ## 2. Review Analysis Layer terhadap Infra & Ops
 
-**Reviewer:** [Nama anggota Analysis Layer]
+**Reviewer:** Samuel Pangestu
 
-**Tanggal:** [Tanggal review]
+**Tanggal:** 24 November 2026
 
 Berdasarkan pemeriksaan implementasi, Cloudflare Workers digunakan untuk mengambil data Open-Meteo dan melakukan validasi terhadap suhu, kelembapan, serta curah hujan.
 
@@ -27,9 +27,9 @@ Tampilan historis `/history` tetap perlu diverifikasi setelah deployment terbaru
 
 ## 3. Review Infra & Ops terhadap Analysis Layer
 
-**Reviewer:** [Nama anggota Infra & Ops]
+**Reviewer:** Muhamad Adrian
 
-**Tanggal:** [Tanggal review]
+**Tanggal:** 24 November 2026
 
 Analysis Layer menggunakan data historis Open-Meteo selama satu tahun dengan 8.760 sampel valid.
 
@@ -57,9 +57,7 @@ Interpretasi satu tahun juga perlu memperhatikan pola musiman dan tidak digunaka
 
 **Perwakilan Analysis Layer:** [Nama, tanggal, keputusan]
 
-**Perwakilan Infra & Ops:** [Nama, tanggal, keputusan]
-
-**Commit tindak lanjut:** [Link commit GitHub]
+**Perwakilan Infra & Ops:** [Nama, tanggal, keputusan
 
 Dokumen dinyatakan selesai setelah kedua layer membaca, memeriksa, dan menyetujui hasil review.
 
