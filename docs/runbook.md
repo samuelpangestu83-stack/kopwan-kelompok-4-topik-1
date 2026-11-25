@@ -134,7 +134,7 @@ Pemeriksaan meliputi:
 
 Cron yang telah dikonfigurasi adalah `0 0 * * *` UTC.
 
-Keberhasilan Cron setelah pembaruan Worker perlu diverifikasi menggunakan invocation dan catatan run terbaru.
+Cron 25 Nov 2026 pukul 07.00 WIB tercatat `pipeline_success` (`docs/evidence/cron-scheduled.png`). Karena Worker di-deploy manual lewat dashboard dan waktu deploy terakhir tidak tercatat, kesesuaian eksekusi tersebut dengan versi terakhir belum dapat dipastikan; periksa eksekusi Cron berikutnya pada Observability.
 
 ## 9. Penanganan Masalah
 
@@ -188,4 +188,4 @@ Pipeline awal, penyimpanan R2, D1, dan API telah diuji.
 
 Endpoint historis berhasil membaca snapshot R2.
 
-Pengujian dashboard final dan Cron setelah pembaruan Worker harus dicatat menggunakan bukti terbaru sebelum laporan dinyatakan selesai.
+Dashboard `/history` terlihat berjalan pada deployment live (`docs/evidence/history-dashboard.png`) dan Cron 25 Nov 2026 `pipeline_success` (`docs/evidence/cron-scheduled.png`). Setelah deploy final, jalankan `POST /admin/run` sekali, buka `/` dan `/history`, lalu perbarui bagian ini dengan hasilnya.
