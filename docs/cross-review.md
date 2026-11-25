@@ -15,7 +15,7 @@ Dokumen ini merupakan hasil review teknis final yang telah ditindaklanjuti dan d
 
 Berdasarkan pemeriksaan implementasi, Cloudflare Workers digunakan untuk mengambil data Open-Meteo dan melakukan validasi terhadap parameter suhu, kelembapan, serta curah hujan. Data mentah disimpan pada Cloudflare R2, sedangkan hasil perhitungan prakiraan disimpan pada database Cloudflare D1. Pengujian pipeline awal menunjukkan bahwa sistem dapat mengambil dan memproses data secara otomatis, dan mekanisme *error handling* telah teruji melalui simulasi kegagalan sumber API.
 
-Salah satu kebutuhan integrasi utama yang ditemukan adalah penyajian hasil analisis historis satu tahun pada dashboard cloud. Sebagai tindak lanjut, hasil analisis historis dikemas menjadi snapshot JSON dan disimpan pada R2 sehingga dapat dibaca oleh endpoint `/api/history` dengan stabil. Tampilan visual tren historis pada rute `/history` juga telah diverifikasi setelah sinkronisasi deployment terbaru.
+Salah satu kebutuhan integrasi utama yang ditemukan adalah penyajian hasil analisis historis satu tahun pada dashboard cloud. Sebagai tindak lanjut, hasil analisis historis dikemas menjadi snapshot JSON dan disimpan pada R2 sehingga dapat dibaca oleh endpoint `/api/history` dengan stabil. Tampilan visual tren historis pada rute `/history` terlihat berjalan pada deployment live (`docs/evidence/history-dashboard.png`); verifikasi ulang tetap diperlukan setelah deployment terakhir.
 
 ---
 
@@ -35,6 +35,6 @@ Dari sisi integrasi cloud, keluaran analisis tersebut telah dikemas dalam format
 | Temuan | Tindak Lanjut | Status |
 | :--- | :--- | :--- |
 | Analisis historis belum terhubung dengan layanan cloud | Mengemas hasil analisis ke snapshot JSON pada Cloudflare R2 dan menghubungkannya ke endpoint `/api/history` | **Selesai (API berjalan normal)** |
-| Tampilan visual dashboard historis belum terintegrasi penuh | Menambahkan grafik tren historis pada halaman `/history` dan mengambil tangkapan layar bukti deployment | **Selesai (Terverifikasi)** |
+| Tampilan visual dashboard historis belum terintegrasi penuh | Menambahkan grafik tren historis pada halaman `/history` dan mengambil tangkapan layar bukti deployment | **Selesai (terlihat berjalan pada screenshot live; verifikasi ulang setelah deploy terakhir)** |
 | Koordinat titik *forecast* dan data historis berbeda | Mencatat spesifikasi koordinat masing-masing sumber data pada `docs/interface-contract.md` | **Selesai (Terdokumentasi)** |
 | Kode pada branch `main` GitHub tertinggal dari versi deployment | Menyinkronkan `src/app/worker.js` beserta seluruh artefak `analysis`, `infra`, dan `docs` ke branch `main` | **Selesai (Tersinkronisasi)** |
