@@ -61,7 +61,7 @@ Bucket:
 
 Pola penyimpanan:
 - Data mentah prakiraan: `raw/{run_id}.json`
-- Snapshot analisis historis: `analysis/{tanggal}/` (hasil keluaran `analysis.py`)
+- Snapshot analisis historis: `historical-dashboard.json` pada root bucket (dibuat oleh `src/analysis/build_dashboard_data.py` dari keluaran `analysis.py`, diunggah manual)
 
 Hasil pengolahan prakiraan disimpan pada Cloudflare D1.
 
@@ -137,8 +137,8 @@ Dashboard menggunakan data dari eksekusi terakhir yang berhasil sehingga hasil s
 ## 9. Kesepakatan dan Revisi
 
 - **Versi dokumen:** 1.1 (Final)
-- **Tanggal penyusunan awal:** 23 November 2026
-- **Tanggal revisi terakhir:** 24 November 2026
+- **Tanggal penyusunan awal:** 21 November 2026
+- **Tanggal revisi terakhir:** 25 November 2026
 - **Status:** Disetujui dan Aktif — Samuel Pangestu (Analysis Layer) & Muhammad Adrian (Infrastructure & Operations Layer)
 
 Setiap perubahan sumber data, indikator, format penyimpanan, endpoint, atau jadwal pemrosesan didiskusikan dan disetujui oleh perwakilan kedua layer serta dicatat dalam riwayat revisi di bawah ini.
@@ -152,10 +152,11 @@ Revisi ini disusun berdasarkan temuan review silang (`docs/cross-review.md`) dan
 3. **Target kinerja (target desain, angka aktual tidak diukur secara terpisah):**
    - Batas waktu job pipeline: pengambilan data memakai timeout 15 detik (konfigurasi di kode) dengan target total eksekusi ≤ 30 detik. Durasi aktual end-to-end tidak diukur secara terpisah.
    - Target respons `GET /api/results`, `GET /api/status`, dan `GET /api/history`: ≤ 1 detik. Angka latensi spesifik tidak diukur secara terpisah (diverifikasi melalui status HTTP 200 dan monitoring Cloudflare Workers).
-4. **Integrasi hasil analisis historis ke dashboard:** `src/analysis/analysis.py` menghasilkan keluaran teragregasi (`summary.json`, `daily.csv`, `monthly.csv`, `trend.csv`) yang dikemas menjadi snapshot JSON pada Cloudflare R2 (`analysis/{tanggal}/`), diekspos melalui endpoint `GET /api/history`, dan ditampilkan pada halaman dashboard `/history`. Pembaruan analisis historis bersifat manual (dijalankan ulang oleh **Samuel Pangestu** pada Analysis Layer), bukan terjadwal via Cron.
-5. **Perilaku gagal (terverifikasi melalui pengujian):** API sumber non-2xx, JSON tidak valid, array kosong, panjang array tidak sama, atau semua nilai tidak valid menghasilkan run berstatus `failed` dengan pesan kesalahan tercatat di D1; dashboard tetap menampilkan run sukses terakhir (`docs/evidence/test-output.txt`).
+4. **Integrasi hasil analisis historis ke dashboard:** `src/analysis/analysis.py` menghasilkan keluaran teragregasi (`summary.json`, `daily.csv`, `monthly.csv`, `trend.csv`) yang dikemas menjadi snapshot JSON `historical-dashboard.json` pada root bucket Cloudflare R2 (dibuat oleh `src/analysis/build_dashboard_data.py`), diekspos melalui endpoint `GET /api/history`, dan ditampilkan pada halaman dashboard `/history`. Pembaruan analisis historis bersifat manual (dijalankan ulang oleh **Samuel Pangestu** pada Analysis Layer), bukan terjadwal via Cron.
+5. **Perilaku gagal (terverifikasi melalui pengujian):** API sumber non-2xx, JSON tidak valid, array kosong, panjang array tidak sama, atau semua nilai tidak valid menghasilkan run berstatus `failed` dengan pesan kesalahan tercatat di D1 (`docs/evidence/test-output.txt`). Dashboard dirancang menampilkan data run sukses terakhir; perilaku ini tidak diuji secara otomatis.
 
 ### Riwayat Revisi
 
 - **V1.0 (23 November 2026):** Penyusunan kontrak awal berdasarkan implementasi pipeline prakiraan cuaca pada Cloudflare Workers, R2, dan D1 (disetujui oleh Samuel Pangestu & Muhammad Adrian).
+- - **V1.1a (25 November 2026):** Koreksi dokumentasi agar sesuai implementasi — lokasi snapshot historis menjadi `historical-dashboard.json` pada root bucket R2 (sebelumnya tertulis `analysis/{tanggal}/`), dan klaim perilaku dashboard saat run gagal diberi keterangan tidak diuji otomatis (disetujui oleh Samuel Pangestu & Muhammad Adrian).
 - **V1.1 (24 November 2026):** Revisi disetujui dan diimplementasikan — penambahan spesifikasi koordinat grid, atribusi lisensi Open-Meteo, batas target kinerja, perilaku penanganan kegagalan teruji, serta jalur integrasi snapshot historis R2 melalui `GET /api/history` dan rute dashboard `/history` (disetujui oleh Samuel Pangestu & Muhammad Adrian).
