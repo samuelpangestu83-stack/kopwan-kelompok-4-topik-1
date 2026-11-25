@@ -15,18 +15,16 @@ Penanggung jawab:
 - [x] `cron-scheduled.png`: Observability, eksekusi Cron 24 Nov 2026 pukul 07.00 WIB dan log `pipeline_success`; diambil sebelum deployment terbaru (Adrian)
 - [x] `workers-usage.png`: tab Metrics Workers, 24 jam terakhir (Adrian)
 
-## Harus diambil dari Cloudflare (belum ada)
-
 Monitoring dan biaya (Adrian):
-- [ ] `d1-usage.png`: penggunaan D1
-- [ ] `r2-usage.png`: penggunaan R2
-- [ ] `billing-overview.png`: Billing, Billable Usage
-- [ ] `cron-scheduled-latest.png`: eksekusi Cron setelah deployment terbaru (cek pukul 07.00 WIB hari berikutnya)
-- [ ] `observability-events.png`: log `pipeline_failed` (log `pipeline_success` sudah terlihat di `cron-scheduled.png`)
+- [x] `d1-usage.png`: penggunaan D1
+- [x] `r2-usage.png`: penggunaan R2
+- [x] `billing-overview.png`: Billing, Billable Usage
+- [x] `cron-scheduled-latest.png`: eksekusi Cron setelah deployment terbaru (cek pukul 07.00 WIB hari berikutnya)
+- [x] `observability-events.png`: log `pipeline_failed` (log `pipeline_success` sudah terlihat di `cron-scheduled.png`)
 
 Pengujian (Adrian):
-- [ ] `failure-simulation.png`: run `failed` di `pipeline_runs` dan HTTP 502 (hasil simulasi di `runbook.md` bagian 14)
-- [ ] `recovery-run.png`: run `success` sesudahnya
+- [x] `failure-simulation.png`: run `failed` di `pipeline_runs` dan HTTP 502 (hasil simulasi di `runbook.md` bagian 14)
+- [x] `recovery-run.png`: run `success` sesudahnya
 
 Teardown (Adrian), diambil **sesudah** presentasi:
 - [ ] `teardown-worker-deleted.png`
