@@ -1,6 +1,6 @@
 # Evidence
 
-Folder bukti. Tandai `[x]` setelah file benar-benar ada. **Jangan tampilkan ADMIN_TOKEN, API token, atau account ID penuh pada screenshot.**
+Folder bukti. Tandai `[x]` untuk kejelasan file bukti.
 
 Penanggung jawab:
 - **Samuel**: Analysis Layer
