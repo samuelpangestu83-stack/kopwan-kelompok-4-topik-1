@@ -1,6 +1,10 @@
 
 # Kelompok 4 — Pipeline Data Terbuka Serverless dan Dashboard
 
+## Video Demo
+
+Rekaman demo mandiri: https://youtu.be/6MHCbYvaQc8
+
 ## 1. Deskripsi Proyek
 
 Proyek ini merupakan implementasi pipeline data cuaca Jakarta berbasis serverless menggunakan Cloudflare Workers, R2 Object Storage, dan D1 Database.
