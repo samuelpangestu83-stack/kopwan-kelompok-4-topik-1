@@ -126,8 +126,8 @@ Kredensial tidak boleh disimpan dalam source code, repository, ataupun rekaman d
 | R2 dan D1 | Sudah diuji |
 | Cron otomatis versi awal | Sudah diuji |
 | API historis | Sudah diuji |
-| Dashboard historis versi terbaru | Perlu verifikasi deployment |
-| Cron setelah pembaruan Worker | Perlu verifikasi ulang |
+| Dashboard historis versi terbaru | Terlihat berjalan pada deployment live (`history-dashboard.png`); verifikasi ulang setelah deploy terakhir belum dicatat |
+| Cron setelah pembaruan Worker | Eksekusi 25 Nov 2026 pukul 07.00 WIB `pipeline_success` (`cron-scheduled.png`); belum dapat dipastikan berjalan dengan versi Worker terakhir |
 
 ## 10. Kesimpulan
 
