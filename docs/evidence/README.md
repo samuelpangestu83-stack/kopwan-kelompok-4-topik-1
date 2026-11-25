@@ -6,7 +6,6 @@ Penanggung jawab:
 - **Samuel**: Analysis Layer
 - **Adrian**: Infrastructure & Operations Layer
 
-## Sudah ada
 - [x] `test-output.txt`: keluaran `node src/app/tests/worker.test.mjs` (18 lulus), mencakup API down, data kosong, format salah, nilai tidak valid, otorisasi admin (Adrian)
 - [x] `analysis-run.txt`: keluaran ringkas `python src/analysis/analysis.py` (Samuel)
 - [x] `worker-overview.png`: halaman Overview Worker (binding `DB` dan `RAW`, Workers Logs aktif, metrik 24 jam, riwayat deployment manual lewat dashboard) (Adrian)
