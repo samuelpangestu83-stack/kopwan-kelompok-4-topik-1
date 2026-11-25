@@ -52,3 +52,28 @@ Perhitungan memakai asumsi `docs/cost-report.md` (3 request Worker per kunjungan
 | Ketergantungan eksternal | Open-Meteo down → run `failed`, dashboard memakai hasil sukses terakhir (tes 2) | Sama | Pertimbangkan retry dengan backoff (belum ada) |
 
 Ringkasnya, arsitektur serverless menaikkan kapasitas request secara otomatis, tetapi titik yang pertama menjadi bottleneck adalah D1 (tanpa cache), biaya render `/history`, dan kuota harian paket gratis, bukan komputasi forecast-nya.
+
+
+## 4. Verifikasi Operasional & Pembaruan Baseline (25 November 2026)
+
+Bagian ini melengkapi catatan tinjauan di atas berdasarkan pemeriksaan dashboard produksi Cloudflare pada **25 November 2026** (tidak dilakukan penetration test maupun load test).
+
+### 4.1 Pembaruan Metrik Baseline Produksi
+
+| Metrik (Last 24 hours) | Baseline Awal (23 Nov) | Pengamatan Terbaru (25 Nov) | Status Kapasitas Kuota Gratis |
+|---|---:|---:|---|
+| Invocations Worker | 64–68 request | 126 invocations | ~0,13% dari batas 100.000 request/hari |
+| CPU Time (rata-rata) | Tidak dicatat | 2 ms | Jauh di bawah batas CPU Worker |
+| Errors | 0 | 0 | Stabil tanpa kegagalan runtime |
+| Status Deployment | Belum diperiksa | Ready (`2fe3605d`) | Aktif di `topik1-cuaca-serverless.muhamadadrian279.workers.dev` |
+
+### 4.2 Tindak Lanjut Pembatasan Akses Akun (Temuan #5)
+
+- **Pemisahan akses kolaborator:** Pengelolaan akun Cloudflare menggunakan akun pemilik (`muhamadadrian279`) dengan fitur *Member Invite* untuk anggota tim. Akun anggota yang diundang secara default memiliki pembatasan hak akses (*least privilege*) terhadap pengaturan administratif dan Billing kecuali diberikan peran khusus oleh pemilik akun.
+- **Isolasi secret:** Konfigurasi `ADMIN_TOKEN` tetap dikelola melalui *Worker Secrets* pada dashboard Cloudflare sehingga anggota lain maupun repositori publik tidak melihat nilai mentah token di kode sumber.
+
+### 4.3 Checklist Keamanan Pra- dan Pasca-Demo
+
+1. **Verifikasi akses bucket R2 (Temuan #6):** Pemilik akun memastikan fitur *Public Development URL* (`r2.dev`) dan *Custom Domains* pada bucket `proyekcloudcomputing` dalam kondisi nonaktif sehingga pembacaan objek hanya melewati binding `RAW` milik Worker.
+2. **Sanitasi tampilan saat demo:** Saat perekaman video demo atau pengujian `POST /admin/run`, header `Authorization: Bearer <ADMIN_TOKEN>` disamarkan agar tidak terekam di terminal maupun riwayat perintah.
+3. **Rotasi & pembersihan pasca-presentasi:** Setelah penilaian selesai, `ADMIN_TOKEN` dirotasi/dihapus dan seluruh resource (`topik1-cuaca-serverless`, D1 `DB`, serta bucket R2 `proyekcloudcomputing`) dihapus sesuai prosedur di `docs/runbook.md`.
