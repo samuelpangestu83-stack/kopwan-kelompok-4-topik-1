@@ -127,7 +127,7 @@ python src/analysis/build_dashboard_data.py
 
 Hasil analisis tersedia pada `src/analysis/output/`.
 
-Snapshot untuk dashboard disimpan sebagai `historical-dashboard.json`.
+Snapshot untuk dashboard tersimpan di `src/analysis/output/historical-dashboard.json` dan merupakan berkas yang sama dengan yang diunggah ke root bucket R2.
 
 Jika hasil analisis diperbarui, file tersebut harus diunggah kembali secara manual ke root bucket R2.
 
@@ -277,13 +277,11 @@ Laporan lengkap tersedia pada:
 
 ## 13. Pembagian Tugas
 
-| Anggota | Peran |
-|---|---|
-| Orang 1 | Data Preparation |
-| Orang 2 | Data Analysis |
-| Orang 3 | Cloud Engineer |
-| Orang 4 | Database & Operations |
-| Orang 5 | Dashboard & Integration |
+| Anggota | Akun GitHub | Peran |
+|---|---|---|
+| Samuel Pangestu | `samuelpangestu83-stack` | Analysis Layer: akuisisi dan validasi data, `analysis.py`, laporan analisis, snapshot historis |
+| Shera | `sheranabila02-dev` | Analysis Layer: Membantu mengakuisisi dan validasi data, `analysis.py`, laporan analisis |
+| Muhammad Adrian | `adrian-project` | Infra & Ops Layer: Cloudflare Workers/D1/R2, dashboard, deployment, monitoring, runbook, biaya |
 
 Detail kontribusi dicatat dalam `docs/role-log.md`.
 
