@@ -134,7 +134,7 @@ Pemeriksaan meliputi:
 
 Cron yang telah dikonfigurasi adalah `0 0 * * *` UTC.
 
-Cron 25 Nov 2026 pukul 07.00 WIB tercatat `pipeline_success` (`docs/evidence/cron-scheduled.png`). Karena Worker di-deploy manual lewat dashboard dan waktu deploy terakhir tidak tercatat, kesesuaian eksekusi tersebut dengan versi terakhir belum dapat dipastikan; periksa eksekusi Cron berikutnya pada Observability.
+Keberhasilan Cron setelah pembaruan Worker perlu diverifikasi menggunakan invocation dan catatan run terbaru.
 
 ## 9. Penanganan Masalah
 
@@ -189,3 +189,18 @@ Pipeline awal, penyimpanan R2, D1, dan API telah diuji.
 Endpoint historis berhasil membaca snapshot R2.
 
 Dashboard `/history` terlihat berjalan pada deployment live (`docs/evidence/history-dashboard.png`) dan Cron 25 Nov 2026 `pipeline_success` (`docs/evidence/cron-scheduled.png`). Setelah deploy final, jalankan `POST /admin/run` sekali, buka `/` dan `/history`, lalu perbarui bagian ini dengan hasilnya.
+
+## 14. Pengujian Kegagalan dan Pemulihan
+
+Tujuan: membuktikan bahwa kegagalan sumber API tercatat dan pipeline dapat dijalankan ulang.
+
+Metode: pada Worker ditambahkan sementara mode simulasi yang aktif bila `POST /admin/run` membawa header `x-test-mode: simulate-api-failure`, sehingga pengambilan data dari Open-Meteo dianggap gagal. Kode simulasi hanya dipakai selama pengujian dan **tidak ada** pada `src/app/worker.js` di repository (pencarian `x-test-mode` pada berkas itu tidak menemukan apa pun).
+
+| Langkah | Hasil | Bukti |
+|---|---|---|
+| Panggil `/admin/run` dengan header simulasi kegagalan | HTTP 502 dengan isi `{"error":"Pipeline gagal, periksa log"}` | `docs/evidence/failure-simulation.png` |
+| Panggil `/admin/run` normal setelah kode simulasi dihapus | `ok: True`, `days: 3`, `skipped: 0` | `docs/evidence/Recovery-run.png` |
+
+Pencatatan status `failed` beserta `error_message` pada tabel `pipeline_runs` dicek lewat D1 Console memakai kueri pada bagian 6. Tidak ada screenshot D1 terpisah untuk langkah ini; yang terdokumentasi sebagai gambar hanya respons HTTP 502 dan eksekusi pemulihan.
+
+Skenario kegagalan lain (API non-2xx, JSON tidak valid, data kosong, panjang array tidak sama, semua nilai tidak valid) diuji otomatis dengan mock pada `docs/evidence/test-output.txt` (tes 2 sampai 6). Tes tersebut tidak menyentuh Cloudflare sungguhan.
