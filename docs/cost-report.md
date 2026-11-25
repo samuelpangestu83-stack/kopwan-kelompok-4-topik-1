@@ -82,6 +82,18 @@ Estimasi berlaku apabila pemakaian tetap berada dalam kuota gratis dan tidak men
 Pengamatan penggunaan dilakukan pada **23 November 2026**.
 
 ### 5.1 Cloudflare Workers
+Pengamatan dilakukan pada **25 November 2026** melalui tab *Metrics* (rentang *Last 24 hours*) dan *Observability* (rentang *Last 1 hour*) pada Worker `topik1-cuaca-serverless`:
+
+| Komponen | Penggunaan | Keterangan |
+|---|---:|---|
+| Invocations (*Last 24 hours*) | 126 | Total pemanggilan Worker (API, dashboard, dan trigger) |
+| Subrequests (*Last 24 hours*) | 7 | Permintaan keluar ke `api.open-meteo.com` (status `2xx`, rata-rata 129,8 ms) |
+| CPU Time (*Last 24 hours*) | 2 ms | Waktu komputasi aktif |
+| Wall Time (*Last 24 hours*) | 24 ms | Total durasi eksekusi termasuk menunggu I/O jaringan |
+| Observability Events (*Last 1 hour*) | 13 | 10 *Success* dan 3 *Errors* saat pengujian endpoint `/admin/run` dan `/history` |
+
+Angka *Invocations* (126) dan *Observability Events* (13) berasal dari jendela waktu pemantauan yang berbeda sehingga tidak dijumlahkan.
+
 
 | Komponen | Penggunaan |
 |---|---:|
