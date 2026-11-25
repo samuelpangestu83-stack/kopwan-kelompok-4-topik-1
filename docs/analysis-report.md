@@ -106,7 +106,7 @@ Pemeriksaan asumsi OLS:
 | Kelembapan | 0,0005 (normalitas ditolak) | 0,82 | 0,35 | ≈ 36 |
 | Hujan | ≈ 4×10⁻²² (normalitas ditolak) | 0,32 | 1,35 | ≈ 186 |
 
-Asumsi independensi residual **dilanggar** pada suhu dan kelembapan (Durbin-Watson jauh di bawah 2), dan normalitas residual dilanggar pada kelembapan dan hujan. Akibatnya p-value OLS terlalu kecil dan SK naif terlalu sempit. Karena itu keputusan dilaporkan bersama SK terkoreksi autokorelasi dan uji Kendall; ketiganya konsisten menolak H₀, dan SK terkoreksi tetap tidak memuat nol.
+Asumsi independensi residual **dilanggar** pada suhu dan kelembapan (Durbin-Watson jauh di bawah 2), dan normalitas residual dilanggar pada kelembapan dan hujan. Akibatnya p-value OLS terlalu kecil dan SK naif terlalu sempit. Uji Kendall τ bebas asumsi distribusi, tetapi tetap mengasumsikan pengamatan independen, sehingga p-value-nya juga terlalu kecil pada deret yang berautokorelasi seperti ini; p-value Kendall dan Mann-Whitney tidak boleh dibaca sebagai bukti kuat. Keputusan karena itu bertumpu pada SK terkoreksi autokorelasi, yang tetap tidak memuat nol untuk ketiga indikator. Metode yang memperhitungkan autokorelasi (misalnya modified Mann-Kendall atau block bootstrap) tidak dijalankan; ini keterbatasan analisis.
 
 ### 5.4 Musim hujan vs kemarau
 
@@ -114,14 +114,14 @@ Median hujan harian Des–Mar adalah 6,5 mm (n = 121 hari) dan Jun–Sep adalah 
 
 ## 6. Interpretasi
 
-Selama 16 Nov 2025 – 15 Nov 2026, suhu rata-rata harian Jakarta naik dan kelembapan serta hujan menurun secara konsisten dari awal ke akhir periode. Besarnya: sekitar +0,29 °C, −1,7 poin kelembapan, dan −0,81 mm/hari per 30 hari. Pola ini selaras dengan peralihan dari musim hujan (puncak Januari) ke kemarau (terendah Juli), lalu mulai berbalik pada Oktober–November.
+Selama 16 Nov 2025 – 15 Nov 2026, garis regresi suhu rata-rata harian Jakarta menanjak, sedangkan garis kelembapan dan hujan menurun dari awal ke akhir periode. Besarnya: sekitar +0,29 °C, −1,7 poin kelembapan, dan −0,81 mm/hari per 30 hari. Pola ini selaras dengan peralihan dari musim hujan (puncak Januari) ke kemarau (terendah Juli), lalu mulai berbalik pada Oktober–November.
 
 ## 7. Batas kesimpulan
 
 1. **Ini bukan tren iklim.** Satu tahun penuh hanya berisi satu siklus musiman. Garis "tren" di 5.3 pada dasarnya menangkap setengah gelombang musiman, bukan perubahan jangka panjang. Data ini tidak cukup untuk memisahkan tren dari musim; itu butuh beberapa tahun data dan model musiman (mis. dekomposisi STL). **Dilarang** menyimpulkan pemanasan atau pengeringan Jakarta dari hasil ini.
 2. **Signifikansi statistik tidak sama dengan makna praktis.** Dengan 365 pengamatan yang saling berkorelasi, p-value sangat kecil dihasilkan bahkan oleh pola musiman biasa.
 3. **Data model, bukan observasi.** Nilai tidak divalidasi terhadap stasiun BMKG; akurasi data historis maupun forecast **tidak diukur**.
-4. **Pemisahan jalur forecast otomatis dan snapshot historis.** Pipeline otomatis (Cron Trigger) hanya memproses data forecast 3 hari dan menyimpannya ke D1 (`daily_forecast`), tanpa mengevaluasi akurasi ramalan. Sementara itu, hasil analisis historis satu tahun dihasilkan secara manual dari `src/analysis/analysis.py`, diunggah sebagai snapshot JSON ke Cloudflare R2 (`analysis/{tanggal}/`), dan disajikan terpisah melalui endpoint `GET /api/history` serta halaman `/history` (lihat Revisi V1.1 pada `docs/interface-contract.md` dan `docs/cross-review.md`).
+4. **Pemisahan jalur forecast otomatis dan snapshot historis.** Pipeline otomatis (Cron Trigger) hanya memproses data forecast 3 hari dan menyimpannya ke D1 (`daily_forecast`), tanpa mengevaluasi akurasi ramalan. Sementara itu, hasil analisis historis satu tahun dihasilkan secara manual dari `src/analysis/analysis.py`, dibangun menjadi `historical-dashboard.json` dengan `src/analysis/build_dashboard_data.py` dan diunggah manual ke root bucket Cloudflare R2, dan disajikan terpisah melalui endpoint `GET /api/history` serta halaman `/history` (lihat Revisi V1.1 pada `docs/interface-contract.md` dan `docs/cross-review.md`).
 5. Dua bulan parsial (Nov 2025, Nov 2026) tidak sebanding dengan bulan penuh.
 6. Korelasi antar-indikator tidak menunjukkan sebab-akibat.
 
