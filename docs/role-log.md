@@ -1,28 +1,33 @@
 # Role Log Pengerjaan Proyek — Kelompok 4 (Topik 1)
 
-Project ini dikerjakan selama **1 minggu** setelah tim memutuskan berpindah ke **Topik 1 (Pipeline data terbuka serverless dan dashboard)**. Seluruh tahapan—mulai dari perancangan kontrak antarmuka, implementasi kode analisis dan infrastruktur cloud, integrasi dashboard, hingga pengujian dan penyusunan laporan—diselesaikan dengan pembagian peran utama pada dua layer serta kontribusi lintas layer.
+Proyek **Topik 1 (Pipeline data terbuka serverless dan dashboard)** dikerjakan oleh dua anggota aktif dengan pembagian dua layer: **Analysis Layer** dan **Infrastructure & Operations Layer**. Repositori dibuat pada 23 November 2026 dan difinalisasi pada 25 November 2026. Seluruh klaim kontribusi di bawah dapat ditelusuri pada riwayat commit repositori (juga salinannya di `riwayat-commit.txt`) berdasarkan pesan commit dan tanggal yang dicantumkan.
 
 ## Ringkasan Peran Anggota
 
 | Nama Anggota | Akun GitHub | Peran Utama | Kontribusi Lintas Layer |
-| :--- | :--- | :--- | :--- | 
-| **Samuel Pangestu** | `samuelpangestu83-stack` | **Analysis Layer** (Akuisisi & validasi dataset Open-Meteo Jakarta, skrip `analysis.py`, statistik deskriptif & analisis tren, penyusunan `analysis-report.md`) | Penyediaan struktur data tren historis untuk integrasi dashboard (`src/app/worker.js`) serta penyelarasan dokumentasi teknis (`README.md`, `interface-contract.md`) |
-| **Muhammad Adrian** | `adrian-project` | **Infrastructure & Operations Layer** (Arsitektur Cloudflare Workers & D1, IaC `wrangler.toml`/`schema.sql`/`teardown.sh`, deployment, pengembangan service & dashboard `worker.js`, monitoring, runbook, cost report) | Pengujian otomatis aplikasi (`src/app/tests/worker.test.mjs`) serta verifikasi reproduktibilitas keluaran `analysis.py` untuk konsumsi dashboard | 
+| :--- | :--- | :--- | :--- |
+| **Samuel Pangestu** | `samuelpangestu83-stack` | **Analysis Layer**: dataset historis Open-Meteo Jakarta, `analysis.py`, statistik deskriptif dan analisis tren, `build_dashboard_data.py`, `analysis-report.md` | Revisi `interface-contract.md` dan `cross-review.md`, pengunggahan ulang `docs/evidence`, pengelolaan branch dan merge pull request ke `main` |
+| **Muhammad Adrian** | `adrian-project` | **Infrastructure & Operations Layer**: arsitektur Cloudflare Workers, D1, dan R2, `worker.js` (pipeline, API, dashboard), IaC (`wrangler.toml`, `schema.sql`, `teardown.sh`), deployment, monitoring, runbook, laporan biaya, analisis keamanan | Kerangka dan isi dokumen teknis (`architecture.md`, `interface-contract.md`, `README.md`), pembuatan `cross-review.md`, integrasi data historis ke dashboard |
 
----
+## Log Aktivitas
 
-## Log Aktivitas Terpadu 
+### 1. Samuel Pangestu (`samuelpangestu83-stack`): Analysis Layer
 
-### 1. Samuel Pangestu (`samuelpangestu83-stack`) — Analysis Layer & Integrasi Data
-* **Perumusan Data & Kontrak Antarmuka:** Memilih sumber data terbuka (*Open-Meteo Historical Weather API* wilayah Jakarta), memverifikasi ketersediaan serta lisensi (CC BY 4.0), menentukan indikator cuaca yang dianalisis, dan menyepakati skema input/output serta penanganan data kosong pada `docs/interface-contract.md`.
-* **Pengembangan Pipeline Analisis Reproducible:** Membangun skrip `src/analysis/analysis.py` dan `src/analysis/requirements.txt` untuk pembersihan data hilang (*missing values*), perhitungan statistik deskriptif, agregasi harian/bulanan, serta pemodelan tren historis.
-* **Produksi & Validasi Artefak:** Menghasilkan dan memvalidasi seluruh keluaran analisis (`summary.json`, `daily.csv`, `monthly.csv`, `trend.csv`, `validation.json`, serta grafik PNG) dan mendokumentasikan log eksekusinya pada `docs/evidence/analysis-run.txt`.
-* **Kontribusi Lintas Layer & Pelaporan:** Menyediakan format payload ringkasan tren historis agar dapat dikonsumsi endpoint dashboard `src/app/worker.js`, menyusun interpretasi beserta batas kesimpulan pada `docs/analysis-report.md`, melakukan review silang pada `docs/cross-review.md`, serta menyelaraskan `README.md` dan `docs/ai-disclosure.md`.
-* **Bukti Artefak & Commit:** `src/analysis/*`, `docs/analysis-report.md`, `docs/interface-contract.md`, `docs/evidence/analysis-run.txt`, `README.md` — Commit: `[isi hash commit]`
+* **Analisis data:** Menyusun kode analisis di `src/analysis/` (`analysis.py`, `build_dashboard_data.py`, `requirements.txt`), mencakup validasi data, agregasi harian dan bulanan, statistik deskriptif, uji tren, dan uji perbandingan musim. Commit: "Create analysis" (23 Nov), "add analysis" (25 Nov).
+* **Laporan analisis:** Menulis `docs/analysis-report.md`, berisi hasil, interpretasi, dan batas kesimpulan. Commit: "Add analysis report on Jakarta weather trends" (24 Nov).
+* **Kontrak antarmuka:** Merevisi `docs/interface-contract.md` untuk kejelasan alur data. Commit: "Revise interface contract for data pipeline clarity" (24 Nov).
+* **Review silang:** Merevisi `docs/cross-review.md` untuk persetujuan akhir dan rincian waktu respons endpoint. Commit: "Revise cross-review document for final approvals", "Update cross-review.md with endpoint response timing details" (23 Nov).
+* **Bukti dan dokumentasi proyek:** Memperbarui role log dan riwayat commit, serta mengunggah ulang folder bukti. Commit: "Update role log for Project Group 4", "Add commit history for project updates", "Update commit history in riwayat-commit.txt", "Delete docs/evidence" dan "Add files via upload" (24 Nov).
+* **Integrasi ke `main`:** Membuka dan menggabungkan pull request #1, #2, dan #3 dari branch `Group-Final-Project`.
+* **Bukti artefak:** `src/analysis/*`, `docs/analysis-report.md`, `docs/evidence/analysis-run.txt`.
 
-### 2. Muhammad Adrian (`adrian-project`) — Infrastructure, Operations & Dashboard
-* **Setup Repositori & Arsitektur Cloud:** Menyiapkan struktur direktori repositori (`docs/`, `src/app/`, `src/infra/`, `src/config/`), aturan pengecualian kredensial pada `.gitignore`, serta menyusun rancangan arsitektur serverless (`docs/architecture.md`) berbasis Cloudflare Workers (FaaS) dan Cloudflare D1.
-* **Infrastruktur sebagai Kode (IaC) & Konfigurasi:** Mengonfigurasi `src/infra/wrangler.toml`, skema database `src/infra/schema.sql`, skrip pembersihan resource `src/infra/teardown.sh`, dan templat variabel lingkungan `src/config/.env.example`.
-* **Pengembangan Service & Dashboard Tren Historis:** Membangun endpoint API serta antarmuka dashboard pada `src/app/worker.js`, mengintegrasikan visualisasi tren berbasis data historis teragregasi, dan melakukan deployment ke Cloudflare Workers.
-* **Kontribusi Lintas Layer & Operasional:** Menyusun dan menjalankan pengujian otomatis endpoint (`src/app/tests/worker.test.mjs`, `docs/evidence/test-output.txt`), mencatat prosedur operasional dan penghapusan resource (`docs/runbook.md`), menyusun estimasi dan realisasi biaya (`docs/cost-report.md`), analisis keamanan & skalabilitas (`docs/security-scalability.md`), review silang (`docs/cross-review.md`), serta bukti monitoring (`docs/evidence/worker-overview.png`).
-* **Bukti Artefak & Commit:** `src/app/worker.js`, `src/app/tests/worker.test.mjs`, `src/infra/*`, `src/config/.env.example`, `docs/architecture.md`, `docs/runbook.md`, `docs/cost-report.md`, `docs/security-scalability.md`, `docs/evidence/*` — Commit: `[isi hash commit]`
+### 2. Muhammad Adrian (`adrian-project`): Infrastructure, Operations dan Dashboard
+
+* **Kerangka repositori (23 Nov):** Membuat struktur `src/app`, `src/infra`, `src/config`, `docs/evidence`, serta kerangka seluruh dokumen di `docs/` (arsitektur, kontrak antarmuka, runbook, laporan biaya, keamanan dan skalabilitas, cross-review, role log, AI disclosure).
+* **Worker dan dashboard:** Membuat `src/app/worker.js` (pipeline Cron, API, dashboard prakiraan) dan memperbaruinya untuk menyajikan analisis historis dari snapshot R2 (`/history`, `/api/history`, `/api/history/csv`). Commit: "Create worker.js", "Cloudflare Worker for Jakarta weather data processing" (23 Nov), dua commit "Update worker.js" (25 Nov).
+* **Infrastruktur dan konfigurasi:** `src/infra/` (`wrangler.toml`, `schema.sql`, `teardown.sh`) dan `src/config/.env.example`. Commit: "Create infra", "Create config" (23 Nov).
+* **Dokumentasi operasional:** `docs/architecture.md`, `docs/runbook.md`, `docs/cost-report.md`, dan `docs/interface-contract.md`, dibuat pada 23 Nov dan direvisi pada 25 Nov.
+* **README:** Menyusun dan merevisi `README.md`. Commit: "Enhance README with comprehensive project details" (24 Nov), "Revise README for clarity and updated project details" (25 Nov).
+* **Review silang:** Membuat `docs/cross-review.md` dan memperbaiki detail reviewer dan tanggal. Commit: "Add cross-review documentation for Analysis and Infra" dan dua commit perbaikannya (25 Nov).
+* **Deployment, monitoring, dan biaya:** Men-deploy Worker lewat dashboard Cloudflare dan mengumpulkan bukti penggunaan serta biaya di `docs/evidence/`.
+* **Bukti artefak:** `src/app/*`, `src/infra/*`, `src/config/.env.example`, `docs/architecture.md`, `docs/runbook.md`, `docs/cost-report.md`, `docs/security-scalability.md`, `docs/evidence/*`.
