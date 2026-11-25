@@ -280,7 +280,6 @@ Laporan lengkap tersedia pada:
 | Anggota | Akun GitHub | Peran |
 |---|---|---|
 | Samuel Pangestu | `samuelpangestu83-stack` | Analysis Layer: akuisisi dan validasi data, `analysis.py`, laporan analisis, snapshot historis |
-| Shera | `sheranabila02-dev` | Analysis Layer: Membantu mengakuisisi dan validasi data, `analysis.py`, laporan analisis |
 | Muhammad Adrian | `adrian-project` | Infra & Ops Layer: Cloudflare Workers/D1/R2, dashboard, deployment, monitoring, runbook, biaya |
 
 Detail kontribusi dicatat dalam `docs/role-log.md`.
