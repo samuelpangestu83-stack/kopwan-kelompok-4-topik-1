@@ -261,7 +261,7 @@ Halaman `/history` dirancang menampilkan:
 
 Data diperoleh dari `historical-dashboard.json` pada R2.
 
-Endpoint JSON historis sudah berhasil diverifikasi. Tampilan final perlu diperiksa kembali setelah deployment Worker terbaru.
+Endpoint JSON historis dan tampilan `/history` terlihat berjalan pada deployment live (`docs/evidence/history-dashboard.png`). Verifikasi ulang setelah deployment Worker terakhir belum dicatat; hasilnya dicantumkan di `docs/runbook.md` bagian 13.
 
 ## 12. Monitoring dan Biaya
 
