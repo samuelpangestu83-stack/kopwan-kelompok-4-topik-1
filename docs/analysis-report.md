@@ -40,7 +40,7 @@ Aturan validasi sengaja disamakan dengan `src/app/worker.js` (nilai numerik terh
 | Baris tidak valid (dibuang) | 0 |
 | Baris valid | 8.760 |
 
-Karena tidak ada nilai hilang pada data historis ini, **penanganan nilai hilang tidak teruji pada dataset ini**. Logika pembuangan baris tidak valid hanya teruji oleh simulasi kegagalan di sisi Worker (lihat `docs/runbook.md` bagian 8), bukan oleh data nyata yang bermasalah.
+Karena tidak ada nilai hilang pada data historis ini, **penanganan nilai hilang tidak teruji pada dataset ini**. Logika pembuangan baris tidak valid hanya teruji oleh simulasi kegagalan di sisi Worker (lihat `docs/runbook.md` bagian 14), bukan oleh data nyata yang bermasalah.
 
 **Cek silang** terhadap agregat harian bawaan Open-Meteo (`daily` pada berkas yang sama): selisih maksimum rata-rata suhu 0,08 °C, kelembapan 0,58 poin persen, total hujan 0,0 mm. Penyebab selisih kecil pada suhu dan kelembapan tidak diselidiki (dugaan: pembulatan), jadi tetap berstatus dugaan.
 
@@ -130,3 +130,22 @@ Selama 16 Nov 2025 – 15 Nov 2026, garis regresi suhu rata-rata harian Jakarta 
 ```bash
 pip install -r src/analysis/requirements.txt
 python src/analysis/analysis.py
+python src/analysis/build_dashboard_data.py
+```
+
+`analysis.py` bersifat deterministik (tanpa komponen acak) dan membaca `src/analysis/data/openmeteo_jakarta_historical.json`. Luaran: `summary.json`, `validation.json`, `daily.csv`, `monthly.csv`, `trend.csv`, dan tiga grafik PNG. `build_dashboard_data.py` hanya menggabungkan `summary.json`, `daily.csv`, dan `monthly.csv` menjadi `historical-dashboard.json` (tanpa perhitungan statistik baru) untuk dibaca halaman `/history`; berkas itu diunggah manual ke root bucket R2 (`docs/runbook.md` bagian 7). Untuk mengunduh ulang data historis bisa memakai endpoint arsip Open-Meteo dengan koordinat dan periode yang sama; hasil unduhan ulang dapat berbeda bila Open-Meteo memperbarui modelnya (tidak diuji).
+
+## 9. Skema output untuk dashboard
+
+- `daily.csv`: `forecast_date, avg_temperature, min_temperature, max_temperature, avg_humidity, total_precipitation, hourly_samples`.
+- `monthly.csv`: `month, avg_temperature, avg_humidity, total_precipitation, rainy_days_ge_1mm`.
+- `summary.json`: blok `validation`, `descriptive`, `trend`, `season_test`.
+- `historical-dashboard.json`: `metadata`, `daily` (kolom tanggal bernama `date`), `monthly`, `descriptive`, `validation`, `trend`, `season_test`.
+
+Nama kolom `avg_temperature`, `avg_humidity`, `total_precipitation`, `hourly_samples` identik dengan tabel `daily_forecast` di kontrak.
+
+## 10. Grafik
+
+![Tren harian](../src/analysis/output/tren_harian.png)
+![Ringkasan bulanan](../src/analysis/output/bulanan.png)
+![Distribusi](../src/analysis/output/distribusi.png)
