@@ -1,0 +1,3533 @@
+{
+ "metadata": {
+  "source": "Open-Meteo Historical Weather API (model/reanalisis, bukan observasi stasiun BMKG)",
+  "license": "CC BY 4.0",
+  "location": "Jakarta",
+  "period_start": "2025-11-16",
+  "period_end": "2026-11-15",
+  "period_hourly": [
+   "2025-11-16 00:00:00",
+   "2026-11-15 23:00:00"
+  ],
+  "n_days": 365
+ },
+ "daily": [
+  {
+   "date": "2025-11-16",
+   "avg_temperature": 27.69,
+   "min_temperature": 24.0,
+   "max_temperature": 31.5,
+   "avg_humidity": 77.71,
+   "total_precipitation": 1.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-17",
+   "avg_temperature": 28.02,
+   "min_temperature": 25.5,
+   "max_temperature": 31.4,
+   "avg_humidity": 76.29,
+   "total_precipitation": 1.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-18",
+   "avg_temperature": 26.22,
+   "min_temperature": 24.5,
+   "max_temperature": 29.5,
+   "avg_humidity": 84.54,
+   "total_precipitation": 16.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-19",
+   "avg_temperature": 26.73,
+   "min_temperature": 23.9,
+   "max_temperature": 30.5,
+   "avg_humidity": 83.29,
+   "total_precipitation": 10.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-20",
+   "avg_temperature": 25.79,
+   "min_temperature": 24.1,
+   "max_temperature": 29.0,
+   "avg_humidity": 87.54,
+   "total_precipitation": 22.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-21",
+   "avg_temperature": 27.25,
+   "min_temperature": 24.0,
+   "max_temperature": 32.0,
+   "avg_humidity": 80.58,
+   "total_precipitation": 1.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-22",
+   "avg_temperature": 27.24,
+   "min_temperature": 24.2,
+   "max_temperature": 32.1,
+   "avg_humidity": 80.33,
+   "total_precipitation": 1.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-23",
+   "avg_temperature": 27.22,
+   "min_temperature": 24.8,
+   "max_temperature": 30.2,
+   "avg_humidity": 80.83,
+   "total_precipitation": 6.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-24",
+   "avg_temperature": 28.42,
+   "min_temperature": 25.0,
+   "max_temperature": 33.8,
+   "avg_humidity": 67.42,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-25",
+   "avg_temperature": 28.15,
+   "min_temperature": 23.4,
+   "max_temperature": 33.6,
+   "avg_humidity": 68.71,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-26",
+   "avg_temperature": 28.52,
+   "min_temperature": 24.2,
+   "max_temperature": 32.7,
+   "avg_humidity": 69.88,
+   "total_precipitation": 1.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-27",
+   "avg_temperature": 28.99,
+   "min_temperature": 25.4,
+   "max_temperature": 33.9,
+   "avg_humidity": 68.67,
+   "total_precipitation": 2.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-28",
+   "avg_temperature": 29.72,
+   "min_temperature": 25.7,
+   "max_temperature": 35.1,
+   "avg_humidity": 62.21,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-29",
+   "avg_temperature": 29.32,
+   "min_temperature": 26.1,
+   "max_temperature": 35.2,
+   "avg_humidity": 64.96,
+   "total_precipitation": 8.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-11-30",
+   "avg_temperature": 28.34,
+   "min_temperature": 25.6,
+   "max_temperature": 32.7,
+   "avg_humidity": 73.04,
+   "total_precipitation": 4.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-01",
+   "avg_temperature": 27.89,
+   "min_temperature": 24.8,
+   "max_temperature": 33.7,
+   "avg_humidity": 76.0,
+   "total_precipitation": 5.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-02",
+   "avg_temperature": 27.37,
+   "min_temperature": 24.8,
+   "max_temperature": 32.1,
+   "avg_humidity": 82.04,
+   "total_precipitation": 4.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-03",
+   "avg_temperature": 27.01,
+   "min_temperature": 25.0,
+   "max_temperature": 31.9,
+   "avg_humidity": 83.29,
+   "total_precipitation": 12.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-04",
+   "avg_temperature": 25.7,
+   "min_temperature": 24.0,
+   "max_temperature": 27.6,
+   "avg_humidity": 89.5,
+   "total_precipitation": 12.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-05",
+   "avg_temperature": 26.4,
+   "min_temperature": 23.1,
+   "max_temperature": 31.6,
+   "avg_humidity": 82.88,
+   "total_precipitation": 3.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-06",
+   "avg_temperature": 26.36,
+   "min_temperature": 24.1,
+   "max_temperature": 29.6,
+   "avg_humidity": 84.21,
+   "total_precipitation": 2.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-07",
+   "avg_temperature": 27.58,
+   "min_temperature": 24.1,
+   "max_temperature": 31.1,
+   "avg_humidity": 79.58,
+   "total_precipitation": 4.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-08",
+   "avg_temperature": 27.13,
+   "min_temperature": 24.4,
+   "max_temperature": 31.3,
+   "avg_humidity": 80.17,
+   "total_precipitation": 1.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-09",
+   "avg_temperature": 27.35,
+   "min_temperature": 24.2,
+   "max_temperature": 30.5,
+   "avg_humidity": 75.58,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-10",
+   "avg_temperature": 27.2,
+   "min_temperature": 24.4,
+   "max_temperature": 31.2,
+   "avg_humidity": 78.29,
+   "total_precipitation": 1.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-11",
+   "avg_temperature": 27.47,
+   "min_temperature": 25.1,
+   "max_temperature": 31.4,
+   "avg_humidity": 81.33,
+   "total_precipitation": 3.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-12",
+   "avg_temperature": 28.83,
+   "min_temperature": 25.1,
+   "max_temperature": 33.9,
+   "avg_humidity": 73.71,
+   "total_precipitation": 2.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-13",
+   "avg_temperature": 28.67,
+   "min_temperature": 25.5,
+   "max_temperature": 33.2,
+   "avg_humidity": 72.33,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-14",
+   "avg_temperature": 27.76,
+   "min_temperature": 24.9,
+   "max_temperature": 31.6,
+   "avg_humidity": 74.62,
+   "total_precipitation": 4.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-15",
+   "avg_temperature": 28.01,
+   "min_temperature": 25.0,
+   "max_temperature": 32.9,
+   "avg_humidity": 71.88,
+   "total_precipitation": 3.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-16",
+   "avg_temperature": 28.33,
+   "min_temperature": 25.7,
+   "max_temperature": 33.2,
+   "avg_humidity": 70.54,
+   "total_precipitation": 5.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-17",
+   "avg_temperature": 27.73,
+   "min_temperature": 25.7,
+   "max_temperature": 31.7,
+   "avg_humidity": 76.25,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-18",
+   "avg_temperature": 26.87,
+   "min_temperature": 24.3,
+   "max_temperature": 31.4,
+   "avg_humidity": 79.92,
+   "total_precipitation": 10.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-19",
+   "avg_temperature": 26.3,
+   "min_temperature": 24.5,
+   "max_temperature": 30.8,
+   "avg_humidity": 82.96,
+   "total_precipitation": 16.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-20",
+   "avg_temperature": 27.22,
+   "min_temperature": 24.4,
+   "max_temperature": 31.1,
+   "avg_humidity": 79.12,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-21",
+   "avg_temperature": 26.66,
+   "min_temperature": 24.6,
+   "max_temperature": 30.7,
+   "avg_humidity": 83.54,
+   "total_precipitation": 11.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-22",
+   "avg_temperature": 27.58,
+   "min_temperature": 24.2,
+   "max_temperature": 31.0,
+   "avg_humidity": 81.42,
+   "total_precipitation": 6.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-23",
+   "avg_temperature": 28.48,
+   "min_temperature": 24.5,
+   "max_temperature": 32.2,
+   "avg_humidity": 77.0,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-24",
+   "avg_temperature": 27.67,
+   "min_temperature": 24.4,
+   "max_temperature": 31.3,
+   "avg_humidity": 78.75,
+   "total_precipitation": 11.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-25",
+   "avg_temperature": 29.02,
+   "min_temperature": 25.2,
+   "max_temperature": 33.7,
+   "avg_humidity": 72.67,
+   "total_precipitation": 8.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-26",
+   "avg_temperature": 27.46,
+   "min_temperature": 24.4,
+   "max_temperature": 30.4,
+   "avg_humidity": 80.5,
+   "total_precipitation": 13.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-27",
+   "avg_temperature": 28.33,
+   "min_temperature": 26.0,
+   "max_temperature": 32.2,
+   "avg_humidity": 74.67,
+   "total_precipitation": 1.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-28",
+   "avg_temperature": 27.75,
+   "min_temperature": 26.0,
+   "max_temperature": 32.1,
+   "avg_humidity": 78.46,
+   "total_precipitation": 11.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-29",
+   "avg_temperature": 27.81,
+   "min_temperature": 25.3,
+   "max_temperature": 31.8,
+   "avg_humidity": 76.96,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-30",
+   "avg_temperature": 27.07,
+   "min_temperature": 24.5,
+   "max_temperature": 31.3,
+   "avg_humidity": 80.5,
+   "total_precipitation": 35.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2025-12-31",
+   "avg_temperature": 25.31,
+   "min_temperature": 23.7,
+   "max_temperature": 28.4,
+   "avg_humidity": 89.5,
+   "total_precipitation": 30.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-01",
+   "avg_temperature": 26.54,
+   "min_temperature": 23.8,
+   "max_temperature": 30.1,
+   "avg_humidity": 83.92,
+   "total_precipitation": 7.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-02",
+   "avg_temperature": 25.89,
+   "min_temperature": 23.7,
+   "max_temperature": 29.8,
+   "avg_humidity": 86.96,
+   "total_precipitation": 36.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-03",
+   "avg_temperature": 24.92,
+   "min_temperature": 23.7,
+   "max_temperature": 27.1,
+   "avg_humidity": 89.46,
+   "total_precipitation": 15.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-04",
+   "avg_temperature": 26.34,
+   "min_temperature": 22.5,
+   "max_temperature": 29.7,
+   "avg_humidity": 82.33,
+   "total_precipitation": 5.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-05",
+   "avg_temperature": 27.3,
+   "min_temperature": 23.9,
+   "max_temperature": 30.4,
+   "avg_humidity": 82.25,
+   "total_precipitation": 3.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-06",
+   "avg_temperature": 28.08,
+   "min_temperature": 25.0,
+   "max_temperature": 31.7,
+   "avg_humidity": 79.38,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-07",
+   "avg_temperature": 27.3,
+   "min_temperature": 24.3,
+   "max_temperature": 30.2,
+   "avg_humidity": 82.92,
+   "total_precipitation": 7.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-08",
+   "avg_temperature": 26.86,
+   "min_temperature": 25.0,
+   "max_temperature": 29.6,
+   "avg_humidity": 81.04,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-09",
+   "avg_temperature": 26.76,
+   "min_temperature": 24.5,
+   "max_temperature": 30.8,
+   "avg_humidity": 80.33,
+   "total_precipitation": 2.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-10",
+   "avg_temperature": 25.63,
+   "min_temperature": 23.9,
+   "max_temperature": 27.6,
+   "avg_humidity": 84.62,
+   "total_precipitation": 6.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-11",
+   "avg_temperature": 25.45,
+   "min_temperature": 23.8,
+   "max_temperature": 28.4,
+   "avg_humidity": 85.88,
+   "total_precipitation": 9.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-12",
+   "avg_temperature": 24.69,
+   "min_temperature": 23.3,
+   "max_temperature": 27.8,
+   "avg_humidity": 88.04,
+   "total_precipitation": 37.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-13",
+   "avg_temperature": 25.75,
+   "min_temperature": 23.0,
+   "max_temperature": 28.5,
+   "avg_humidity": 82.75,
+   "total_precipitation": 3.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-14",
+   "avg_temperature": 25.6,
+   "min_temperature": 23.5,
+   "max_temperature": 28.4,
+   "avg_humidity": 84.46,
+   "total_precipitation": 11.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-15",
+   "avg_temperature": 25.75,
+   "min_temperature": 23.2,
+   "max_temperature": 28.8,
+   "avg_humidity": 83.21,
+   "total_precipitation": 7.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-16",
+   "avg_temperature": 26.04,
+   "min_temperature": 24.1,
+   "max_temperature": 29.6,
+   "avg_humidity": 83.46,
+   "total_precipitation": 17.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-17",
+   "avg_temperature": 25.27,
+   "min_temperature": 23.1,
+   "max_temperature": 28.5,
+   "avg_humidity": 89.04,
+   "total_precipitation": 40.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-18",
+   "avg_temperature": 25.21,
+   "min_temperature": 22.9,
+   "max_temperature": 27.8,
+   "avg_humidity": 88.75,
+   "total_precipitation": 52.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-19",
+   "avg_temperature": 26.22,
+   "min_temperature": 23.4,
+   "max_temperature": 28.9,
+   "avg_humidity": 83.79,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-20",
+   "avg_temperature": 25.58,
+   "min_temperature": 23.1,
+   "max_temperature": 29.1,
+   "avg_humidity": 86.58,
+   "total_precipitation": 13.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-21",
+   "avg_temperature": 25.13,
+   "min_temperature": 23.7,
+   "max_temperature": 28.1,
+   "avg_humidity": 85.29,
+   "total_precipitation": 8.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-22",
+   "avg_temperature": 24.52,
+   "min_temperature": 23.0,
+   "max_temperature": 26.4,
+   "avg_humidity": 90.67,
+   "total_precipitation": 29.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-23",
+   "avg_temperature": 25.07,
+   "min_temperature": 22.9,
+   "max_temperature": 27.9,
+   "avg_humidity": 88.04,
+   "total_precipitation": 44.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-24",
+   "avg_temperature": 26.76,
+   "min_temperature": 23.3,
+   "max_temperature": 28.8,
+   "avg_humidity": 78.21,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-25",
+   "avg_temperature": 26.3,
+   "min_temperature": 22.6,
+   "max_temperature": 29.7,
+   "avg_humidity": 82.38,
+   "total_precipitation": 4.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-26",
+   "avg_temperature": 26.62,
+   "min_temperature": 23.2,
+   "max_temperature": 29.2,
+   "avg_humidity": 81.67,
+   "total_precipitation": 3.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-27",
+   "avg_temperature": 26.47,
+   "min_temperature": 23.5,
+   "max_temperature": 29.0,
+   "avg_humidity": 81.92,
+   "total_precipitation": 10.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-28",
+   "avg_temperature": 25.61,
+   "min_temperature": 23.7,
+   "max_temperature": 28.6,
+   "avg_humidity": 86.75,
+   "total_precipitation": 31.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-29",
+   "avg_temperature": 24.82,
+   "min_temperature": 22.7,
+   "max_temperature": 27.8,
+   "avg_humidity": 89.75,
+   "total_precipitation": 29.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-30",
+   "avg_temperature": 25.71,
+   "min_temperature": 22.7,
+   "max_temperature": 29.2,
+   "avg_humidity": 85.96,
+   "total_precipitation": 11.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-01-31",
+   "avg_temperature": 26.38,
+   "min_temperature": 23.4,
+   "max_temperature": 29.4,
+   "avg_humidity": 84.75,
+   "total_precipitation": 17.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-01",
+   "avg_temperature": 25.58,
+   "min_temperature": 22.9,
+   "max_temperature": 29.4,
+   "avg_humidity": 86.12,
+   "total_precipitation": 22.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-02",
+   "avg_temperature": 25.48,
+   "min_temperature": 22.8,
+   "max_temperature": 28.7,
+   "avg_humidity": 85.96,
+   "total_precipitation": 15.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-03",
+   "avg_temperature": 26.12,
+   "min_temperature": 22.5,
+   "max_temperature": 29.2,
+   "avg_humidity": 82.46,
+   "total_precipitation": 3.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-04",
+   "avg_temperature": 26.34,
+   "min_temperature": 24.4,
+   "max_temperature": 29.3,
+   "avg_humidity": 82.58,
+   "total_precipitation": 7.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-05",
+   "avg_temperature": 26.39,
+   "min_temperature": 23.5,
+   "max_temperature": 29.1,
+   "avg_humidity": 81.04,
+   "total_precipitation": 11.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-06",
+   "avg_temperature": 26.34,
+   "min_temperature": 23.5,
+   "max_temperature": 28.9,
+   "avg_humidity": 82.71,
+   "total_precipitation": 11.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-07",
+   "avg_temperature": 26.15,
+   "min_temperature": 23.3,
+   "max_temperature": 29.1,
+   "avg_humidity": 84.5,
+   "total_precipitation": 5.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-08",
+   "avg_temperature": 25.68,
+   "min_temperature": 22.9,
+   "max_temperature": 28.5,
+   "avg_humidity": 87.33,
+   "total_precipitation": 20.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-09",
+   "avg_temperature": 26.18,
+   "min_temperature": 23.4,
+   "max_temperature": 29.3,
+   "avg_humidity": 83.5,
+   "total_precipitation": 16.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-10",
+   "avg_temperature": 26.6,
+   "min_temperature": 24.3,
+   "max_temperature": 29.4,
+   "avg_humidity": 82.42,
+   "total_precipitation": 13.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-11",
+   "avg_temperature": 26.79,
+   "min_temperature": 24.7,
+   "max_temperature": 30.2,
+   "avg_humidity": 84.29,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-12",
+   "avg_temperature": 26.02,
+   "min_temperature": 23.9,
+   "max_temperature": 30.4,
+   "avg_humidity": 87.08,
+   "total_precipitation": 33.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-13",
+   "avg_temperature": 26.3,
+   "min_temperature": 24.0,
+   "max_temperature": 29.3,
+   "avg_humidity": 84.71,
+   "total_precipitation": 6.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-14",
+   "avg_temperature": 26.72,
+   "min_temperature": 23.7,
+   "max_temperature": 30.5,
+   "avg_humidity": 84.38,
+   "total_precipitation": 9.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-15",
+   "avg_temperature": 26.57,
+   "min_temperature": 23.8,
+   "max_temperature": 29.2,
+   "avg_humidity": 84.04,
+   "total_precipitation": 6.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-16",
+   "avg_temperature": 26.22,
+   "min_temperature": 24.2,
+   "max_temperature": 28.7,
+   "avg_humidity": 86.38,
+   "total_precipitation": 11.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-17",
+   "avg_temperature": 26.32,
+   "min_temperature": 23.8,
+   "max_temperature": 29.1,
+   "avg_humidity": 87.21,
+   "total_precipitation": 14.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-18",
+   "avg_temperature": 26.67,
+   "min_temperature": 24.1,
+   "max_temperature": 29.0,
+   "avg_humidity": 84.42,
+   "total_precipitation": 3.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-19",
+   "avg_temperature": 25.4,
+   "min_temperature": 23.0,
+   "max_temperature": 28.6,
+   "avg_humidity": 90.58,
+   "total_precipitation": 31.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-20",
+   "avg_temperature": 25.88,
+   "min_temperature": 22.9,
+   "max_temperature": 29.2,
+   "avg_humidity": 85.25,
+   "total_precipitation": 32.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-21",
+   "avg_temperature": 26.53,
+   "min_temperature": 24.4,
+   "max_temperature": 29.8,
+   "avg_humidity": 83.75,
+   "total_precipitation": 6.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-22",
+   "avg_temperature": 25.61,
+   "min_temperature": 23.5,
+   "max_temperature": 30.3,
+   "avg_humidity": 89.75,
+   "total_precipitation": 28.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-23",
+   "avg_temperature": 25.57,
+   "min_temperature": 23.5,
+   "max_temperature": 28.0,
+   "avg_humidity": 88.5,
+   "total_precipitation": 42.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-24",
+   "avg_temperature": 26.88,
+   "min_temperature": 24.0,
+   "max_temperature": 30.5,
+   "avg_humidity": 77.79,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-25",
+   "avg_temperature": 28.37,
+   "min_temperature": 25.0,
+   "max_temperature": 32.6,
+   "avg_humidity": 72.5,
+   "total_precipitation": 0.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-26",
+   "avg_temperature": 28.35,
+   "min_temperature": 25.5,
+   "max_temperature": 31.7,
+   "avg_humidity": 67.67,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-27",
+   "avg_temperature": 26.48,
+   "min_temperature": 24.7,
+   "max_temperature": 28.3,
+   "avg_humidity": 78.33,
+   "total_precipitation": 3.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-02-28",
+   "avg_temperature": 27.37,
+   "min_temperature": 24.8,
+   "max_temperature": 31.4,
+   "avg_humidity": 74.42,
+   "total_precipitation": 1.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-01",
+   "avg_temperature": 27.72,
+   "min_temperature": 25.4,
+   "max_temperature": 32.2,
+   "avg_humidity": 76.75,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-02",
+   "avg_temperature": 26.8,
+   "min_temperature": 24.9,
+   "max_temperature": 30.0,
+   "avg_humidity": 82.04,
+   "total_precipitation": 8.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-03",
+   "avg_temperature": 26.13,
+   "min_temperature": 23.8,
+   "max_temperature": 30.5,
+   "avg_humidity": 84.33,
+   "total_precipitation": 13.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-04",
+   "avg_temperature": 26.52,
+   "min_temperature": 24.5,
+   "max_temperature": 30.7,
+   "avg_humidity": 82.17,
+   "total_precipitation": 7.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-05",
+   "avg_temperature": 26.42,
+   "min_temperature": 24.8,
+   "max_temperature": 29.2,
+   "avg_humidity": 83.54,
+   "total_precipitation": 5.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-06",
+   "avg_temperature": 25.58,
+   "min_temperature": 24.3,
+   "max_temperature": 28.4,
+   "avg_humidity": 85.67,
+   "total_precipitation": 3.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-07",
+   "avg_temperature": 25.52,
+   "min_temperature": 23.0,
+   "max_temperature": 29.9,
+   "avg_humidity": 87.33,
+   "total_precipitation": 21.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-08",
+   "avg_temperature": 24.78,
+   "min_temperature": 23.0,
+   "max_temperature": 28.3,
+   "avg_humidity": 89.21,
+   "total_precipitation": 22.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-09",
+   "avg_temperature": 27.02,
+   "min_temperature": 23.4,
+   "max_temperature": 30.9,
+   "avg_humidity": 80.12,
+   "total_precipitation": 3.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-10",
+   "avg_temperature": 27.75,
+   "min_temperature": 25.5,
+   "max_temperature": 31.3,
+   "avg_humidity": 76.67,
+   "total_precipitation": 1.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-11",
+   "avg_temperature": 27.51,
+   "min_temperature": 24.4,
+   "max_temperature": 31.6,
+   "avg_humidity": 79.21,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-12",
+   "avg_temperature": 27.7,
+   "min_temperature": 24.2,
+   "max_temperature": 32.4,
+   "avg_humidity": 79.71,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-13",
+   "avg_temperature": 28.47,
+   "min_temperature": 24.0,
+   "max_temperature": 33.7,
+   "avg_humidity": 74.29,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-14",
+   "avg_temperature": 29.1,
+   "min_temperature": 24.4,
+   "max_temperature": 34.6,
+   "avg_humidity": 65.29,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-15",
+   "avg_temperature": 29.52,
+   "min_temperature": 25.1,
+   "max_temperature": 33.7,
+   "avg_humidity": 60.29,
+   "total_precipitation": 3.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-16",
+   "avg_temperature": 29.21,
+   "min_temperature": 24.9,
+   "max_temperature": 34.1,
+   "avg_humidity": 64.33,
+   "total_precipitation": 8.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-17",
+   "avg_temperature": 28.93,
+   "min_temperature": 25.3,
+   "max_temperature": 33.0,
+   "avg_humidity": 69.08,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-18",
+   "avg_temperature": 30.03,
+   "min_temperature": 25.8,
+   "max_temperature": 34.7,
+   "avg_humidity": 64.25,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-19",
+   "avg_temperature": 29.86,
+   "min_temperature": 26.1,
+   "max_temperature": 34.6,
+   "avg_humidity": 63.12,
+   "total_precipitation": 4.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-20",
+   "avg_temperature": 29.17,
+   "min_temperature": 25.7,
+   "max_temperature": 35.1,
+   "avg_humidity": 69.25,
+   "total_precipitation": 3.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-21",
+   "avg_temperature": 28.23,
+   "min_temperature": 25.2,
+   "max_temperature": 32.7,
+   "avg_humidity": 75.21,
+   "total_precipitation": 8.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-22",
+   "avg_temperature": 28.47,
+   "min_temperature": 24.5,
+   "max_temperature": 33.0,
+   "avg_humidity": 74.33,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-23",
+   "avg_temperature": 28.73,
+   "min_temperature": 25.3,
+   "max_temperature": 33.4,
+   "avg_humidity": 69.88,
+   "total_precipitation": 3.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-24",
+   "avg_temperature": 27.9,
+   "min_temperature": 24.0,
+   "max_temperature": 31.9,
+   "avg_humidity": 74.83,
+   "total_precipitation": 10.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-25",
+   "avg_temperature": 28.79,
+   "min_temperature": 25.6,
+   "max_temperature": 32.6,
+   "avg_humidity": 70.25,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-26",
+   "avg_temperature": 27.3,
+   "min_temperature": 24.1,
+   "max_temperature": 30.7,
+   "avg_humidity": 79.21,
+   "total_precipitation": 3.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-27",
+   "avg_temperature": 27.22,
+   "min_temperature": 24.5,
+   "max_temperature": 30.5,
+   "avg_humidity": 81.17,
+   "total_precipitation": 7.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-28",
+   "avg_temperature": 26.47,
+   "min_temperature": 24.5,
+   "max_temperature": 28.8,
+   "avg_humidity": 86.88,
+   "total_precipitation": 5.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-29",
+   "avg_temperature": 27.67,
+   "min_temperature": 25.0,
+   "max_temperature": 31.6,
+   "avg_humidity": 82.83,
+   "total_precipitation": 3.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-30",
+   "avg_temperature": 27.17,
+   "min_temperature": 24.3,
+   "max_temperature": 31.6,
+   "avg_humidity": 82.5,
+   "total_precipitation": 0.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-03-31",
+   "avg_temperature": 27.08,
+   "min_temperature": 24.8,
+   "max_temperature": 31.0,
+   "avg_humidity": 83.88,
+   "total_precipitation": 7.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-01",
+   "avg_temperature": 27.48,
+   "min_temperature": 25.0,
+   "max_temperature": 32.1,
+   "avg_humidity": 82.38,
+   "total_precipitation": 2.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-02",
+   "avg_temperature": 27.02,
+   "min_temperature": 24.8,
+   "max_temperature": 31.7,
+   "avg_humidity": 83.96,
+   "total_precipitation": 7.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-03",
+   "avg_temperature": 27.95,
+   "min_temperature": 23.8,
+   "max_temperature": 33.3,
+   "avg_humidity": 78.17,
+   "total_precipitation": 14.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-04",
+   "avg_temperature": 27.0,
+   "min_temperature": 24.2,
+   "max_temperature": 31.6,
+   "avg_humidity": 84.88,
+   "total_precipitation": 6.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-05",
+   "avg_temperature": 27.53,
+   "min_temperature": 25.1,
+   "max_temperature": 32.2,
+   "avg_humidity": 80.75,
+   "total_precipitation": 5.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-06",
+   "avg_temperature": 27.56,
+   "min_temperature": 24.6,
+   "max_temperature": 32.2,
+   "avg_humidity": 80.0,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-07",
+   "avg_temperature": 27.92,
+   "min_temperature": 24.9,
+   "max_temperature": 32.2,
+   "avg_humidity": 76.92,
+   "total_precipitation": 2.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-08",
+   "avg_temperature": 27.4,
+   "min_temperature": 24.7,
+   "max_temperature": 32.0,
+   "avg_humidity": 80.58,
+   "total_precipitation": 12.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-09",
+   "avg_temperature": 27.3,
+   "min_temperature": 25.5,
+   "max_temperature": 29.8,
+   "avg_humidity": 80.46,
+   "total_precipitation": 11.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-10",
+   "avg_temperature": 27.42,
+   "min_temperature": 24.4,
+   "max_temperature": 31.3,
+   "avg_humidity": 81.58,
+   "total_precipitation": 8.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-11",
+   "avg_temperature": 27.65,
+   "min_temperature": 24.9,
+   "max_temperature": 32.3,
+   "avg_humidity": 82.17,
+   "total_precipitation": 6.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-12",
+   "avg_temperature": 27.65,
+   "min_temperature": 24.4,
+   "max_temperature": 33.2,
+   "avg_humidity": 81.92,
+   "total_precipitation": 6.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-13",
+   "avg_temperature": 28.21,
+   "min_temperature": 25.0,
+   "max_temperature": 32.3,
+   "avg_humidity": 80.21,
+   "total_precipitation": 2.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-14",
+   "avg_temperature": 27.89,
+   "min_temperature": 25.8,
+   "max_temperature": 32.0,
+   "avg_humidity": 79.71,
+   "total_precipitation": 7.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-15",
+   "avg_temperature": 27.0,
+   "min_temperature": 23.9,
+   "max_temperature": 31.9,
+   "avg_humidity": 81.83,
+   "total_precipitation": 4.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-16",
+   "avg_temperature": 27.52,
+   "min_temperature": 24.0,
+   "max_temperature": 32.9,
+   "avg_humidity": 80.62,
+   "total_precipitation": 10.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-17",
+   "avg_temperature": 27.25,
+   "min_temperature": 23.9,
+   "max_temperature": 31.6,
+   "avg_humidity": 82.62,
+   "total_precipitation": 7.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-18",
+   "avg_temperature": 27.71,
+   "min_temperature": 25.2,
+   "max_temperature": 32.0,
+   "avg_humidity": 80.96,
+   "total_precipitation": 13.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-19",
+   "avg_temperature": 28.15,
+   "min_temperature": 25.1,
+   "max_temperature": 33.4,
+   "avg_humidity": 78.38,
+   "total_precipitation": 2.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-20",
+   "avg_temperature": 28.6,
+   "min_temperature": 24.9,
+   "max_temperature": 33.3,
+   "avg_humidity": 75.29,
+   "total_precipitation": 3.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-21",
+   "avg_temperature": 28.04,
+   "min_temperature": 24.6,
+   "max_temperature": 32.1,
+   "avg_humidity": 79.33,
+   "total_precipitation": 16.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-22",
+   "avg_temperature": 27.8,
+   "min_temperature": 24.6,
+   "max_temperature": 33.3,
+   "avg_humidity": 81.29,
+   "total_precipitation": 11.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-23",
+   "avg_temperature": 28.4,
+   "min_temperature": 25.5,
+   "max_temperature": 31.8,
+   "avg_humidity": 80.0,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-24",
+   "avg_temperature": 29.07,
+   "min_temperature": 25.8,
+   "max_temperature": 33.2,
+   "avg_humidity": 75.92,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-25",
+   "avg_temperature": 28.9,
+   "min_temperature": 24.2,
+   "max_temperature": 34.3,
+   "avg_humidity": 76.62,
+   "total_precipitation": 8.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-26",
+   "avg_temperature": 27.85,
+   "min_temperature": 24.7,
+   "max_temperature": 31.8,
+   "avg_humidity": 84.0,
+   "total_precipitation": 3.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-27",
+   "avg_temperature": 29.14,
+   "min_temperature": 25.4,
+   "max_temperature": 33.7,
+   "avg_humidity": 74.38,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-28",
+   "avg_temperature": 27.39,
+   "min_temperature": 24.1,
+   "max_temperature": 31.5,
+   "avg_humidity": 83.75,
+   "total_precipitation": 26.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-29",
+   "avg_temperature": 28.19,
+   "min_temperature": 26.1,
+   "max_temperature": 32.7,
+   "avg_humidity": 81.33,
+   "total_precipitation": 7.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-04-30",
+   "avg_temperature": 27.43,
+   "min_temperature": 25.3,
+   "max_temperature": 31.6,
+   "avg_humidity": 83.62,
+   "total_precipitation": 22.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-01",
+   "avg_temperature": 27.55,
+   "min_temperature": 24.4,
+   "max_temperature": 33.0,
+   "avg_humidity": 81.71,
+   "total_precipitation": 1.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-02",
+   "avg_temperature": 27.32,
+   "min_temperature": 24.3,
+   "max_temperature": 30.4,
+   "avg_humidity": 82.88,
+   "total_precipitation": 5.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-03",
+   "avg_temperature": 27.58,
+   "min_temperature": 24.8,
+   "max_temperature": 32.6,
+   "avg_humidity": 82.96,
+   "total_precipitation": 22.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-04",
+   "avg_temperature": 26.37,
+   "min_temperature": 24.6,
+   "max_temperature": 30.5,
+   "avg_humidity": 88.17,
+   "total_precipitation": 12.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-05",
+   "avg_temperature": 26.09,
+   "min_temperature": 24.5,
+   "max_temperature": 29.9,
+   "avg_humidity": 87.62,
+   "total_precipitation": 21.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-06",
+   "avg_temperature": 28.4,
+   "min_temperature": 24.9,
+   "max_temperature": 32.7,
+   "avg_humidity": 77.0,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-07",
+   "avg_temperature": 28.88,
+   "min_temperature": 26.0,
+   "max_temperature": 32.7,
+   "avg_humidity": 74.21,
+   "total_precipitation": 0.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-08",
+   "avg_temperature": 28.66,
+   "min_temperature": 25.0,
+   "max_temperature": 32.7,
+   "avg_humidity": 74.54,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-09",
+   "avg_temperature": 28.62,
+   "min_temperature": 25.2,
+   "max_temperature": 32.3,
+   "avg_humidity": 76.33,
+   "total_precipitation": 3.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-10",
+   "avg_temperature": 28.47,
+   "min_temperature": 24.3,
+   "max_temperature": 33.4,
+   "avg_humidity": 76.25,
+   "total_precipitation": 4.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-11",
+   "avg_temperature": 28.71,
+   "min_temperature": 24.8,
+   "max_temperature": 34.4,
+   "avg_humidity": 75.88,
+   "total_precipitation": 6.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-12",
+   "avg_temperature": 29.96,
+   "min_temperature": 25.9,
+   "max_temperature": 34.8,
+   "avg_humidity": 69.75,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-13",
+   "avg_temperature": 30.28,
+   "min_temperature": 25.2,
+   "max_temperature": 36.1,
+   "avg_humidity": 66.0,
+   "total_precipitation": 0.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-14",
+   "avg_temperature": 29.56,
+   "min_temperature": 25.8,
+   "max_temperature": 34.7,
+   "avg_humidity": 69.29,
+   "total_precipitation": 2.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-15",
+   "avg_temperature": 28.6,
+   "min_temperature": 26.1,
+   "max_temperature": 33.8,
+   "avg_humidity": 78.0,
+   "total_precipitation": 11.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-16",
+   "avg_temperature": 27.74,
+   "min_temperature": 25.6,
+   "max_temperature": 30.9,
+   "avg_humidity": 84.54,
+   "total_precipitation": 8.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-17",
+   "avg_temperature": 28.41,
+   "min_temperature": 25.4,
+   "max_temperature": 31.7,
+   "avg_humidity": 80.88,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-18",
+   "avg_temperature": 28.14,
+   "min_temperature": 24.6,
+   "max_temperature": 32.8,
+   "avg_humidity": 78.21,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-19",
+   "avg_temperature": 28.4,
+   "min_temperature": 25.3,
+   "max_temperature": 31.8,
+   "avg_humidity": 78.17,
+   "total_precipitation": 5.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-20",
+   "avg_temperature": 28.33,
+   "min_temperature": 26.3,
+   "max_temperature": 30.4,
+   "avg_humidity": 80.88,
+   "total_precipitation": 5.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-21",
+   "avg_temperature": 30.01,
+   "min_temperature": 25.3,
+   "max_temperature": 35.3,
+   "avg_humidity": 68.79,
+   "total_precipitation": 2.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-22",
+   "avg_temperature": 29.91,
+   "min_temperature": 26.1,
+   "max_temperature": 34.6,
+   "avg_humidity": 68.21,
+   "total_precipitation": 5.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-23",
+   "avg_temperature": 28.03,
+   "min_temperature": 26.5,
+   "max_temperature": 31.4,
+   "avg_humidity": 79.08,
+   "total_precipitation": 11.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-24",
+   "avg_temperature": 26.72,
+   "min_temperature": 25.1,
+   "max_temperature": 30.4,
+   "avg_humidity": 86.75,
+   "total_precipitation": 13.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-25",
+   "avg_temperature": 27.24,
+   "min_temperature": 24.2,
+   "max_temperature": 32.5,
+   "avg_humidity": 80.29,
+   "total_precipitation": 2.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-26",
+   "avg_temperature": 27.73,
+   "min_temperature": 24.5,
+   "max_temperature": 33.2,
+   "avg_humidity": 79.46,
+   "total_precipitation": 1.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-27",
+   "avg_temperature": 28.02,
+   "min_temperature": 24.1,
+   "max_temperature": 32.2,
+   "avg_humidity": 78.42,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-28",
+   "avg_temperature": 28.6,
+   "min_temperature": 23.5,
+   "max_temperature": 33.3,
+   "avg_humidity": 64.96,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-29",
+   "avg_temperature": 29.09,
+   "min_temperature": 24.0,
+   "max_temperature": 34.5,
+   "avg_humidity": 64.29,
+   "total_precipitation": 0.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-30",
+   "avg_temperature": 29.04,
+   "min_temperature": 25.4,
+   "max_temperature": 34.7,
+   "avg_humidity": 70.25,
+   "total_precipitation": 3.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-05-31",
+   "avg_temperature": 28.08,
+   "min_temperature": 25.9,
+   "max_temperature": 30.5,
+   "avg_humidity": 75.67,
+   "total_precipitation": 2.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-01",
+   "avg_temperature": 29.04,
+   "min_temperature": 25.5,
+   "max_temperature": 33.5,
+   "avg_humidity": 72.33,
+   "total_precipitation": 4.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-02",
+   "avg_temperature": 29.1,
+   "min_temperature": 25.2,
+   "max_temperature": 33.5,
+   "avg_humidity": 69.12,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-03",
+   "avg_temperature": 29.39,
+   "min_temperature": 25.9,
+   "max_temperature": 33.5,
+   "avg_humidity": 68.88,
+   "total_precipitation": 2.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-04",
+   "avg_temperature": 29.92,
+   "min_temperature": 26.3,
+   "max_temperature": 34.2,
+   "avg_humidity": 68.46,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-05",
+   "avg_temperature": 30.35,
+   "min_temperature": 26.6,
+   "max_temperature": 35.4,
+   "avg_humidity": 67.12,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-06",
+   "avg_temperature": 30.71,
+   "min_temperature": 26.6,
+   "max_temperature": 35.9,
+   "avg_humidity": 61.88,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-07",
+   "avg_temperature": 30.88,
+   "min_temperature": 26.2,
+   "max_temperature": 36.0,
+   "avg_humidity": 55.88,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-08",
+   "avg_temperature": 30.47,
+   "min_temperature": 26.1,
+   "max_temperature": 35.3,
+   "avg_humidity": 57.08,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-09",
+   "avg_temperature": 30.35,
+   "min_temperature": 26.2,
+   "max_temperature": 34.7,
+   "avg_humidity": 59.96,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-10",
+   "avg_temperature": 30.19,
+   "min_temperature": 26.9,
+   "max_temperature": 34.9,
+   "avg_humidity": 58.83,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-11",
+   "avg_temperature": 29.67,
+   "min_temperature": 26.0,
+   "max_temperature": 34.5,
+   "avg_humidity": 63.38,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-12",
+   "avg_temperature": 29.83,
+   "min_temperature": 25.7,
+   "max_temperature": 33.9,
+   "avg_humidity": 64.42,
+   "total_precipitation": 1.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-13",
+   "avg_temperature": 28.99,
+   "min_temperature": 26.6,
+   "max_temperature": 32.3,
+   "avg_humidity": 69.21,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-14",
+   "avg_temperature": 28.18,
+   "min_temperature": 26.0,
+   "max_temperature": 32.2,
+   "avg_humidity": 78.75,
+   "total_precipitation": 8.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-15",
+   "avg_temperature": 28.24,
+   "min_temperature": 25.7,
+   "max_temperature": 33.1,
+   "avg_humidity": 77.54,
+   "total_precipitation": 7.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-16",
+   "avg_temperature": 28.1,
+   "min_temperature": 24.3,
+   "max_temperature": 32.3,
+   "avg_humidity": 75.58,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-17",
+   "avg_temperature": 29.09,
+   "min_temperature": 25.1,
+   "max_temperature": 33.6,
+   "avg_humidity": 67.12,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-18",
+   "avg_temperature": 29.32,
+   "min_temperature": 25.4,
+   "max_temperature": 34.6,
+   "avg_humidity": 63.58,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-19",
+   "avg_temperature": 29.81,
+   "min_temperature": 25.2,
+   "max_temperature": 35.4,
+   "avg_humidity": 63.62,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-20",
+   "avg_temperature": 29.25,
+   "min_temperature": 25.1,
+   "max_temperature": 34.9,
+   "avg_humidity": 68.5,
+   "total_precipitation": 7.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-21",
+   "avg_temperature": 27.79,
+   "min_temperature": 25.3,
+   "max_temperature": 33.1,
+   "avg_humidity": 79.08,
+   "total_precipitation": 9.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-22",
+   "avg_temperature": 27.3,
+   "min_temperature": 23.8,
+   "max_temperature": 31.9,
+   "avg_humidity": 80.67,
+   "total_precipitation": 10.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-23",
+   "avg_temperature": 26.92,
+   "min_temperature": 23.4,
+   "max_temperature": 31.2,
+   "avg_humidity": 81.58,
+   "total_precipitation": 9.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-24",
+   "avg_temperature": 28.23,
+   "min_temperature": 25.2,
+   "max_temperature": 32.9,
+   "avg_humidity": 74.0,
+   "total_precipitation": 2.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-25",
+   "avg_temperature": 27.53,
+   "min_temperature": 24.7,
+   "max_temperature": 31.1,
+   "avg_humidity": 76.38,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-26",
+   "avg_temperature": 28.68,
+   "min_temperature": 25.2,
+   "max_temperature": 32.6,
+   "avg_humidity": 73.12,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-27",
+   "avg_temperature": 29.33,
+   "min_temperature": 25.7,
+   "max_temperature": 34.1,
+   "avg_humidity": 69.25,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-28",
+   "avg_temperature": 29.0,
+   "min_temperature": 26.4,
+   "max_temperature": 33.1,
+   "avg_humidity": 71.96,
+   "total_precipitation": 1.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-29",
+   "avg_temperature": 29.2,
+   "min_temperature": 25.7,
+   "max_temperature": 33.6,
+   "avg_humidity": 70.29,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-06-30",
+   "avg_temperature": 29.1,
+   "min_temperature": 25.7,
+   "max_temperature": 33.1,
+   "avg_humidity": 67.33,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-01",
+   "avg_temperature": 29.2,
+   "min_temperature": 24.7,
+   "max_temperature": 33.8,
+   "avg_humidity": 60.58,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-02",
+   "avg_temperature": 29.36,
+   "min_temperature": 24.6,
+   "max_temperature": 33.7,
+   "avg_humidity": 60.12,
+   "total_precipitation": 1.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-03",
+   "avg_temperature": 29.6,
+   "min_temperature": 26.0,
+   "max_temperature": 33.9,
+   "avg_humidity": 61.92,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-04",
+   "avg_temperature": 29.74,
+   "min_temperature": 26.1,
+   "max_temperature": 34.2,
+   "avg_humidity": 64.38,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-05",
+   "avg_temperature": 29.92,
+   "min_temperature": 25.8,
+   "max_temperature": 34.9,
+   "avg_humidity": 61.0,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-06",
+   "avg_temperature": 29.75,
+   "min_temperature": 26.1,
+   "max_temperature": 34.8,
+   "avg_humidity": 61.88,
+   "total_precipitation": 2.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-07",
+   "avg_temperature": 29.3,
+   "min_temperature": 25.6,
+   "max_temperature": 33.9,
+   "avg_humidity": 66.54,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-08",
+   "avg_temperature": 29.55,
+   "min_temperature": 25.0,
+   "max_temperature": 33.6,
+   "avg_humidity": 60.25,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-09",
+   "avg_temperature": 29.53,
+   "min_temperature": 25.5,
+   "max_temperature": 34.7,
+   "avg_humidity": 55.0,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-10",
+   "avg_temperature": 29.62,
+   "min_temperature": 24.7,
+   "max_temperature": 35.2,
+   "avg_humidity": 48.96,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-11",
+   "avg_temperature": 29.48,
+   "min_temperature": 25.2,
+   "max_temperature": 34.1,
+   "avg_humidity": 54.38,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-12",
+   "avg_temperature": 29.4,
+   "min_temperature": 25.4,
+   "max_temperature": 34.5,
+   "avg_humidity": 57.08,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-13",
+   "avg_temperature": 29.41,
+   "min_temperature": 25.3,
+   "max_temperature": 34.3,
+   "avg_humidity": 58.54,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-14",
+   "avg_temperature": 29.5,
+   "min_temperature": 25.8,
+   "max_temperature": 34.3,
+   "avg_humidity": 59.79,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-15",
+   "avg_temperature": 29.38,
+   "min_temperature": 25.5,
+   "max_temperature": 34.2,
+   "avg_humidity": 62.46,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-16",
+   "avg_temperature": 29.76,
+   "min_temperature": 25.4,
+   "max_temperature": 35.1,
+   "avg_humidity": 58.29,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-17",
+   "avg_temperature": 29.46,
+   "min_temperature": 25.8,
+   "max_temperature": 34.9,
+   "avg_humidity": 62.38,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-18",
+   "avg_temperature": 28.83,
+   "min_temperature": 25.7,
+   "max_temperature": 34.1,
+   "avg_humidity": 67.62,
+   "total_precipitation": 2.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-19",
+   "avg_temperature": 28.9,
+   "min_temperature": 25.5,
+   "max_temperature": 32.6,
+   "avg_humidity": 68.0,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-20",
+   "avg_temperature": 29.46,
+   "min_temperature": 25.6,
+   "max_temperature": 35.3,
+   "avg_humidity": 62.42,
+   "total_precipitation": 0.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-21",
+   "avg_temperature": 28.84,
+   "min_temperature": 25.2,
+   "max_temperature": 33.7,
+   "avg_humidity": 64.33,
+   "total_precipitation": 2.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-22",
+   "avg_temperature": 28.88,
+   "min_temperature": 25.1,
+   "max_temperature": 33.5,
+   "avg_humidity": 59.12,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-23",
+   "avg_temperature": 29.11,
+   "min_temperature": 25.8,
+   "max_temperature": 35.0,
+   "avg_humidity": 57.54,
+   "total_precipitation": 1.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-24",
+   "avg_temperature": 29.06,
+   "min_temperature": 24.7,
+   "max_temperature": 33.9,
+   "avg_humidity": 52.54,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-25",
+   "avg_temperature": 29.42,
+   "min_temperature": 25.5,
+   "max_temperature": 34.2,
+   "avg_humidity": 47.25,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-26",
+   "avg_temperature": 29.58,
+   "min_temperature": 24.8,
+   "max_temperature": 35.7,
+   "avg_humidity": 41.96,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-27",
+   "avg_temperature": 29.18,
+   "min_temperature": 24.3,
+   "max_temperature": 34.9,
+   "avg_humidity": 51.0,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-28",
+   "avg_temperature": 29.38,
+   "min_temperature": 25.5,
+   "max_temperature": 35.0,
+   "avg_humidity": 56.67,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-29",
+   "avg_temperature": 29.59,
+   "min_temperature": 25.7,
+   "max_temperature": 34.5,
+   "avg_humidity": 60.04,
+   "total_precipitation": 0.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-30",
+   "avg_temperature": 29.23,
+   "min_temperature": 25.9,
+   "max_temperature": 34.0,
+   "avg_humidity": 65.42,
+   "total_precipitation": 2.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-07-31",
+   "avg_temperature": 29.24,
+   "min_temperature": 26.0,
+   "max_temperature": 34.2,
+   "avg_humidity": 67.04,
+   "total_precipitation": 3.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-01",
+   "avg_temperature": 29.66,
+   "min_temperature": 26.4,
+   "max_temperature": 34.5,
+   "avg_humidity": 63.67,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-02",
+   "avg_temperature": 29.71,
+   "min_temperature": 25.7,
+   "max_temperature": 34.7,
+   "avg_humidity": 64.67,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-03",
+   "avg_temperature": 28.79,
+   "min_temperature": 25.5,
+   "max_temperature": 34.4,
+   "avg_humidity": 70.5,
+   "total_precipitation": 4.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-04",
+   "avg_temperature": 28.53,
+   "min_temperature": 26.0,
+   "max_temperature": 33.2,
+   "avg_humidity": 72.21,
+   "total_precipitation": 3.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-05",
+   "avg_temperature": 28.45,
+   "min_temperature": 25.5,
+   "max_temperature": 32.1,
+   "avg_humidity": 70.42,
+   "total_precipitation": 1.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-06",
+   "avg_temperature": 29.74,
+   "min_temperature": 25.8,
+   "max_temperature": 35.4,
+   "avg_humidity": 61.46,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-07",
+   "avg_temperature": 29.21,
+   "min_temperature": 25.9,
+   "max_temperature": 34.2,
+   "avg_humidity": 64.75,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-08",
+   "avg_temperature": 29.38,
+   "min_temperature": 25.8,
+   "max_temperature": 34.9,
+   "avg_humidity": 63.04,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-09",
+   "avg_temperature": 29.35,
+   "min_temperature": 25.5,
+   "max_temperature": 33.8,
+   "avg_humidity": 58.5,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-10",
+   "avg_temperature": 29.32,
+   "min_temperature": 25.4,
+   "max_temperature": 33.7,
+   "avg_humidity": 56.75,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-11",
+   "avg_temperature": 29.29,
+   "min_temperature": 25.0,
+   "max_temperature": 35.0,
+   "avg_humidity": 60.71,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-12",
+   "avg_temperature": 29.45,
+   "min_temperature": 25.5,
+   "max_temperature": 34.8,
+   "avg_humidity": 60.0,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-13",
+   "avg_temperature": 29.13,
+   "min_temperature": 25.2,
+   "max_temperature": 33.8,
+   "avg_humidity": 62.71,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-14",
+   "avg_temperature": 29.6,
+   "min_temperature": 26.1,
+   "max_temperature": 34.9,
+   "avg_humidity": 62.71,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-15",
+   "avg_temperature": 29.41,
+   "min_temperature": 26.4,
+   "max_temperature": 34.1,
+   "avg_humidity": 65.71,
+   "total_precipitation": 3.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-16",
+   "avg_temperature": 28.95,
+   "min_temperature": 25.5,
+   "max_temperature": 33.9,
+   "avg_humidity": 69.04,
+   "total_precipitation": 0.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-17",
+   "avg_temperature": 29.05,
+   "min_temperature": 25.5,
+   "max_temperature": 33.7,
+   "avg_humidity": 71.17,
+   "total_precipitation": 1.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-18",
+   "avg_temperature": 29.93,
+   "min_temperature": 25.9,
+   "max_temperature": 35.3,
+   "avg_humidity": 64.21,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-19",
+   "avg_temperature": 28.73,
+   "min_temperature": 26.2,
+   "max_temperature": 33.0,
+   "avg_humidity": 69.25,
+   "total_precipitation": 7.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-20",
+   "avg_temperature": 29.03,
+   "min_temperature": 25.7,
+   "max_temperature": 33.1,
+   "avg_humidity": 67.29,
+   "total_precipitation": 0.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-21",
+   "avg_temperature": 29.01,
+   "min_temperature": 25.5,
+   "max_temperature": 34.1,
+   "avg_humidity": 66.42,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-22",
+   "avg_temperature": 29.08,
+   "min_temperature": 25.5,
+   "max_temperature": 33.7,
+   "avg_humidity": 65.12,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-23",
+   "avg_temperature": 29.05,
+   "min_temperature": 25.6,
+   "max_temperature": 33.3,
+   "avg_humidity": 66.33,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-24",
+   "avg_temperature": 29.32,
+   "min_temperature": 25.8,
+   "max_temperature": 33.7,
+   "avg_humidity": 63.92,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-25",
+   "avg_temperature": 29.47,
+   "min_temperature": 26.2,
+   "max_temperature": 34.8,
+   "avg_humidity": 62.88,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-26",
+   "avg_temperature": 29.35,
+   "min_temperature": 25.8,
+   "max_temperature": 35.5,
+   "avg_humidity": 64.29,
+   "total_precipitation": 2.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-27",
+   "avg_temperature": 28.48,
+   "min_temperature": 25.5,
+   "max_temperature": 33.4,
+   "avg_humidity": 70.33,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-28",
+   "avg_temperature": 28.69,
+   "min_temperature": 24.7,
+   "max_temperature": 33.0,
+   "avg_humidity": 65.12,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-29",
+   "avg_temperature": 29.18,
+   "min_temperature": 25.1,
+   "max_temperature": 34.2,
+   "avg_humidity": 57.38,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-30",
+   "avg_temperature": 29.51,
+   "min_temperature": 26.0,
+   "max_temperature": 35.2,
+   "avg_humidity": 60.92,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-08-31",
+   "avg_temperature": 29.25,
+   "min_temperature": 25.5,
+   "max_temperature": 34.5,
+   "avg_humidity": 66.33,
+   "total_precipitation": 0.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-01",
+   "avg_temperature": 29.75,
+   "min_temperature": 26.1,
+   "max_temperature": 36.0,
+   "avg_humidity": 66.75,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-02",
+   "avg_temperature": 29.42,
+   "min_temperature": 25.9,
+   "max_temperature": 34.2,
+   "avg_humidity": 65.54,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-03",
+   "avg_temperature": 29.47,
+   "min_temperature": 25.5,
+   "max_temperature": 34.4,
+   "avg_humidity": 59.38,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-04",
+   "avg_temperature": 29.54,
+   "min_temperature": 25.8,
+   "max_temperature": 34.8,
+   "avg_humidity": 59.12,
+   "total_precipitation": 0.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-05",
+   "avg_temperature": 29.65,
+   "min_temperature": 25.0,
+   "max_temperature": 35.5,
+   "avg_humidity": 57.38,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-06",
+   "avg_temperature": 29.64,
+   "min_temperature": 25.3,
+   "max_temperature": 35.1,
+   "avg_humidity": 53.54,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-07",
+   "avg_temperature": 29.63,
+   "min_temperature": 25.2,
+   "max_temperature": 35.3,
+   "avg_humidity": 55.12,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-08",
+   "avg_temperature": 29.7,
+   "min_temperature": 26.7,
+   "max_temperature": 35.1,
+   "avg_humidity": 61.33,
+   "total_precipitation": 2.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-09",
+   "avg_temperature": 29.07,
+   "min_temperature": 25.8,
+   "max_temperature": 33.9,
+   "avg_humidity": 64.92,
+   "total_precipitation": 3.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-10",
+   "avg_temperature": 29.07,
+   "min_temperature": 25.0,
+   "max_temperature": 33.3,
+   "avg_humidity": 66.0,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-11",
+   "avg_temperature": 29.88,
+   "min_temperature": 26.0,
+   "max_temperature": 35.7,
+   "avg_humidity": 63.62,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-12",
+   "avg_temperature": 29.93,
+   "min_temperature": 26.1,
+   "max_temperature": 35.4,
+   "avg_humidity": 63.71,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-13",
+   "avg_temperature": 30.05,
+   "min_temperature": 26.1,
+   "max_temperature": 36.2,
+   "avg_humidity": 60.62,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-14",
+   "avg_temperature": 30.3,
+   "min_temperature": 25.5,
+   "max_temperature": 36.7,
+   "avg_humidity": 55.29,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-15",
+   "avg_temperature": 30.18,
+   "min_temperature": 25.6,
+   "max_temperature": 35.8,
+   "avg_humidity": 52.04,
+   "total_precipitation": 0.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-16",
+   "avg_temperature": 29.81,
+   "min_temperature": 26.0,
+   "max_temperature": 35.4,
+   "avg_humidity": 57.08,
+   "total_precipitation": 0.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-17",
+   "avg_temperature": 29.61,
+   "min_temperature": 25.6,
+   "max_temperature": 34.4,
+   "avg_humidity": 60.67,
+   "total_precipitation": 0.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-18",
+   "avg_temperature": 29.45,
+   "min_temperature": 26.4,
+   "max_temperature": 34.6,
+   "avg_humidity": 65.17,
+   "total_precipitation": 2.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-19",
+   "avg_temperature": 27.54,
+   "min_temperature": 22.8,
+   "max_temperature": 32.8,
+   "avg_humidity": 81.08,
+   "total_precipitation": 10.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-20",
+   "avg_temperature": 28.69,
+   "min_temperature": 25.3,
+   "max_temperature": 33.6,
+   "avg_humidity": 76.71,
+   "total_precipitation": 0.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-21",
+   "avg_temperature": 28.67,
+   "min_temperature": 22.7,
+   "max_temperature": 34.1,
+   "avg_humidity": 70.92,
+   "total_precipitation": 22.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-22",
+   "avg_temperature": 29.81,
+   "min_temperature": 25.8,
+   "max_temperature": 35.0,
+   "avg_humidity": 63.71,
+   "total_precipitation": 1.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-23",
+   "avg_temperature": 29.57,
+   "min_temperature": 25.8,
+   "max_temperature": 34.5,
+   "avg_humidity": 65.12,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-24",
+   "avg_temperature": 29.84,
+   "min_temperature": 26.5,
+   "max_temperature": 34.9,
+   "avg_humidity": 64.33,
+   "total_precipitation": 2.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-25",
+   "avg_temperature": 30.05,
+   "min_temperature": 26.0,
+   "max_temperature": 35.0,
+   "avg_humidity": 63.67,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-26",
+   "avg_temperature": 29.92,
+   "min_temperature": 26.7,
+   "max_temperature": 34.2,
+   "avg_humidity": 64.62,
+   "total_precipitation": 3.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-27",
+   "avg_temperature": 28.47,
+   "min_temperature": 24.1,
+   "max_temperature": 33.5,
+   "avg_humidity": 73.08,
+   "total_precipitation": 11.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-28",
+   "avg_temperature": 29.06,
+   "min_temperature": 24.7,
+   "max_temperature": 34.8,
+   "avg_humidity": 69.25,
+   "total_precipitation": 4.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-29",
+   "avg_temperature": 28.86,
+   "min_temperature": 24.0,
+   "max_temperature": 33.6,
+   "avg_humidity": 72.46,
+   "total_precipitation": 3.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-09-30",
+   "avg_temperature": 28.85,
+   "min_temperature": 25.7,
+   "max_temperature": 34.0,
+   "avg_humidity": 71.29,
+   "total_precipitation": 2.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-01",
+   "avg_temperature": 27.9,
+   "min_temperature": 25.1,
+   "max_temperature": 32.1,
+   "avg_humidity": 79.58,
+   "total_precipitation": 9.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-02",
+   "avg_temperature": 28.35,
+   "min_temperature": 25.8,
+   "max_temperature": 32.8,
+   "avg_humidity": 76.38,
+   "total_precipitation": 11.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-03",
+   "avg_temperature": 29.09,
+   "min_temperature": 25.7,
+   "max_temperature": 34.1,
+   "avg_humidity": 66.5,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-04",
+   "avg_temperature": 29.78,
+   "min_temperature": 26.3,
+   "max_temperature": 35.2,
+   "avg_humidity": 60.29,
+   "total_precipitation": 3.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-05",
+   "avg_temperature": 29.93,
+   "min_temperature": 26.6,
+   "max_temperature": 35.3,
+   "avg_humidity": 63.0,
+   "total_precipitation": 7.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-06",
+   "avg_temperature": 30.29,
+   "min_temperature": 26.3,
+   "max_temperature": 35.3,
+   "avg_humidity": 64.83,
+   "total_precipitation": 0.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-07",
+   "avg_temperature": 29.13,
+   "min_temperature": 25.8,
+   "max_temperature": 33.9,
+   "avg_humidity": 69.29,
+   "total_precipitation": 1.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-08",
+   "avg_temperature": 29.65,
+   "min_temperature": 25.8,
+   "max_temperature": 34.2,
+   "avg_humidity": 64.5,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-09",
+   "avg_temperature": 29.34,
+   "min_temperature": 26.2,
+   "max_temperature": 33.4,
+   "avg_humidity": 68.08,
+   "total_precipitation": 0.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-10",
+   "avg_temperature": 29.81,
+   "min_temperature": 26.0,
+   "max_temperature": 34.7,
+   "avg_humidity": 66.21,
+   "total_precipitation": 0.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-11",
+   "avg_temperature": 29.71,
+   "min_temperature": 25.9,
+   "max_temperature": 35.1,
+   "avg_humidity": 68.88,
+   "total_precipitation": 4.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-12",
+   "avg_temperature": 29.08,
+   "min_temperature": 25.0,
+   "max_temperature": 34.0,
+   "avg_humidity": 72.25,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-13",
+   "avg_temperature": 30.83,
+   "min_temperature": 27.1,
+   "max_temperature": 36.8,
+   "avg_humidity": 61.83,
+   "total_precipitation": 3.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-14",
+   "avg_temperature": 29.88,
+   "min_temperature": 26.4,
+   "max_temperature": 34.4,
+   "avg_humidity": 70.33,
+   "total_precipitation": 0.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-15",
+   "avg_temperature": 30.52,
+   "min_temperature": 26.6,
+   "max_temperature": 35.5,
+   "avg_humidity": 60.75,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-16",
+   "avg_temperature": 30.94,
+   "min_temperature": 25.8,
+   "max_temperature": 36.3,
+   "avg_humidity": 55.92,
+   "total_precipitation": 1.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-17",
+   "avg_temperature": 31.15,
+   "min_temperature": 26.6,
+   "max_temperature": 36.4,
+   "avg_humidity": 56.08,
+   "total_precipitation": 0.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-18",
+   "avg_temperature": 30.45,
+   "min_temperature": 26.9,
+   "max_temperature": 35.1,
+   "avg_humidity": 62.33,
+   "total_precipitation": 3.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-19",
+   "avg_temperature": 29.92,
+   "min_temperature": 25.8,
+   "max_temperature": 34.6,
+   "avg_humidity": 67.83,
+   "total_precipitation": 0.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-20",
+   "avg_temperature": 30.28,
+   "min_temperature": 26.9,
+   "max_temperature": 35.1,
+   "avg_humidity": 67.29,
+   "total_precipitation": 0.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-21",
+   "avg_temperature": 30.47,
+   "min_temperature": 27.0,
+   "max_temperature": 35.1,
+   "avg_humidity": 66.71,
+   "total_precipitation": 2.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-22",
+   "avg_temperature": 29.59,
+   "min_temperature": 26.5,
+   "max_temperature": 34.2,
+   "avg_humidity": 69.58,
+   "total_precipitation": 4.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-23",
+   "avg_temperature": 29.02,
+   "min_temperature": 26.3,
+   "max_temperature": 34.8,
+   "avg_humidity": 73.75,
+   "total_precipitation": 3.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-24",
+   "avg_temperature": 28.59,
+   "min_temperature": 25.8,
+   "max_temperature": 33.4,
+   "avg_humidity": 75.04,
+   "total_precipitation": 5.0,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-25",
+   "avg_temperature": 28.89,
+   "min_temperature": 25.9,
+   "max_temperature": 33.6,
+   "avg_humidity": 70.54,
+   "total_precipitation": 5.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-26",
+   "avg_temperature": 29.51,
+   "min_temperature": 25.9,
+   "max_temperature": 33.7,
+   "avg_humidity": 65.17,
+   "total_precipitation": 0.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-27",
+   "avg_temperature": 29.03,
+   "min_temperature": 26.4,
+   "max_temperature": 33.6,
+   "avg_humidity": 70.17,
+   "total_precipitation": 3.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-28",
+   "avg_temperature": 28.42,
+   "min_temperature": 24.8,
+   "max_temperature": 33.3,
+   "avg_humidity": 77.08,
+   "total_precipitation": 31.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-29",
+   "avg_temperature": 28.07,
+   "min_temperature": 25.1,
+   "max_temperature": 33.5,
+   "avg_humidity": 80.33,
+   "total_precipitation": 6.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-30",
+   "avg_temperature": 28.09,
+   "min_temperature": 24.8,
+   "max_temperature": 33.5,
+   "avg_humidity": 79.75,
+   "total_precipitation": 9.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-10-31",
+   "avg_temperature": 28.65,
+   "min_temperature": 24.7,
+   "max_temperature": 34.7,
+   "avg_humidity": 75.92,
+   "total_precipitation": 3.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-01",
+   "avg_temperature": 29.12,
+   "min_temperature": 25.2,
+   "max_temperature": 34.4,
+   "avg_humidity": 72.75,
+   "total_precipitation": 4.4,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-02",
+   "avg_temperature": 29.87,
+   "min_temperature": 25.2,
+   "max_temperature": 34.2,
+   "avg_humidity": 67.42,
+   "total_precipitation": 2.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-03",
+   "avg_temperature": 31.27,
+   "min_temperature": 26.5,
+   "max_temperature": 36.0,
+   "avg_humidity": 57.25,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-04",
+   "avg_temperature": 30.9,
+   "min_temperature": 26.7,
+   "max_temperature": 36.2,
+   "avg_humidity": 60.5,
+   "total_precipitation": 1.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-05",
+   "avg_temperature": 30.58,
+   "min_temperature": 27.0,
+   "max_temperature": 36.9,
+   "avg_humidity": 63.58,
+   "total_precipitation": 2.8,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-06",
+   "avg_temperature": 29.35,
+   "min_temperature": 26.1,
+   "max_temperature": 33.2,
+   "avg_humidity": 72.79,
+   "total_precipitation": 7.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-07",
+   "avg_temperature": 29.67,
+   "min_temperature": 26.7,
+   "max_temperature": 33.6,
+   "avg_humidity": 70.42,
+   "total_precipitation": 4.7,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-08",
+   "avg_temperature": 30.07,
+   "min_temperature": 26.1,
+   "max_temperature": 33.7,
+   "avg_humidity": 69.58,
+   "total_precipitation": 4.1,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-09",
+   "avg_temperature": 29.1,
+   "min_temperature": 25.3,
+   "max_temperature": 33.9,
+   "avg_humidity": 72.83,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-10",
+   "avg_temperature": 28.32,
+   "min_temperature": 25.2,
+   "max_temperature": 32.5,
+   "avg_humidity": 77.62,
+   "total_precipitation": 8.5,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-11",
+   "avg_temperature": 28.64,
+   "min_temperature": 25.1,
+   "max_temperature": 32.5,
+   "avg_humidity": 77.08,
+   "total_precipitation": 1.2,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-12",
+   "avg_temperature": 29.09,
+   "min_temperature": 26.0,
+   "max_temperature": 33.6,
+   "avg_humidity": 76.04,
+   "total_precipitation": 5.3,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-13",
+   "avg_temperature": 30.18,
+   "min_temperature": 26.5,
+   "max_temperature": 34.8,
+   "avg_humidity": 70.08,
+   "total_precipitation": 1.6,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-14",
+   "avg_temperature": 29.08,
+   "min_temperature": 25.9,
+   "max_temperature": 33.2,
+   "avg_humidity": 74.04,
+   "total_precipitation": 6.9,
+   "hourly_samples": 24
+  },
+  {
+   "date": "2026-11-15",
+   "avg_temperature": 29.56,
+   "min_temperature": 26.1,
+   "max_temperature": 35.0,
+   "avg_humidity": 75.54,
+   "total_precipitation": 8.5,
+   "hourly_samples": 24
+  }
+ ],
+ "monthly": [
+  {
+   "month": "2025-11",
+   "avg_temperature": 27.84,
+   "avg_humidity": 75.07,
+   "total_precipitation": 79.4,
+   "rainy_days_ge_1mm": 12
+  },
+  {
+   "month": "2025-12",
+   "avg_temperature": 27.43,
+   "avg_humidity": 78.97,
+   "total_precipitation": 231.5,
+   "rainy_days_ge_1mm": 30
+  },
+  {
+   "month": "2026-01",
+   "avg_temperature": 25.95,
+   "avg_humidity": 84.66,
+   "total_precipitation": 474.6,
+   "rainy_days_ge_1mm": 30
+  },
+  {
+   "month": "2026-02",
+   "avg_temperature": 26.39,
+   "avg_humidity": 83.2,
+   "total_precipitation": 363.1,
+   "rainy_days_ge_1mm": 25
+  },
+  {
+   "month": "2026-03",
+   "avg_temperature": 27.7,
+   "avg_humidity": 76.7,
+   "total_precipitation": 163.4,
+   "rainy_days_ge_1mm": 24
+  },
+  {
+   "month": "2026-04",
+   "avg_temperature": 27.81,
+   "avg_humidity": 80.45,
+   "total_precipitation": 237.4,
+   "rainy_days_ge_1mm": 29
+  },
+  {
+   "month": "2026-05",
+   "avg_temperature": 28.34,
+   "avg_humidity": 76.76,
+   "total_precipitation": 158.2,
+   "rainy_days_ge_1mm": 24
+  },
+  {
+   "month": "2026-06",
+   "avg_temperature": 29.13,
+   "avg_humidity": 69.16,
+   "total_precipitation": 75.5,
+   "rainy_days_ge_1mm": 18
+  },
+  {
+   "month": "2026-07",
+   "avg_temperature": 29.38,
+   "avg_humidity": 59.18,
+   "total_precipitation": 22.1,
+   "rainy_days_ge_1mm": 10
+  },
+  {
+   "month": "2026-08",
+   "avg_temperature": 29.2,
+   "avg_humidity": 64.77,
+   "total_precipitation": 34.8,
+   "rainy_days_ge_1mm": 10
+  },
+  {
+   "month": "2026-09",
+   "avg_temperature": 29.45,
+   "avg_humidity": 64.12,
+   "total_precipitation": 77.5,
+   "rainy_days_ge_1mm": 14
+  },
+  {
+   "month": "2026-10",
+   "avg_temperature": 29.5,
+   "avg_humidity": 68.59,
+   "total_precipitation": 127.6,
+   "rainy_days_ge_1mm": 21
+  },
+  {
+   "month": "2026-11",
+   "avg_temperature": 29.65,
+   "avg_humidity": 70.5,
+   "total_precipitation": 62.8,
+   "rainy_days_ge_1mm": 15
+  }
+ ],
+ "descriptive": {
+  "avg_temperature": {
+   "mean": 28.261671232876708,
+   "median": 28.52,
+   "std": 1.4429526358122957,
+   "min": 24.52,
+   "max": 31.27,
+   "q25": 27.25,
+   "q75": 29.39,
+   "skew": -0.4663164253271108
+  },
+  "avg_humidity": {
+   "mean": 73.2151506849315,
+   "median": 74.38,
+   "std": 9.719131003515459,
+   "min": 41.96,
+   "max": 90.67,
+   "q25": 65.12,
+   "q75": 81.33,
+   "skew": -0.31517836986713405
+  },
+  "total_precipitation": {
+   "mean": 5.775068493150684,
+   "median": 2.7,
+   "std": 8.240836256523622,
+   "min": 0.0,
+   "max": 52.2,
+   "q25": 0.7,
+   "q75": 7.5,
+   "skew": 2.5615373050989834,
+   "sum_year": 2107.8999999999996,
+   "rainy_days_ge_1mm": 262.0,
+   "dry_days_lt_1mm": 103.0
+  },
+  "correlation_spearman": {
+   "temp_vs_humidity": -0.9184968332521319,
+   "temp_vs_rain": -0.6675652358481727,
+   "humidity_vs_rain": 0.7608476724341675
+  }
+ },
+ "validation": {
+  "rows_total": 8760,
+  "missing": {
+   "temperature_2m": 0,
+   "relative_humidity_2m": 0,
+   "precipitation": 0
+  },
+  "duplicate_timestamps": 0,
+  "missing_hours_in_range": 0,
+  "rows_invalid": 0,
+  "rows_valid": 8760,
+  "period": [
+   "2025-11-16 00:00:00",
+   "2026-11-15 23:00:00"
+  ],
+  "crosscheck_vs_openmeteo_daily": {
+   "max_abs_diff_temp_mean": 0.08000000000000185,
+   "max_abs_diff_precip_sum": 0.0,
+   "max_abs_diff_humidity_mean": 0.5799999999999983
+  }
+ },
+ "trend": [
+  {
+   "indicator": "avg_temperature",
+   "n_days": 365,
+   "slope_per_day": 0.009700688263005802,
+   "slope_per_30days": 0.29102064789017407,
+   "ci95_slope_per_30days_naive": [
+    0.26117116852904587,
+    0.3208701272513022
+   ],
+   "ci95_slope_per_30days_autocorr_adjusted": [
+    0.20630554406545235,
+    0.37573575171489576
+   ],
+   "p_value_ols": 4.3178554011438746e-57,
+   "r_squared": 0.5031455652758349,
+   "kendall_tau": 0.5084171735302652,
+   "p_value_kendall": 1.5235313468721028e-47,
+   "shapiro_residual_p": 0.4750054059244374,
+   "residual_autocorr_lag1": 0.7696729187829677,
+   "durbin_watson": 0.4596682217574705,
+   "n_effective_autocorr": 47.50560612185478
+  },
+  {
+   "indicator": "avg_humidity",
+   "n_days": 365,
+   "slope_per_day": -0.05667207685644692,
+   "slope_per_30days": -1.7001623056934076,
+   "ci95_slope_per_30days_naive": [
+    -1.9250237492365232,
+    -1.4753008621502923
+   ],
+   "ci95_slope_per_30days_autocorr_adjusted": [
+    -2.4450449092403015,
+    -0.9552797021465137
+   ],
+   "p_value_ols": 2.183508603819293e-39,
+   "r_squared": 0.37850889401048016,
+   "kendall_tau": -0.4136768336317128,
+   "p_value_kendall": 4.3267196515799755e-32,
+   "shapiro_residual_p": 0.0004931043271429992,
+   "residual_autocorr_lag1": 0.822462416838104,
+   "durbin_watson": 0.35351319638857154,
+   "n_effective_autocorr": 35.55695703537166
+  },
+  {
+   "indicator": "total_precipitation",
+   "n_days": 365,
+   "slope_per_day": -0.026879570014535205,
+   "slope_per_30days": -0.8063871004360561,
+   "ci95_slope_per_30days_naive": [
+    -1.0334611820069872,
+    -0.5793130188651251
+   ],
+   "ci95_slope_per_30days_autocorr_adjusted": [
+    -1.1254555518491856,
+    -0.4873186490229267
+   ],
+   "p_value_ols": 1.379740709627315e-11,
+   "r_squared": 0.11843900992154884,
+   "kendall_tau": -0.25243602753902467,
+   "p_value_kendall": 9.651465119979234e-13,
+   "shapiro_residual_p": 4.314229413238955e-22,
+   "residual_autocorr_lag1": 0.32468268475233947,
+   "durbin_watson": 1.3464227877932848,
+   "n_effective_autocorr": 186.07536952253562
+  }
+ ],
+ "season_test": {
+  "wet_months": "Des-Mar",
+  "dry_months": "Jun-Sep",
+  "wet_median_mm": 6.5,
+  "dry_median_mm": 0.55,
+  "mannwhitney_U": 12625.0,
+  "p_value": 9.22326691871657e-22,
+  "n_wet": 121,
+  "n_dry": 122
+ }
+}
